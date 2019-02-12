@@ -1,8 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
+
+//Components
+import Navigation from "../UI/Navigation";
 
 const Home = props => {
-  return <div />;
+  return (
+    <div className="container">
+      <Navigation />
+    </div>
+  );
 };
 
 export default Home;
