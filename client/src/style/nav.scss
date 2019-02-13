@@ -1,6 +1,44 @@
 .navigation {
-  background: red;
-  grid-column: full-start / full-end;
+  grid-column: center-start / center-end;
   grid-row: 1 / 2;
-  background: coral;
+  color: var(--light-grey);
+  font-family: "Ubuntu", sans-serif;
+
+  display: grid;
+  grid-template-columns:
+    minmax(15rem, 0.2fr) minmax(max-content, 10rem) minmax(max-content, 1fr)
+    repeat(3, minmax(max-content, 7rem));
+  grid-column-gap: 1.5rem;
+  align-items: center;
+  &__logo {
+    grid-column: 1 / 2;
+    font-size: 3rem;
+    color: var(--light-grey);
+    transform: translateY(-0.5rem);
+  }
+  &__items {
+    font-size: 1.1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+  }
+  &__categories {
+    grid-column: 2 /3;
+  }
+  &__works {
+    grid-column: 3 /4;
+  }
+  &__sign-up {
+    grid-column: 4 /5;
+    justify-self: center;
+  }
+  &__login {
+    grid-column: 5 / 6;
+    justify-self: center;
+  }
+  &__button {
+    grid-column: 6 / 7;
+    justify-self: center;
+  }
 }
