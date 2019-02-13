@@ -9,7 +9,6 @@
     [center-end] minmax(2rem, 1fr) [full-end];
   &__header {
     grid-column: full-start / full-end;
-    background: pink;
   }
   &__promotion {
     grid-column: full-start / full-end;
