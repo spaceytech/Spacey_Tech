@@ -18,3 +18,16 @@ html {
   box-sizing: border-box;
   font-size: 62.5%;
 }
+
+.button {
+  button {
+    background: none;
+    background: var(--light-green);
+    border: none;
+    height: 100%;
+    color: white;
+    padding: 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}

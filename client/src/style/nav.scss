@@ -40,14 +40,5 @@
   &__button {
     grid-column: 6 / 7;
     justify-self: center;
-    button {
-      background: none;
-      background: var(--light-green);
-      border: none;
-      height: 100%;
-      color: white;
-      padding: 1.5rem;
-      border-radius: 5px;
-    }
   }
 }
