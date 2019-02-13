@@ -1,12 +1,12 @@
 .home {
   display: grid;
-  grid-template-rows: 6rem 85vh repeat(4, minmax(10rem, 1fr));
+  grid-template-rows: 6rem 85vh repeat(4, max-content);
   grid-template-columns:
     [full-start] minmax(2rem, 1fr) [center-start] repeat(
       8,
       [col-start] minmax(min-content, 14rem) [col-end]
     )
-    [center-end] minmax(2rem, 1fr) [full-end];
+    [center-end] minmax(3rem, 1fr) [full-end];
   &__header {
     grid-column: full-start / full-end;
 
@@ -115,7 +115,7 @@
       }
     }
     img {
-      height: 3.5rem;
+      height: 4.5rem;
     }
     .wired {
       grid-column: 2 /3;
@@ -129,8 +129,88 @@
     }
   }
   &__description {
-    background: lightblue;
     grid-column: center-start / center-end;
+    color: var(--light-grey);
+    padding: 5rem 0;
+
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: minmax(max-content, 9rem) repeat(
+        3,
+        minmax(max-content, 1fr)
+      );
+    justify-content: center;
+    justify-items: center;
+    grid-row-gap: 1.5rem;
+
+    &--title {
+      grid-column: 1 / -1;
+      font-size: 3rem;
+      font-family: "Oxygen", sans-serif;
+    }
+    &--detail {
+      font-family: "Oxygen", sans-serif;
+      display: grid;
+      grid-template-columns: min-content 1fr;
+      align-items: center;
+      justify-items: start;
+      align-items: center;
+      &:first-of-type {
+        grid-row-gap: 1rem;
+        grid-column-gap: 2.5rem;
+      }
+      &:not(:first-of-type) {
+        grid-column-gap: 2.5rem;
+      }
+      img {
+        height: 10rem;
+        grid-row: 1 / 4;
+      }
+      span {
+        font-size: 1.5rem;
+        font-weight: 600;
+        border-radius: 100%;
+        background: var(--light-green);
+        color: white;
+        padding: 1rem 1.5rem;
+        grid-column: 2 / -1;
+      }
+      h2 {
+        font-size: 2.5rem;
+        grid-column: 2 / -1;
+      }
+      p {
+        font-size: 1.5rem;
+        grid-column: 2 / -1;
+      }
+    }
+    .detail {
+      &--1 {
+        grid-column: 3 / span 3;
+      }
+      &--2 {
+        grid-column: 5 / span 3;
+        grid-row: 3 / 4;
+        grid-template-columns: 1fr min-content;
+        img {
+          grid-row: 1 / 4;
+          grid-column: 2 / 3;
+        }
+        span {
+          grid-column: 1 / 2;
+        }
+        h2 {
+          grid-column: 1 / 2;
+        }
+        p {
+          grid-column: 1 / 2;
+        }
+      }
+      &--3 {
+        grid-column: 3 / span 3;
+        grid-row: 4 / 5;
+      }
+    }
   }
   &__services {
     background: lightgreen;
