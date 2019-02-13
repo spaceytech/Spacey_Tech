@@ -3,7 +3,7 @@ import React from "react";
 //Components
 import Layout from "../../Layout/Layout";
 import Header from "./Header";
-import Promotion from "./Promotion";
+import Features from "./Features";
 import Description from "./Description";
 import Services from "./Services";
 
@@ -12,7 +12,7 @@ const Home = props => {
     <div className="home">
       <Layout>
         <Header />
-        <Promotion />
+        <Features />
         <Description />
         <Services />
       </Layout>

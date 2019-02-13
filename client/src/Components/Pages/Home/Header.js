@@ -4,7 +4,7 @@ const Header = props => {
   return (
     <header className="home__header">
       <img
-        src="images/spacey.jpg"
+        src="images/banner-2.png"
         alt="Header image"
         className="home__header--img"
       />
