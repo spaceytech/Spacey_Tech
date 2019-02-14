@@ -1,4 +1,53 @@
 .footer {
-  background: orange;
+  background-image: url("/images/shape.jpg");
+  background-size: cover;
+  background-position: center;
   grid-column: full-start / full-end;
+  color: white;
+  padding: 10rem 5rem;
+
+  display: grid;
+  grid-template-columns:
+    minmax(6rem, max-content) repeat(4, minmax(max-content, 1fr))
+    minmax(6rem, max-content);
+  justify-items: start;
+  align-items: start;
+  grid-row-gap: 2.5rem;
+  &__item {
+    &:first-of-type {
+      grid-column: 2 / 3;
+    }
+    display: grid;
+    grid-template-rows: 5rem max-content;
+    h2 {
+      font-size: 2rem;
+      font-family: "Oxygen", sans-serif;
+    }
+    a {
+      color: var(--text-color-grey);
+      &:hover {
+        color: white;
+      }
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-row-gap: 1.5rem;
+      li {
+        font-size: 1.5rem;
+        font-family: "Lato", sans-serif;
+      }
+    }
+  }
+  &__download {
+    grid-column: 1 / span 3;
+    justify-self: start;
+    display: grid;
+    grid-template-columns: max-content minmax(max-content, 15rem) repeat(
+        2,
+        min-content
+      );
+    grid-column-gap: 1.5rem;
+  }
 }
