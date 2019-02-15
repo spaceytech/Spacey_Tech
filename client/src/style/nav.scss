@@ -9,14 +9,16 @@
     minmax(15rem, 0.2fr) minmax(max-content, 10rem) minmax(max-content, 1fr)
     repeat(3, minmax(max-content, 7rem));
   grid-column-gap: 1.5rem;
-  align-items: center;
+  align-items: stretch;
   &__logo {
     grid-column: 1 / 2;
     font-size: 3rem;
     color: var(--light-grey);
-    transform: translateY(-0.5rem);
+    transform: translateY(0.7rem);
   }
   &__items {
+    display: flex;
+    align-items: center;
     font-size: 1.1rem;
     cursor: pointer;
     text-transform: uppercase;
