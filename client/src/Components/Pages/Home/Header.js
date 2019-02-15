@@ -1,6 +1,8 @@
 import React from "react";
+import { ScrollTo } from "react-scroll-to";
 
 const Header = props => {
+  console.log(props.element);
   return (
     <header className="home__header">
       <img
@@ -17,9 +19,18 @@ const Header = props => {
         <a href="#" className="home__header--button button">
           <button>Get started</button>
         </a>
-        <p className="home__header--link">
-          See how it works <span className="underline" />
-        </p>
+        <ScrollTo>
+          {({ scrollTo }) => (
+            <p
+              className="home__header--link"
+              onClick={() =>
+                scrollTo({ y: props.element.offsetTop, smooth: true })
+              }
+            >
+              See how it works <span className="underline" />
+            </p>
+          )}
+        </ScrollTo>
       </div>
     </header>
   );
