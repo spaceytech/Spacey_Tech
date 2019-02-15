@@ -49,7 +49,6 @@ class Navigation extends Component {
             />
           ) : null}
         </div>
-        <p className="navigation__items navigation__works">How it works</p>
         <p className="navigation__items navigation__sign-up">Sign up</p>
         <p className="navigation__items navigation__login">Login</p>
         <a href="#" className="navigation__button button">
