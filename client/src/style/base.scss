@@ -101,3 +101,17 @@ a:active {
     }
   }
 }
+
+.show {
+  animation: slideUp 0.2s ease-in-out;
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

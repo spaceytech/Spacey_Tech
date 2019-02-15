@@ -8,7 +8,7 @@ class Dropdown extends Component {
   render() {
     return (
       <div
-        className="dropdown"
+        className={`dropdown ${this.props.show ? "show" : ""}`}
         ref={element => (this.dropdownItem = element)}
         onMouseLeave={event => this.props.leaveDropDown(event)}
       >

@@ -39,6 +39,11 @@ class Navigation extends Component {
           className="navigation__items navigation__categories"
           onMouseEnter={this.mouseEnter}
           onMouseLeave={this.mouseLeave}
+          style={{
+            borderTop: this.state.showDropdown
+              ? "2px solid var(--light-green)"
+              : ""
+          }}
         >
           Categories
           {this.state.showDropdown ? (
@@ -46,6 +51,7 @@ class Navigation extends Component {
               style={{ display: "block" }}
               passRef={this.defineRef}
               leaveDropDown={this.leaveDropDown}
+              show={this.state.showDropdown}
             />
           ) : null}
         </div>
