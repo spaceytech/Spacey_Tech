@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import Layout from "../Layout/Layout";
 
 class DetailProduct extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     return (
       <div className="details">
