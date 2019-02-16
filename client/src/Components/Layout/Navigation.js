@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Dropdown from "../Ui/Dropdown";
 
 class Navigation extends Component {
@@ -32,9 +33,11 @@ class Navigation extends Component {
   render() {
     return (
       <nav className="navigation">
-        <h2 className="navigation__logo">
-          spacey<span style={{ color: "rgb(0, 188, 135)" }}>.</span>
-        </h2>
+        <Link to="/">
+          <h2 className="navigation__logo">
+            spacey<span style={{ color: "rgb(0, 188, 135)" }}>.</span>
+          </h2>
+        </Link>
         <div
           className="navigation__items navigation__categories"
           onMouseEnter={this.mouseEnter}
