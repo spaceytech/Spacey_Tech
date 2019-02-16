@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 class Dropdown extends Component {
@@ -17,12 +18,12 @@ class Dropdown extends Component {
           <p>Pick a task</p>
         </div>
         <ul className="dropdown__list">
-          <a href="#">
+          <Link to="/handyman">
             <li>
               <img src="images/wrench.svg" alt="Wrench" />
               <p>General handyman</p>
             </li>
-          </a>
+          </Link>
           <a href="#">
             <li>
               <img src="images/washing-machine.svg" alt="Washing Machine" />

@@ -1,0 +1,39 @@
+.details {
+  display: grid;
+  grid-template-rows: 6rem 90vh repeat(2, max-content);
+  grid-template-columns:
+    [full-start] minmax(2rem, 1fr) [center-start] repeat(
+      8,
+      [col-start] minmax(min-content, 14rem) [col-end]
+    )
+    [center-end] minmax(3rem, 1fr) [full-end];
+
+  &__header {
+    grid-column: full-start / full-end;
+
+    display: grid;
+    grid-template-columns: minmax(max-content, 1fr);
+    grid-template-rows: max-content minmax(max-content, 8rem) max-content;
+    grid-row-gap: 1rem;
+    align-content: center;
+    justify-items: center;
+    font-family: "Oxygen", sans-serif;
+
+    background-size: cover;
+    background-position: center;
+    color: white;
+
+    h1 {
+      font-size: 5rem;
+    }
+    p {
+      font-size: 2.5rem;
+    }
+    .button {
+      button {
+        font-size: 1.5rem;
+        padding: 1.5rem 3rem;
+      }
+    }
+  }
+}
