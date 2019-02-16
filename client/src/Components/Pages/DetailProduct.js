@@ -9,7 +9,7 @@ class DetailProduct extends Component {
           <header
             className="details__header"
             style={{
-              backgroundImage: `linear-gradient(rgba(0, 191, 255,0.3),rgba(0, 191, 255,0.3)), url(${
+              backgroundImage: `${this.props.backgroundColor}, url(${
                 this.props.backgroundImage
               })`
             }}

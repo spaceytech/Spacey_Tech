@@ -25,34 +25,44 @@ class Dropdown extends Component {
             </li>
           </Link>
           <a href="#">
-            <li>
-              <img src="images/washing-machine.svg" alt="Washing Machine" />
-              <p>Laundry</p>
-            </li>
+            <Link to="/laundry">
+              <li>
+                <img src="images/washing-machine.svg" alt="Washing Machine" />
+                <p>Laundry</p>
+              </li>
+            </Link>
           </a>
           <a href="#">
-            <li>
-              <img src="images/trucking.svg" alt="Delivery van" />
-              <p>Delivery</p>
-            </li>
+            <Link to="/delivery">
+              <li>
+                <img src="images/trucking.svg" alt="Delivery van" />
+                <p>Delivery</p>
+              </li>
+            </Link>
           </a>
           <a href="#">
-            <li>
-              <img src="images/sweep.svg" alt="Sweep" />
-              <p>Cleaning</p>
-            </li>
+            <Link to="/cleaning">
+              <li>
+                <img src="images/sweep.svg" alt="Sweep" />
+                <p>Cleaning</p>
+              </li>
+            </Link>
           </a>
           <a href="#">
-            <li>
-              <img src="images/armchair.svg" alt="Armchair" />
-              <p>Flat pack assembly</p>
-            </li>
+            <Link to="/assembly">
+              <li>
+                <img src="images/armchair.svg" alt="Armchair" />
+                <p>Flat pack assembly</p>
+              </li>
+            </Link>
           </a>
           <a href="#">
-            <li>
-              <img src="images/sketch.svg" alt="Installation" />
-              <p>Installation</p>
-            </li>
+            <Link to="/installation">
+              <li>
+                <img src="images/sketch.svg" alt="Installation" />
+                <p>Installation</p>
+              </li>
+            </Link>
           </a>
         </ul>
       </div>
