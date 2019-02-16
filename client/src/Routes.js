@@ -1,12 +1,12 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "./Components/Pages/Home/Home";
+import Login from "./Components/Pages/Login";
 import DetailProduct from "./Components/Pages/DetailProduct";
 
 const Routes = () => {
   return (
     <Switch>
-      <Route exact path="/" component={Home} />
       <Route
         exact
         path="/handyman"
@@ -79,6 +79,8 @@ const Routes = () => {
           />
         )}
       />
+      <Route exact path="/signin" component={Login} />
+      <Route exact path="/" component={Home} />
     </Switch>
   );
 };
