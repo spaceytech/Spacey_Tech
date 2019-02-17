@@ -26,6 +26,16 @@ class FormLogin extends Component {
         </Link>
         <button id="facebook">Facebook</button>
         <button id="google">Google</button>
+        <p style={{ fontSize: "1rem" }}>
+          By signing up you agree to our{" "}
+          <span style={{ color: "var(--light-green)", cursor: "pointer" }}>
+            Terms of Use
+          </span>{" "}
+          and{" "}
+          <span style={{ color: "var(--light-green)", cursor: "pointer" }}>
+            Privacy Policy
+          </span>
+        </p>
       </div>
     );
   }

@@ -58,8 +58,12 @@ class Navigation extends Component {
             />
           ) : null}
         </div>
-        <p className="navigation__items navigation__sign-up">Sign up</p>
-        <p className="navigation__items navigation__login">Login</p>
+        <Link to="/signup" className="navigation__items navigation__sign-up">
+          <div>Sign up</div>
+        </Link>
+        <Link to="/signin" className="navigation__items navigation__login">
+          <div>Login</div>
+        </Link>
         <a href="#" className="navigation__button button">
           <button>Become a tasker</button>
         </a>

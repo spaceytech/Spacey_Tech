@@ -9,7 +9,7 @@
     minmax(15rem, 0.2fr) minmax(max-content, 1fr)
     repeat(3, minmax(max-content, 7rem));
   grid-column-gap: 1.5rem;
-  align-items: stretch;
+
   &__logo {
     grid-column: 1 / 2;
     font-size: 3rem;
@@ -25,6 +25,7 @@
     text-transform: uppercase;
     font-family: "Lato", sans-serif;
     font-weight: 600;
+    color: var(--light-grey);
     &:hover {
       color: black;
     }
