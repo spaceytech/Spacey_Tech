@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Layout from "../Layout/Layout";
+import { Link } from "react-router-dom";
 
 class DetailProduct extends Component {
   componentDidMount() {
@@ -20,9 +21,9 @@ class DetailProduct extends Component {
           >
             <h1>{this.props.title}</h1>
             <p>{this.props.tagline}</p>
-            <a href="#" className="button">
+            <Link to="/booking" className="button">
               <button>Book now</button>
-            </a>
+            </Link>
           </header>
         </Layout>
       </div>
