@@ -4,12 +4,31 @@ import Home from "./Components/Pages/Home/Home";
 import Login from "./Components/Pages/Login";
 import Register from "./Components/Pages/Register";
 import DetailProduct from "./Components/Pages/DetailProduct";
-import BookWrapper from "./Components/Layout/BookWrapper";
+import Dashboard from "./Components/Layout/Dashboard";
+import Booking from "./Components/Pages/Booking";
+import BookingForm from "./Components/Ui/Accordion/BookingForm";
 
 const Routes = () => {
   return (
     <Switch>
-      <Route exact path="/booking" component={BookWrapper} />
+      <Route
+        exact
+        path="/dashboard/form"
+        render={renderProps => (
+          <Booking>
+            <BookingForm />
+          </Booking>
+        )}
+      />
+      <Route
+        exact
+        path="/dashboard/recommend"
+        render={renderProps => (
+          <Booking>
+            <h1>Hello</h1>
+          </Booking>
+        )}
+      />
       <Route
         exact
         path="/handyman"

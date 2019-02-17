@@ -21,7 +21,7 @@ class DetailProduct extends Component {
           >
             <h1>{this.props.title}</h1>
             <p>{this.props.tagline}</p>
-            <Link to="/booking" className="button">
+            <Link to="/dashboard/form" className="button">
               <button>Book now</button>
             </Link>
           </header>

@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+
 import { Link, withRouter } from "react-router-dom";
 
 class Booking extends Component {
   render() {
+    console.log(this.props);
     return (
       <div className="book">
         <Link to="/" className="book__logo">
@@ -14,10 +16,10 @@ class Booking extends Component {
         <div className="book__wrapper">
           <div className="book__wrapper--nav">
             <ul>
-              <Link to={"/booking/form"}>
+              <Link to={`/dashboard/form`}>
                 <li>Fill out task details</li>
               </Link>
-              <Link to={"/booking/recommend"}>
+              <Link to={`/dashboard/recommend`}>
                 <li>View tasks and prices</li>
               </Link>
               <li>Confirm and book</li>
