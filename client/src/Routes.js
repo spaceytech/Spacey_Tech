@@ -4,11 +4,12 @@ import Home from "./Components/Pages/Home/Home";
 import Login from "./Components/Pages/Login";
 import Register from "./Components/Pages/Register";
 import DetailProduct from "./Components/Pages/DetailProduct";
-import Booking from "./Components/Pages/Booking";
+import BookWrapper from "./Components/Layout/BookWrapper";
 
 const Routes = () => {
   return (
     <Switch>
+      <Route exact path="/booking" component={BookWrapper} />
       <Route
         exact
         path="/handyman"
@@ -81,7 +82,7 @@ const Routes = () => {
           />
         )}
       />
-      <Route exact path="/booking" component={Booking} />
+
       <Route exact path="/signin" component={Login} />
       <Route exact path="/signup" component={Register} />
       <Route exact path="/" component={Home} />
