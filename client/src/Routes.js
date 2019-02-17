@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "./Components/Pages/Home/Home";
 import Login from "./Components/Pages/Login";
+import Register from "./Components/Pages/Register";
 import DetailProduct from "./Components/Pages/DetailProduct";
 
 const Routes = () => {
@@ -80,6 +81,7 @@ const Routes = () => {
         )}
       />
       <Route exact path="/signin" component={Login} />
+      <Route exact path="/signup" component={Register} />
       <Route exact path="/" component={Home} />
     </Switch>
   );
