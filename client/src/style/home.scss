@@ -4,7 +4,7 @@
   grid-template-columns:
     [full-start] minmax(2rem, 1fr) [center-start] repeat(
       8,
-      [col-start] minmax(min-content, 20rem) [col-end]
+      [col-start] minmax(min-content, 14rem) [col-end]
     )
     [center-end] minmax(3rem, 1fr) [full-end];
   &__header {
@@ -14,7 +14,7 @@
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: max-content;
     align-items: center;
-    padding-left: 4rem;
+    padding-left: 6rem;
     &--img {
       grid-column: 2 / 3;
       height: 75vh;

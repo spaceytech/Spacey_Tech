@@ -11,7 +11,6 @@ const Register = () => {
         </h2>
       </Link>
       <FormLogin />
-      <img src="/images/pattern.png" alt="Pattern" />
     </div>
   );
 };
