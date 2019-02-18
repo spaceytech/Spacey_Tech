@@ -4,6 +4,9 @@
       1rem,
       1fr
     );
+
+  grid-template-rows: minmax(6rem, 10rem);
+  grid-row-gap: 1rem;
   grid-row-gap: 3rem;
   justify-items: center;
   background: #fff;
@@ -28,19 +31,6 @@
     background: white;
     width: 100%;
     position: relative;
-    &::after {
-      border: 2px solid red;
-      height: 35rem;
-      width: 25rem;
-      position: absolute;
-      right: -10rem;
-      bottom: 2rem;
-      content: "";
-      background-image: url("/images/pattern.png");
-      background-size: 255px 332px;
-      background-repeat: no-repeat;
-      z-index: -1;
-    }
     h1 {
       font-size: 3rem;
       font-family: "Oxygen", sans-serif;
