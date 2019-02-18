@@ -4,7 +4,6 @@ import Home from "./Components/Pages/Home/Home";
 import Login from "./Components/Pages/Login";
 import Register from "./Components/Pages/Register";
 import DetailProduct from "./Components/Pages/DetailProduct";
-import Dashboard from "./Components/Layout/Dashboard";
 import Booking from "./Components/Pages/Booking";
 import BookingForm from "./Components/Ui/Accordion/BookingForm";
 
