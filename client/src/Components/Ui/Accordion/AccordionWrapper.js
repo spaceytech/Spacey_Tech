@@ -6,7 +6,12 @@ class AccordionWrapper extends Component {
   render() {
     return (
       <div className="accordion">
-        <Collapsible trigger="Task interest" open="true">
+        <Collapsible
+          trigger="Task interest"
+          open="true"
+          easing="cubic-bezier(0,.23,1,1.86)"
+          transitionTime="100"
+        >
           <h2>What do you want to do?</h2>
           <form>
             <label for="book">
@@ -22,7 +27,11 @@ class AccordionWrapper extends Component {
             <button>Next</button>
           </a>
         </Collapsible>
-        <Collapsible trigger="Street address">
+        <Collapsible
+          trigger="Street address"
+          easing="cubic-bezier(0,.23,1,1.86)"
+          transitionTime="100"
+        >
           <form>
             <input
               type="text"
@@ -35,7 +44,11 @@ class AccordionWrapper extends Component {
             <button>Next</button>
           </a>
         </Collapsible>
-        <Collapsible trigger="Task option">
+        <Collapsible
+          trigger="Task option"
+          easing="cubic-bezier(0,.23,1,1.86)"
+          transitionTime="100"
+        >
           <div className="task-size">
             <h2>Task Size</h2>
             <form>
@@ -57,7 +70,11 @@ class AccordionWrapper extends Component {
             <button>Continue</button>
           </a>
         </Collapsible>
-        <Collapsible trigger="Tell us the details of your task">
+        <Collapsible
+          trigger="Tell us the details of your task"
+          transitionTime="100"
+          easing="cubic-bezier(0,.23,1,1.86)"
+        >
           <p>
             Start the conversation and tell your Tasker what you need done. This
             helps us show you only qualified and available Taskers for the job.
