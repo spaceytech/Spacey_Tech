@@ -18,12 +18,12 @@ class Booking extends Component {
         <div className="book__nav">
           <ul>
             <Link to={`/dashboard/form`} className="fill">
-              <li>Fill out task details</li>
+              <li>1. Fill out task details</li>
             </Link>
             <Link to={`/dashboard/recommend`} className="prices">
-              <li>View tasks and prices</li>
+              <li>2. View tasks and prices</li>
             </Link>
-            <li>Confirm and book</li>
+            <li>3. Confirm and book</li>
           </ul>
         </div>
         <div className="book__wrapper">{this.props.children}</div>
