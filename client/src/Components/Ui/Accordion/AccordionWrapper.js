@@ -9,15 +9,20 @@ class AccordionWrapper extends Component {
         <Collapsible trigger="Task interest" open="true">
           <h2>What do you want to do?</h2>
           <form>
-            <input type="radio" name="book" value="book" />I am ready to book
-            now
-            <input type="radio" name="book" value="save" />I want to save a task
+            <label for="book">
+              <input type="radio" name="book" value="book" id="book" />I am
+              ready to book now
+            </label>
+            <label for="save">
+              <input type="radio" name="book" value="save" id="save" />I want to
+              save a task
+            </label>
           </form>
           <a href="#" className="button">
             <button>Next</button>
           </a>
         </Collapsible>
-        <Collapsible trigger="Task location">
+        <Collapsible trigger="Street address">
           <form>
             <input
               type="text"
@@ -30,17 +35,25 @@ class AccordionWrapper extends Component {
           </a>
         </Collapsible>
         <Collapsible trigger="Task option">
-          <div className="task_size">
+          <div className="task-size">
             <h2>Task Size</h2>
             <form>
-              <input type="radio" name="size" value="small" />Small - Est. 1hr
-              now
-              <input type="radio" name="size" value="medium" />Est. 2-3hrs
-              <input type="radio" name="size" value="large" />Est. 3-4hrs
+              <label for="small">
+                <input type="radio" name="size" value="small" id="small" />Small
+                - Est. 1hr now
+              </label>
+              <label for="medium">
+                <input type="radio" name="size" value="medium" id="medium" />Est.
+                2-3hrs
+              </label>
+              <label for="large">
+                <input type="radio" name="size" value="large" id="large" />Est.
+                3-4hrs
+              </label>
             </form>
           </div>
           <a href="#" className="button">
-            <button>Next</button>
+            <button>Continue</button>
           </a>
         </Collapsible>
         <Collapsible trigger="Tell us the details of your task">

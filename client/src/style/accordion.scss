@@ -1,0 +1,70 @@
+.accordion {
+  display: grid;
+  grid-row-gap: 2rem;
+  .Collapsible {
+    background: white;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+
+    &__trigger {
+    }
+
+    &__contentInner {
+      display: flex;
+      flex-direction: column;
+      & > * {
+        margin-bottom: 2rem;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        & > *:not(:last-child) {
+          margin-bottom: 1.5rem;
+        }
+        label {
+          display: flex;
+          align-items: center;
+
+          input {
+            margin-right: 1rem;
+          }
+        }
+      }
+      .task-size {
+        display: flex;
+        flex-direction: column;
+        h2 {
+          border-bottom: 1px solid var(--light-grey-2);
+          padding-bottom: 1.5rem;
+        }
+        form {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          align-items: center;
+          padding: 2rem 0;
+          font-weight: 600;
+
+          & > * {
+            margin-bottom: 0;
+          }
+        }
+      }
+      .button {
+        align-self: center;
+        button {
+          padding: 1rem 3rem;
+          width: 100%;
+        }
+      }
+    }
+
+    .is-open {
+      margin-bottom: 2rem;
+    }
+    .is-closed {
+      margin-bottom: 1.5rem;
+    }
+  }
+}
