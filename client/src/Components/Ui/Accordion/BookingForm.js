@@ -7,7 +7,7 @@ class BookingForm extends Component {
     console.log(this.props);
     return (
       <div className="book__wrapper--container">
-        <h2>Describe your task: Handyman</h2>
+        <h1>Describe your task: Handyman</h1>
         <p>
           We need these inputs to show only qualified and available Taskers for
           the job.

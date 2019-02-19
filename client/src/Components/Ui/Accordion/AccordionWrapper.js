@@ -28,6 +28,7 @@ class AccordionWrapper extends Component {
               type="text"
               name="address"
               placeholder="Enter your street address"
+              className="address"
             />
           </form>
           <a href="#" className="button">
@@ -62,7 +63,7 @@ class AccordionWrapper extends Component {
             helps us show you only qualified and available Taskers for the job.
             Don't worry, you can edit this later.
           </p>
-          <textarea />
+          <textarea placeholder="Hi! I am looking for assistance updating my 700sq ft apartment. I'm on the 3rd floor, although there are no lifts the flight of stairs are short. " />
           <a href="#" className="button">
             <button>See Taskers and Prices</button>
           </a>
