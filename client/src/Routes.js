@@ -7,6 +7,7 @@ import DetailProduct from "./Components/Pages/DetailProduct";
 import Booking from "./Components/Pages/Booking";
 import BookingForm from "./Components/Ui/Accordion/BookingForm";
 import Confirm from "./Components/Ui/Confirm";
+import Taskers from "./Components/Ui/Taskers";
 
 const Routes = () => {
   return (
@@ -26,6 +27,15 @@ const Routes = () => {
         render={renderProps => (
           <Booking>
             <Confirm />
+          </Booking>
+        )}
+      />
+      <Route
+        exact
+        path="/dashboard/recommend"
+        render={renderProps => (
+          <Booking>
+            <Taskers />
           </Booking>
         )}
       />
