@@ -6,6 +6,7 @@ import Register from "./Components/Pages/Register";
 import DetailProduct from "./Components/Pages/DetailProduct";
 import Booking from "./Components/Pages/Booking";
 import BookingForm from "./Components/Ui/Accordion/BookingForm";
+import Confirm from "./Components/Ui/Confirm";
 
 const Routes = () => {
   return (
@@ -21,10 +22,10 @@ const Routes = () => {
       />
       <Route
         exact
-        path="/dashboard/recommend"
+        path="/dashboard/confirm"
         render={renderProps => (
           <Booking>
-            <h1>Hello</h1>
+            <Confirm />
           </Booking>
         )}
       />

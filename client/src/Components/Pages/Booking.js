@@ -23,7 +23,9 @@ class Booking extends Component {
             <Link to={`/dashboard/recommend`} className="prices">
               <li>2. View tasks and prices</li>
             </Link>
-            <li>3. Confirm and book</li>
+            <Link to={`/dashboard/confirm`} className="confirm">
+              <li>3. Confirm and book</li>
+            </Link>
           </ul>
         </div>
         <div className="book__wrapper">{this.props.children}</div>
