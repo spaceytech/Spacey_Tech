@@ -5,7 +5,7 @@ class Taskers extends Component {
     console.log(this.props);
     return (
       <div className="book__wrapper--taskoptions">
-        <h1>Pick a tasker</h1>
+        <h1 className="book__wrapper--taskoptions__heading">Pick a tasker</h1>
         <div className="book__wrapper--taskoptions__calendar">
           <h2>Task date</h2>
           <a href="#" className="button">
@@ -20,9 +20,13 @@ class Taskers extends Component {
               className="right__photo"
             />
             <p>View profile & reviews</p>
-            <a href="#">
+            <a href="#" className="button">
               <button>Select & continue</button>
             </a>
+            <span>
+              You can chat with your Tasker, adjust task details, or change task
+              time after booking.
+            </span>
           </div>
           <div className="left">
             <div className="left__name">
@@ -30,8 +34,10 @@ class Taskers extends Component {
               <p>£52.30/hr</p>
             </div>
             <div className="left__quicky">
+              <i class="far fa-check-circle" />{" "}
               <p>8 Minor Home Repairs Tasks</p>
-              <p>100% Positive Reviews</p>
+              <i class="far fa-star" /> <p>100% Positive Reviews</p>
+              <i class="fas fa-shield-alt" />
               <p>91% Reliable</p>
             </div>
             <hr />
