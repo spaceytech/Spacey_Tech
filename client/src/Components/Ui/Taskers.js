@@ -1,16 +1,23 @@
 import React, { Component } from "react";
+import DatePicker from "react-date-picker";
 
 class Taskers extends Component {
+  state = {
+    date: new Date()
+  };
+  onChange = date => this.setState({ date });
   render() {
-    console.log(this.props);
+    console.log(this.state.date);
     return (
       <div className="book__wrapper--taskoptions">
         <h1 className="book__wrapper--taskoptions__heading">Pick a tasker</h1>
         <div className="book__wrapper--taskoptions__calendar">
           <h2>Task date</h2>
-          <a href="#" className="button">
-            <button>Choose a date</button>
-          </a>
+          <DatePicker
+            onChange={this.onChange}
+            value={this.state.date}
+            className="calendar"
+          />
         </div>
         <div className="book__wrapper--taskoptions__tasker">
           <div className="right">
