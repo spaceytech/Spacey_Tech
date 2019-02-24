@@ -24,6 +24,21 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%;
+  @media only screen and (max-width: 87.5em) {
+    //1400px
+    font-size: 56.25%;
+  }
+  @media only screen and (max-width: 75em) {
+    //1200px
+    font-size: 50%;
+  }
+  @media only screen and (max-width: 66.88em) {
+    //1070px
+    font-size: 43.75%;
+  }
+  @media only screen and (max-width: 28.34em) {
+    font-size: 37.5%;
+  }
 }
 
 hr {
