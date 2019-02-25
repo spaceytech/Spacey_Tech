@@ -78,6 +78,9 @@ a:active {
   display: grid;
   grid-template-columns: minmax(max-content, 40rem);
   grid-row-gap: 1rem;
+  @media only screen and (max-width: 37.5em) {
+    grid-row-gap: 0;
+  }
 
   &__text {
     grid-column: 1 / -1;
@@ -87,9 +90,15 @@ a:active {
       color: var(--dark-grey);
       margin-bottom: 1rem;
       font-family: "Oxygen", sans-serif;
+      @media only screen and (max-width: 37.5em) {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+      }
     }
     p {
       font-weight: 100;
+      color: black;
     }
   }
 
@@ -100,6 +109,10 @@ a:active {
 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    @media only screen and (max-width: 37.5em) {
+      display: flex;
+      flex-direction: column;
+    }
 
     a {
       color: var(--dark-grey);
