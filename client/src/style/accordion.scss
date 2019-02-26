@@ -24,6 +24,9 @@
       font-family: "Source Sans Pro", sans-serif;
       p {
         font-size: 1.7rem;
+        @media only screen and (max-width: 66.88em) {
+          font-size: 2.43rem;
+        }
       }
       textarea {
         padding: 1rem;
@@ -58,6 +61,9 @@
         & > *:not(:last-child) {
           margin-bottom: 1.5rem;
         }
+        @media only screen and (max-width: 66.88em) {
+          font-size: 2.14rem;
+        }
         label {
           display: flex;
           align-items: center;
@@ -76,6 +82,9 @@
           font-family: "Lato", sans-serif;
           color: var(--light-grey);
           font-size: 1.5rem;
+          @media only screen and (max-width: 66.88em) {
+            font-size: 2.14rem;
+          }
         }
         &:focus {
           outline: none;
@@ -98,7 +107,11 @@
           align-items: center;
           padding: 2rem 0;
           font-weight: 600;
-
+          @media only screen and (max-width: 31.88em) {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+          }
           & > * {
             margin-bottom: 0;
           }
