@@ -23,21 +23,25 @@ class FormRegister extends Component {
 
           <label for="acknowledge">
             <input type="checkbox" name="acknowledge" id="acknowledge" />
-            By ticking this box, I acknowledge that I have reviewed and agree to
-            the
-            <span style={{ color: "var(--light-green)", cursor: "pointer" }}>
-              Terms and Conditions
-            </span>
-            and
-            <span style={{ color: "var(--light-green)", cursor: "pointer" }}>
-              Privacy Policy
-            </span>
+            <p>
+              By ticking this box, I acknowledge that I have reviewed and agree
+              to the
+              <span style={{ color: "var(--light-green)", cursor: "pointer" }}>
+                Terms and Conditions
+              </span>
+              and
+              <span style={{ color: "var(--light-green)", cursor: "pointer" }}>
+                Privacy Policy
+              </span>
+            </p>
           </label>
 
           <label for="opt-in">
             <input type="checkbox" name="opt-in" id="opt-in" />
-            I do not want to receive promotional emails and notifications from
-            Spacey
+            <p>
+              I do not want to receive promotional emails and notifications from
+              Spacey
+            </p>
           </label>
 
           <a href="#" className="button">
