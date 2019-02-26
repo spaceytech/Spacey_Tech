@@ -6,12 +6,21 @@
   justify-items: center;
   background: #fff;
   height: 90vh;
+  @media only screen and (max-width: 66.88em) {
+    grid-template-columns: repeat(6, minmax(max-content, 1fr));
+  }
+  @media only screen and (max-width: 59.38em) {
+    grid-template-columns: 5rem repeat(4, minmax(max-content, 1fr)) 5rem;
+  }
   &__logo {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
     align-self: start;
     font-family: "Ubuntu", sans-serif;
     transform: translateY(2rem);
+    @media only screen and (max-width: 66.88em) {
+      grid-column: 2 / span 4;
+    }
   }
   &__wrapper {
     grid-column: 2 / 3;
@@ -25,7 +34,13 @@
     border-radius: 15px;
     background: white;
     grid-auto-rows: min-content;
-
+    @media only screen and (max-width: 66.88em) {
+      grid-column: 2 / span 4;
+    }
+    @media only screen and (max-width: 43.75em) {
+      grid-column: 1 / -1;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px;
+    }
     h1 {
       font-size: 3rem;
       font-family: "Oxygen", sans-serif;
@@ -47,6 +62,9 @@
           font-size: 1.5rem;
           color: #555;
           font-family: "Oxygen", sans-serif;
+          @media only screen and (max-width: 66.88em) {
+            font-size: 2.14rem;
+          }
         }
         &:last-of-type {
           margin-bottom: 2.5rem;
@@ -78,6 +96,9 @@
       font-family: "Lato", sans-serif;
       font-weight: 200;
       color: var(--light-grey);
+      @media only screen and (max-width: 66.88em) {
+        font-size: 2.14rem;
+      }
     }
     #facebook,
     #google {
@@ -87,6 +108,9 @@
       font-size: 1.3rem;
       font-family: "PT Sans", sans-serif;
       cursor: pointer;
+      @media only screen and (max-width: 66.88em) {
+        font-size: 1.85rem;
+      }
       &:hover {
         opacity: 0.8;
       }
