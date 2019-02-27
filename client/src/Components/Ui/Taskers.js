@@ -26,6 +26,7 @@ class Taskers extends Component {
               alt="User image"
               className="right__photo"
             />
+
             <p>View profile & reviews</p>
             <a href="#" className="button">
               <button>Select & continue</button>
