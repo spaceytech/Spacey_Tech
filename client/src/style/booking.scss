@@ -94,11 +94,22 @@
       border-radius: 7px;
       padding: 3rem 3.5rem;
 
+      @media only screen and (max-width: 62.5em) {
+        grid-column: 1 / -1;
+      }
+
       display: flex;
       flex-direction: column;
       & > *:not(:first-child) {
         margin-bottom: 1rem;
       }
+      p {
+        font-size: 2rem;
+        @media only screen and (max-width: 28.34em) {
+          font-size: 2.3rem;
+        }
+      }
+
       input,
       select {
         padding: 1rem 0.5rem;
@@ -130,10 +141,13 @@
       justify-content: space-between;
       align-self: stretch;
       margin-bottom: 2rem;
-      font-size: 1.6rem;
+      font-size: 2rem;
       align-items: center;
       font-family: "Oxygen", sans-serif;
       font-weight: 100;
+      @media only screen and (max-width: 28.34em) {
+        font-size: 2.2rem;
+      }
       h2 {
         font-family: "Lato", sans-serif;
         justify-self: end;
@@ -142,6 +156,7 @@
     &--payments {
       display: flex;
       flex-direction: column;
+
       & > * {
         margin-bottom: 1.2rem;
       }
@@ -152,6 +167,12 @@
         grid-column-gap: 1.5rem;
         p {
           grid-column: 1 / span 2;
+          @media only screen and (max-width: 28.34em) {
+            font-size: 2.5rem;
+          }
+        }
+        @media only screen and (max-width: 49.38em) {
+          grid-template-columns: repeat(auto-fit, minmax(20rem, max-content));
         }
       }
     }
@@ -175,6 +196,13 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-row-gap: 1rem;
+      h2 {
+        font-size: 2rem;
+        @media only screen and (max-width: 28.34em) {
+          font-weight: 700;
+          font-size: 2.5rem;
+        }
+      }
     }
     &--times {
       & > * {
@@ -191,7 +219,7 @@
         cursor: not-allowed;
       }
       p {
-        font-size: 1.5rem;
+        font-size: 2rem;
         color: var(--light-green);
         cursor: pointer;
       }

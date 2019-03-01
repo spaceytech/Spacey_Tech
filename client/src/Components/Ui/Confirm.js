@@ -17,7 +17,9 @@ class Confirm extends Component {
               <input type="text" id="card" name="card" />
             </label>
             <div className="options">
-              <label for="month">Expiration</label>
+              <label for="month">
+                <p>Expiration</p>
+              </label>
               <select id="month">
                 <option value="">MM</option>
                 <option value="dog">Dog</option>
@@ -51,7 +53,7 @@ class Confirm extends Component {
           </div>
         </div>
         <label for="phone" className="mobile">
-          Mobile Phone
+          <p>Mobile Phone</p>
           <input type="text" id="phone" name="phone" />
         </label>
         <hr />
