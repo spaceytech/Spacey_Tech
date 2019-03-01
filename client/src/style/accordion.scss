@@ -16,6 +16,9 @@
       text-transform: uppercase;
       color: var(--light-grey);
       cursor: pointer;
+      @media only screen and (max-width: 28.34em) {
+        font-size: 2rem;
+      }
     }
 
     &__contentInner {
@@ -63,6 +66,9 @@
         }
         @media only screen and (max-width: 66.88em) {
           font-size: 2.14rem;
+        }
+        @media only screen and (max-width: 28.34em) {
+          font-size: 2.5rem;
         }
         label {
           display: flex;
