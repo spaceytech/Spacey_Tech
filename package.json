@@ -2,10 +2,17 @@
   "name": "spacey",
   "version": "1.0.0",
   "description": "A task helper for daily chores",
-  "main": "server.js",
+  "main": "server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "npm run start --prefix client",
+    "server": "nodemon server/server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Zakeria Ali",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.10"
+  }
 }
