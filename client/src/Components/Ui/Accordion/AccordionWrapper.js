@@ -142,7 +142,9 @@ class AccordionWrapper extends Component {
           </p>
           <textarea placeholder="Hi! I am looking for assistance updating my 700sq ft apartment. I'm on the 3rd floor, although there are no lifts the flight of stairs are short. " />
           <a href="#" className="button">
-            <button>See Taskers and Prices</button>
+            <button onClick={() => this.props.nextSection(true)}>
+              See Taskers and Prices
+            </button>
           </a>
         </Collapsible>
       </div>

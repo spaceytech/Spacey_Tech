@@ -65,6 +65,10 @@ a:active {
   text-decoration: none;
 }
 
+.disabled-link {
+  pointer-events: none;
+}
+
 .dropdown {
   position: absolute;
   top: 5.9rem;

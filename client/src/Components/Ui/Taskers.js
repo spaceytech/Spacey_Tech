@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import DatePicker from "react-date-picker";
+import { withRouter } from "react-router-dom";
 
 class Taskers extends Component {
   state = {
     date: new Date()
   };
   onChange = date => this.setState({ date });
+  nextSection = () => {
+    this.props.nextSection("confirm", true);
+    this.props.history.push("/dashboard/confirm");
+  };
   render() {
     console.log(this.state.date);
     return (
@@ -29,7 +34,9 @@ class Taskers extends Component {
 
             <p>View profile & reviews</p>
             <a href="#" className="button">
-              <button>Select & continue</button>
+              <button onClick={() => this.nextSection()}>
+                Select & continue
+              </button>
             </a>
             <span>
               You can chat with your Tasker, adjust task details, or change task
@@ -74,4 +81,4 @@ class Taskers extends Component {
   }
 }
 
-export default Taskers;
+export default withRouter(Taskers);

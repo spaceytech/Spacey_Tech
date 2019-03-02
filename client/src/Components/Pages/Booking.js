@@ -1,11 +1,32 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { Link, withRouter } from "react-router-dom";
+import { Link, NavLink, withRouter } from "react-router-dom";
 
 class Booking extends Component {
+  state = {
+    links: [
+      {
+        to: "/dashboard/form",
+        className: "fill",
+        text: "1. Fill out task details"
+      },
+      {
+        to: "/dashboard/recommend",
+        className: "prices",
+        text: "2. View tasks and prices",
+        completed: false
+      },
+      {
+        to: "/dashboard/confirm",
+        className: "confirm",
+        text: "3. Confirm and book",
+        completed: false
+      }
+    ]
+  };
   render() {
-    console.log(this.props);
+    console.log(this.props.link);
     return (
       <div className="book">
         <div className="book__head">
@@ -17,15 +38,19 @@ class Booking extends Component {
         </div>
         <div className="book__nav">
           <ul>
-            <Link to={`/dashboard/form`} className="fill">
-              <li>1. Fill out task details</li>
-            </Link>
-            <Link to={`/dashboard/recommend`} className="prices">
-              <li>2. View tasks and prices</li>
-            </Link>
-            <Link to={`/dashboard/confirm`} className="confirm">
-              <li>3. Confirm and book</li>
-            </Link>
+            {this.state.links.map(link => (
+              <NavLink
+                to={link.to}
+                className={`${link.className} ${
+                  link.completed === false ? "disabled-link" : ""
+                }`}
+                activeStyle={{
+                  color: "var(--light-green)"
+                }}
+              >
+                <li>{link.text}</li>
+              </NavLink>
+            ))}
           </ul>
         </div>
         <div className="book__wrapper">{this.props.children}</div>
