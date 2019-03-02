@@ -173,7 +173,7 @@
       }
       &__container {
         display: grid;
-        grid-template-columns: repeat(5, max-content);
+        grid-template-columns: repeat(auto-fit, minmax(20rem, max-content));
         align-items: end;
         grid-column-gap: 1.5rem;
         p {
@@ -181,9 +181,6 @@
           @media only screen and (max-width: 28.34em) {
             font-size: 2.5rem;
           }
-        }
-        @media only screen and (max-width: 49.38em) {
-          grid-template-columns: repeat(auto-fit, minmax(20rem, max-content));
         }
       }
     }
