@@ -2,15 +2,69 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Collapsible from "react-collapsible";
 
+import { connect } from "react-redux";
+import { sendTask } from "../../../actions/taskActions";
+
 class AccordionWrapper extends Component {
+  state = {
+    accordions: [
+      {
+        trigger: "Task interest",
+        open: true,
+        easing: "cubic-bezier(0,.23,1,1.86)",
+        transitionTime: "100",
+        disabled: true
+      },
+      {
+        trigger: "Street address",
+        open: false,
+        easing: "cubic-bezier(0,.23,1,1.86)",
+        transitionTime: "100",
+        disabled: true
+      },
+      {
+        trigger: "Task option",
+        open: false,
+        easing: "cubic-bezier(0,.23,1,1.86)",
+        transitionTime: "100",
+        disabled: true
+      },
+      {
+        trigger: "Tell us the details of your task",
+        open: false,
+        easing: "cubic-bezier(0,.23,1,1.86)",
+        transitionTime: "100",
+        disabled: true
+      }
+    ]
+  };
+  componentDidMount() {
+    this.props.dispatch(sendTask());
+  }
+
+  openNext = (prev, next) => {
+    const accordions = this.state.accordions;
+    const previousAccordion = accordions[prev];
+    const nextAccordion = accordions[next];
+
+    previousAccordion.open = false;
+    nextAccordion.open = true;
+
+    previousAccordion.disabled = false;
+
+    this.setState({
+      accordions
+    });
+  };
   render() {
     return (
       <div className="accordion">
         <Collapsible
-          trigger="Task interest"
-          open="true"
-          easing="cubic-bezier(0,.23,1,1.86)"
-          transitionTime="100"
+          trigger={this.state.accordions[0].trigger}
+          open={this.state.accordions[0].open}
+          easing={this.state.accordions[0].easing}
+          transitionTime={this.state.accordions[0].transitionTime}
+          triggerDisabled={this.state.accordions[0].disabled}
         >
           <h2>What do you want to do?</h2>
           <form>
@@ -24,13 +78,15 @@ class AccordionWrapper extends Component {
             </label>
           </form>
           <a href="#" className="button">
-            <button>Next</button>
+            <button onClick={() => this.openNext(0, 1)}>Next</button>
           </a>
         </Collapsible>
         <Collapsible
-          trigger="Street address"
-          easing="cubic-bezier(0,.23,1,1.86)"
-          transitionTime="100"
+          trigger={this.state.accordions[1].trigger}
+          open={this.state.accordions[1].open}
+          easing={this.state.accordions[1].easing}
+          transitionTime={this.state.accordions[1].transitionTime}
+          triggerDisabled={this.state.accordions[1].disabled}
         >
           <form>
             <input
@@ -41,13 +97,15 @@ class AccordionWrapper extends Component {
             />
           </form>
           <a href="#" className="button">
-            <button>Next</button>
+            <button onClick={() => this.openNext(1, 2)}>Next</button>
           </a>
         </Collapsible>
         <Collapsible
-          trigger="Task option"
-          easing="cubic-bezier(0,.23,1,1.86)"
-          transitionTime="100"
+          trigger={this.state.accordions[2].trigger}
+          open={this.state.accordions[2].open}
+          easing={this.state.accordions[2].easing}
+          transitionTime={this.state.accordions[2].transitionTime}
+          triggerDisabled={this.state.accordions[2].disabled}
         >
           <div className="task-size">
             <h2>Task Size</h2>
@@ -67,13 +125,15 @@ class AccordionWrapper extends Component {
             </form>
           </div>
           <a href="#" className="button">
-            <button>Continue</button>
+            <button onClick={() => this.openNext(2, 3)}>Continue</button>
           </a>
         </Collapsible>
         <Collapsible
-          trigger="Tell us the details of your task"
-          transitionTime="100"
-          easing="cubic-bezier(0,.23,1,1.86)"
+          trigger={this.state.accordions[3].trigger}
+          open={this.state.accordions[3].open}
+          easing={this.state.accordions[3].easing}
+          transitionTime={this.state.accordions[3].transitionTime}
+          triggerDisabled={this.state.accordions[3].disabled}
         >
           <p>
             Start the conversation and tell your Tasker what you need done. This
@@ -90,4 +150,4 @@ class AccordionWrapper extends Component {
   }
 }
 
-export default AccordionWrapper;
+export default connect()(AccordionWrapper);
