@@ -8,7 +8,6 @@ class Taskers extends Component {
   };
   onChange = date => this.setState({ date });
   nextSection = () => {
-    this.props.nextSection("confirm", true);
     this.props.history.push("/dashboard/confirm");
   };
   render() {

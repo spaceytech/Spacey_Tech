@@ -6,7 +6,6 @@ import { Redirect, withRouter } from "react-router-dom";
 class BookingForm extends Component {
   nextSection = complete => {
     if (complete) {
-      this.props.nextSection("recommend", complete);
       this.props.history.push("/dashboard/recommend");
     }
   };
