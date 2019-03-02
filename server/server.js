@@ -8,6 +8,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+// Models
+require("./models/Tasks");
+
+// Routes
+require("./routes/tasks")(app);
+// require("./routes/users")(app);
+// require("./routes/tasker")(app);
+
 // Server run
 const PORT = 3003;
 app.listen(PORT, () => {
