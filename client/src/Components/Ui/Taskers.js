@@ -32,11 +32,11 @@ class Taskers extends Component {
             />
 
             <p>View profile & reviews</p>
-            <a href="#" className="button">
+            <div className="button">
               <button onClick={() => this.nextSection()}>
                 Select & continue
               </button>
-            </a>
+            </div>
             <span>
               You can chat with your Tasker, adjust task details, or change task
               time after booking.

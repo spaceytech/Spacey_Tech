@@ -77,9 +77,9 @@ class AccordionWrapper extends Component {
               save a task
             </label>
           </form>
-          <a href="#" className="button">
+          <div className="button">
             <button onClick={() => this.openNext(0, 1)}>Next</button>
-          </a>
+          </div>
         </Collapsible>
         <Collapsible
           trigger={this.state.accordions[1].trigger}
@@ -96,9 +96,9 @@ class AccordionWrapper extends Component {
               className="address"
             />
           </form>
-          <a href="#" className="button">
+          <div className="button">
             <button onClick={() => this.openNext(1, 2)}>Next</button>
-          </a>
+          </div>
         </Collapsible>
         <Collapsible
           trigger={this.state.accordions[2].trigger}
@@ -124,9 +124,9 @@ class AccordionWrapper extends Component {
               </label>
             </form>
           </div>
-          <a href="#" className="button">
+          <div className="button">
             <button onClick={() => this.openNext(2, 3)}>Continue</button>
-          </a>
+          </div>
         </Collapsible>
         <Collapsible
           trigger={this.state.accordions[3].trigger}
@@ -141,11 +141,11 @@ class AccordionWrapper extends Component {
             Don't worry, you can edit this later.
           </p>
           <textarea placeholder="Hi! I am looking for assistance updating my 700sq ft apartment. I'm on the 3rd floor, although there are no lifts the flight of stairs are short. " />
-          <a href="#" className="button">
+          <div className="button">
             <button onClick={() => this.props.nextSection(true)}>
               See Taskers and Prices
             </button>
-          </a>
+          </div>
         </Collapsible>
       </div>
     );
