@@ -330,7 +330,6 @@
         position: relative;
         height: 100%;
         @media only screen and (max-width: 50em) {
-          grid-row: 3 / 4;
           grid-column: 1 / -1;
         }
         @media only screen and (max-width: 43.13em) {
