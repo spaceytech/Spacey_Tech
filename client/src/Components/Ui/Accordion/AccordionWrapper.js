@@ -12,7 +12,7 @@ class AccordionWrapper extends Component {
         trigger: "Task interest",
         open: true,
         easing: "cubic-bezier(0,.23,1,1.86)",
-        transitionTime: "100",
+        transitionTime: 100,
         disabled: true,
         book: ""
       },
@@ -20,7 +20,7 @@ class AccordionWrapper extends Component {
         trigger: "Street address",
         open: false,
         easing: "cubic-bezier(0,.23,1,1.86)",
-        transitionTime: "100",
+        transitionTime: 100,
         disabled: true,
         address: ""
       },
@@ -28,7 +28,7 @@ class AccordionWrapper extends Component {
         trigger: "Task option",
         open: false,
         easing: "cubic-bezier(0,.23,1,1.86)",
-        transitionTime: "100",
+        transitionTime: 100,
         disabled: true,
         size: ""
       },
@@ -36,7 +36,7 @@ class AccordionWrapper extends Component {
         trigger: "Tell us the details of your task",
         open: false,
         easing: "cubic-bezier(0,.23,1,1.86)",
-        transitionTime: "100",
+        transitionTime: 100,
         disabled: true,
         description: ""
       }
@@ -75,15 +75,25 @@ class AccordionWrapper extends Component {
     this.setState({
       accordions: newAccordions
     });
-
-    console.log(accordion);
   };
 
   nextSection = (e, index, property) => {
     const accordions = this.state.accordions;
     const accordion = accordions[index];
 
+    let propArrays = ["book", "address", "size", "description"];
+    let newAccordion = {};
+
+    accordions.forEach(acc => {
+      propArrays.forEach(prop => {
+        if (acc.hasOwnProperty(prop)) {
+          newAccordion[prop] = acc[prop];
+        }
+      });
+    });
+
     if (accordion[property].length > 0) {
+      this.props.dispatch(sendTask(newAccordion));
       this.props.nextSection(true);
     } else {
       this.props.nextSection(false);

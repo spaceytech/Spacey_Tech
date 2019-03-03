@@ -1,5 +1,5 @@
 module.exports = app => {
-  app.post("/api/tasks", (req, res) => {
-    console.log(req.body);
+  app.post("/api/task", (req, res) => {
+    res.send(req.body);
   });
 };

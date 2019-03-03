@@ -1,8 +1,8 @@
 import { SENDTASK } from "./types";
 import axios from "axios";
 
-export const sendTask = async () => {
-  const res = await axios.post("/api/task");
+export const sendTask = async data => {
+  const res = await axios.post("/api/task", data);
 
   return {
     type: SENDTASK,

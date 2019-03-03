@@ -1,1 +1,1 @@
-export const SENDTASK = "sendtask";
+export const SENDTASK = "SEND_TASK";
