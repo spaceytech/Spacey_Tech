@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import moment from "moment";
 
 class Confirm extends Component {
   render() {
@@ -6,7 +8,7 @@ class Confirm extends Component {
     return (
       <div className="book__wrapper--confirm">
         <div className="book__wrapper--headline">
-          <h1>Handyman</h1>
+          <h1>{this.props.confirmTask.name}</h1>
           <h2>£72.20/hr</h2>
         </div>
         <div className="book__wrapper--payments">
@@ -60,15 +62,17 @@ class Confirm extends Component {
         <div className="book__wrapper--tasker">
           <div className="book__wrapper--times">
             <p>Date & Time</p>
-            <h2>Wed, 20 Feb (08:00)</h2>
+            <h2>
+              {moment(this.props.confirmTask.time).format("MMMM Do YYYY")}
+            </h2>
           </div>
           <div className="book__wrapper--times">
             <p>Task location</p>
-            <h2>Smythe Close, 4, England, N9</h2>
+            <h2>{this.props.confirmTask.address}</h2>
           </div>
           <div className="book__wrapper--times">
             <p>Task options</p>
-            <h2>Large - Est. 4+ hrs</h2>
+            <h2>{this.props.confirmTask.size}</h2>
           </div>
           <div className="book__wrapper--profile">
             <p>Tasker</p>
@@ -92,4 +96,10 @@ class Confirm extends Component {
   }
 }
 
-export default Confirm;
+const mapStateToProps = state => {
+  return {
+    confirmTask: state.confirmTask
+  };
+};
+
+export default connect(mapStateToProps)(Confirm);

@@ -169,7 +169,7 @@ class AccordionWrapper extends Component {
                 <input
                   type="radio"
                   name="size"
-                  value="small"
+                  value="Small - Est. 1hr now"
                   id="small"
                   onChange={e => this.onChange(e, 2, "size")}
                 />Small - Est. 1hr now
@@ -178,7 +178,7 @@ class AccordionWrapper extends Component {
                 <input
                   type="radio"
                   name="size"
-                  value="medium"
+                  value="Medium - Est. 2-3hrs"
                   id="medium"
                   onChange={e => this.onChange(e, 2, "size")}
                 />Est. 2-3hrs
@@ -187,7 +187,7 @@ class AccordionWrapper extends Component {
                 <input
                   type="radio"
                   name="size"
-                  value="large"
+                  value="Large - Est. 3-4hrs"
                   id="large"
                   onChange={e => this.onChange(e, 2, "size")}
                 />Est. 3-4hrs
