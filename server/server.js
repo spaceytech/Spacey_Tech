@@ -14,7 +14,7 @@ require("./models/Tasks");
 // Routes
 require("./routes/tasks")(app);
 // require("./routes/users")(app);
-// require("./routes/tasker")(app);
+require("./routes/tasker")(app);
 
 // Server run
 const PORT = 3003;

@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import Layout from "../Layout/Layout";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { taskName } from "../../actions/taskActions";
 
 class DetailProduct extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
+
+  taskName = title => {
+    this.props.dispatch(taskName(this.props.title));
+  };
 
   render() {
     return (
@@ -22,7 +28,9 @@ class DetailProduct extends Component {
             <h1>{this.props.title}</h1>
             <p>{this.props.tagline}</p>
             <Link to="/dashboard/form" className="button">
-              <button>Book now</button>
+              <button onClick={() => this.taskName(this.props.title)}>
+                Book now
+              </button>
             </Link>
           </header>
         </Layout>
@@ -31,4 +39,4 @@ class DetailProduct extends Component {
   }
 }
 
-export default DetailProduct;
+export default connect()(DetailProduct);
