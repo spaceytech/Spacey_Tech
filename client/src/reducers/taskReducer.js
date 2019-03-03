@@ -1,4 +1,4 @@
-import { SENDTASK, TASKNAME } from "../actions/types";
+import { SENDTASK, TASKNAME, CLEARTASKDETAILS } from "../actions/types";
 
 export default function(state = [], action) {
   switch (action.type) {
@@ -13,6 +13,8 @@ export default function(state = [], action) {
         ...action.payload
       };
       break;
+    case CLEARTASKDETAILS:
+      return action.payload;
     default:
       return state;
   }

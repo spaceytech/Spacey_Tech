@@ -1,4 +1,4 @@
-import { SENDTASK, TASKNAME } from "./types";
+import { SENDTASK, TASKNAME, CLEARTASKDETAILS } from "./types";
 import axios from "axios";
 
 export const taskName = name => {
@@ -14,5 +14,12 @@ export const sendTask = async data => {
   return {
     type: SENDTASK,
     payload: res.data
+  };
+};
+
+export const clearTaskDetails = () => {
+  return {
+    type: CLEARTASKDETAILS,
+    payload: ""
   };
 };

@@ -1,13 +1,12 @@
-import { SEARCHTASKERS, CLEARSEARCHTASKERS } from "../actions/types";
+import { CONFIRMTASKS, CLEARCONFIRMTASKS } from "../actions/types";
 
 export default function(state = [], action) {
   switch (action.type) {
-    case SEARCHTASKERS:
+    case CONFIRMTASKS:
       return action.payload;
       break;
-    case CLEARSEARCHTASKERS:
+    case CLEARCONFIRMTASKS:
       return action.payload;
-      break;
     default:
       return state;
   }

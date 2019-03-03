@@ -1,4 +1,4 @@
-import { SEARCHTASKERS } from "./types";
+import { SEARCHTASKERS, CLEARSEARCHTASKERS } from "./types";
 import axios from "axios";
 
 export const searchTaskers = async data => {
@@ -13,5 +13,12 @@ export const searchTaskers = async data => {
   return {
     type: SEARCHTASKERS,
     payload: res.data
+  };
+};
+
+export const clearSearchTaskers = () => {
+  return {
+    type: CLEARSEARCHTASKERS,
+    payload: ""
   };
 };

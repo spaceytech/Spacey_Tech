@@ -7,6 +7,9 @@ import Features from "./Features";
 import Description from "./Description";
 import Services from "./Services";
 
+import { connect } from "react-redux";
+import { clearTaskDetails } from "../../../actions/taskActions";
+
 class Home extends Component {
   state = {
     ref: ""
@@ -17,6 +20,11 @@ class Home extends Component {
       ref
     });
   };
+
+  componentDidMount() {
+    this.props.dispatch(clearTaskDetails());
+  }
+
   render() {
     return (
       <div className="home">
@@ -31,4 +39,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default connect()(Home);
