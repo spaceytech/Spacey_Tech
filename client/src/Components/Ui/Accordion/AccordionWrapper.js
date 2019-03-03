@@ -13,49 +13,83 @@ class AccordionWrapper extends Component {
         open: true,
         easing: "cubic-bezier(0,.23,1,1.86)",
         transitionTime: "100",
-        disabled: true
+        disabled: true,
+        book: ""
       },
       {
         trigger: "Street address",
         open: false,
         easing: "cubic-bezier(0,.23,1,1.86)",
         transitionTime: "100",
-        disabled: true
+        disabled: true,
+        address: ""
       },
       {
         trigger: "Task option",
         open: false,
         easing: "cubic-bezier(0,.23,1,1.86)",
         transitionTime: "100",
-        disabled: true
+        disabled: true,
+        size: ""
       },
       {
         trigger: "Tell us the details of your task",
         open: false,
         easing: "cubic-bezier(0,.23,1,1.86)",
         transitionTime: "100",
-        disabled: true
+        disabled: true,
+        description: ""
       }
     ]
   };
-  componentDidMount() {
-    this.props.dispatch(sendTask());
-  }
 
-  openNext = (prev, next) => {
+  openNext = (prev, next, property) => {
     const accordions = this.state.accordions;
     const previousAccordion = accordions[prev];
     const nextAccordion = accordions[next];
 
-    previousAccordion.open = false;
-    nextAccordion.open = true;
+    if (previousAccordion[property].length > 0) {
+      previousAccordion.open = false;
+      nextAccordion.open = true;
 
-    previousAccordion.disabled = false;
+      previousAccordion.disabled = false;
+    }
 
     this.setState({
       accordions
     });
   };
+
+  onChange = (e, index, property) => {
+    const accordions = this.state.accordions;
+
+    const accordion = accordions[index];
+    accordion[property] = e.target.value;
+
+    const newAccordions = [
+      ...accordions.slice(0, index),
+      accordion,
+      ...accordions.slice(index + 1, accordions.length)
+    ];
+
+    this.setState({
+      accordions: newAccordions
+    });
+
+    console.log(accordion);
+  };
+
+  nextSection = (e, index, property) => {
+    const accordions = this.state.accordions;
+    const accordion = accordions[index];
+
+    if (accordion[property].length > 0) {
+      this.props.nextSection(true);
+    } else {
+      this.props.nextSection(false);
+    }
+  };
+
   render() {
     return (
       <div className="accordion">
@@ -69,17 +103,27 @@ class AccordionWrapper extends Component {
           <h2>What do you want to do?</h2>
           <form>
             <label for="book">
-              <input type="radio" name="book" value="book" id="book" />I am
-              ready to book now
+              <input
+                type="radio"
+                name="book"
+                value="book"
+                id="book"
+                onChange={e => this.onChange(e, 0, "book")}
+              />I am ready to book now
             </label>
             <label for="save">
-              <input type="radio" name="book" value="save" id="save" />I want to
-              save a task
+              <input
+                type="radio"
+                name="book"
+                value="save"
+                id="save"
+                onChange={e => this.onChange(e, 0, "book")}
+              />I want to save a task
             </label>
           </form>
-          <div className="button">
-            <button onClick={() => this.openNext(0, 1)}>Next</button>
-          </div>
+          <a href="#" className="button">
+            <button onClick={() => this.openNext(0, 1, "book")}>Next</button>
+          </a>
         </Collapsible>
         <Collapsible
           trigger={this.state.accordions[1].trigger}
@@ -94,11 +138,12 @@ class AccordionWrapper extends Component {
               name="address"
               placeholder="Enter your street address"
               className="address"
+              onChange={e => this.onChange(e, 1, "address")}
             />
           </form>
-          <div className="button">
-            <button onClick={() => this.openNext(1, 2)}>Next</button>
-          </div>
+          <a href="#" className="button">
+            <button onClick={() => this.openNext(1, 2, "address")}>Next</button>
+          </a>
         </Collapsible>
         <Collapsible
           trigger={this.state.accordions[2].trigger}
@@ -111,22 +156,39 @@ class AccordionWrapper extends Component {
             <h2>Task Size</h2>
             <form>
               <label for="small">
-                <input type="radio" name="size" value="small" id="small" />Small
-                - Est. 1hr now
+                <input
+                  type="radio"
+                  name="size"
+                  value="small"
+                  id="small"
+                  onChange={e => this.onChange(e, 2, "size")}
+                />Small - Est. 1hr now
               </label>
               <label for="medium">
-                <input type="radio" name="size" value="medium" id="medium" />Est.
-                2-3hrs
+                <input
+                  type="radio"
+                  name="size"
+                  value="medium"
+                  id="medium"
+                  onChange={e => this.onChange(e, 2, "size")}
+                />Est. 2-3hrs
               </label>
               <label for="large">
-                <input type="radio" name="size" value="large" id="large" />Est.
-                3-4hrs
+                <input
+                  type="radio"
+                  name="size"
+                  value="large"
+                  id="large"
+                  onChange={e => this.onChange(e, 2, "size")}
+                />Est. 3-4hrs
               </label>
             </form>
           </div>
-          <div className="button">
-            <button onClick={() => this.openNext(2, 3)}>Continue</button>
-          </div>
+          <a href="#" className="button">
+            <button onClick={() => this.openNext(2, 3, "size")}>
+              Continue
+            </button>
+          </a>
         </Collapsible>
         <Collapsible
           trigger={this.state.accordions[3].trigger}
@@ -140,16 +202,18 @@ class AccordionWrapper extends Component {
             helps us show you only qualified and available Taskers for the job.
             Don't worry, you can edit this later.
           </p>
-          <textarea placeholder="Hi! I am looking for assistance updating my 700sq ft apartment. I'm on the 3rd floor, although there are no lifts the flight of stairs are short. " />
-          <div className="button">
-            <button onClick={() => this.props.nextSection(true)}>
+          <textarea
+            onChange={e => this.onChange(e, 3, "description")}
+            placeholder="Hi! I am looking for assistance updating my 700sq ft apartment. I'm on the 3rd floor, although there are no lifts the flight of stairs are short. "
+          />
+          <a href="#" className="button">
+            <button onClick={e => this.nextSection(e, 3, "description")}>
               See Taskers and Prices
             </button>
-          </div>
+          </a>
         </Collapsible>
       </div>
     );
   }
 }
-
 export default connect()(AccordionWrapper);
