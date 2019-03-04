@@ -1,12 +1,18 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Collapsible from "react-collapsible";
+import axios from "axios";
 
 import { connect } from "react-redux";
 import { sendTask } from "../../../actions/taskActions";
 
+const convertString = string => {
+  console.log(string.includes("&lt;br&gt;"));
+};
+
 class AccordionWrapper extends Component {
   state = {
+    suggestions: [],
     accordions: [
       {
         trigger: "Task interest",
@@ -60,6 +66,10 @@ class AccordionWrapper extends Component {
     });
   };
 
+  convertString = string => {
+    return { string };
+  };
+
   onChange = (e, index, property) => {
     const accordions = this.state.accordions;
 
@@ -72,9 +82,25 @@ class AccordionWrapper extends Component {
       ...accordions.slice(index + 1, accordions.length)
     ];
 
+    if (property === "address") {
+      axios
+        .get(
+          `https://places.cit.api.here.com/places/v1/autosuggest?app_id=qjsTChoHGZNFiedwp3lm&app_code=jX3eFSncs4SepI3N-fSvQA&at=55.3781,3.4360&q=${
+            e.target.value
+          }&result_types=address&pretty
+        `
+        )
+        .then(response => {
+          this.setState({
+            suggestions: response.data.results
+          });
+        });
+    }
+
     this.setState({
       accordions: newAccordions
     });
+    console.log(this.state.suggestions);
   };
 
   nextSection = (e, index, property) => {
@@ -142,7 +168,7 @@ class AccordionWrapper extends Component {
           transitionTime={this.state.accordions[1].transitionTime}
           triggerDisabled={this.state.accordions[1].disabled}
         >
-          <form>
+          <form autoComplete="off">
             <input
               type="text"
               name="address"
@@ -150,6 +176,16 @@ class AccordionWrapper extends Component {
               className="address"
               onChange={e => this.onChange(e, 1, "address")}
             />
+            <div id="dropdown">
+              {this.state.suggestions.map(location => {
+                return (
+                  <p>
+                    {location.highlightedTitle},{" "}
+                    {convertString(location.highlightedVicinity)}
+                  </p>
+                );
+              })}
+            </div>
           </form>
           <a href="#" className="button">
             <button onClick={() => this.openNext(1, 2, "address")}>Next</button>
