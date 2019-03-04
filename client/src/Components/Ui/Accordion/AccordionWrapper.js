@@ -6,35 +6,6 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { sendTask } from "../../../actions/taskActions";
 
-const convertString = string => {
-  let newString = "";
-  if (
-    string.includes("<b>") &&
-    string.includes("<br/>") &&
-    string.includes("</b>")
-  ) {
-    let newString1 = string.replace(/(<|&lt;)b\s*(>|&gt;)/gm, " ");
-    let newString2 = newString1.replace(/(<|&lt;)br\s*\/*(>|&gt;)/gm, " ");
-    let newString3 = newString2.replace(/(<|&lt;)*\/*b\s*(>|&gt;)/gm, " ");
-
-    return newString2;
-  } else if (string.includes("<b>") && string.includes("</b>")) {
-    let newString1 = string.replace(/(<|&lt;)b\s*(>|&gt;)/gm, " ");
-    let newString2 = newString1.replace(/(<|&lt;)*\/*b\s*(>|&gt;)/gm, " ");
-    return newString2;
-  } else if (string.includes("</b>")) {
-    newString = string.replace(/(<|&lt;)*\/b\s*(>|&gt;)/gm, " ");
-  } else if (string.includes("<b>")) {
-    newString = string.replace(/(<|&lt;)b\s*(>|&gt;)/gm, " ");
-  } else if (string.includes("<br/>")) {
-    newString = string.replace(/(<|&lt;)br\s*\/*(>|&gt;)/gm, " ");
-  } else {
-    return string;
-  }
-
-  return newString;
-};
-
 class AccordionWrapper extends Component {
   state = {
     suggestions: [],
@@ -89,10 +60,6 @@ class AccordionWrapper extends Component {
     this.setState({
       accordions
     });
-  };
-
-  convertString = string => {
-    return { string };
   };
 
   onChange = (e, index, property) => {
@@ -151,6 +118,24 @@ class AccordionWrapper extends Component {
     }
   };
 
+  setValue = (title, vicinity, index) => {
+    const accordions = this.state.accordions;
+    const addressAccordion = accordions[index];
+
+    addressAccordion.address = `${title}, ${vicinity}`;
+
+    const newAccordions = [
+      ...accordions.slice(0, index),
+      addressAccordion,
+      ...accordions.slice(index + 1, accordions.length)
+    ];
+
+    this.setState({
+      accordions: newAccordions,
+      suggestions: []
+    });
+  };
+
   render() {
     return (
       <div className="accordion">
@@ -199,16 +184,25 @@ class AccordionWrapper extends Component {
               name="address"
               placeholder="Enter your street address"
               className="address"
+              value={this.state.accordions[1].address}
               onChange={e => this.onChange(e, 1, "address")}
             />
-            <div id="dropdown">
+            <div className="suggestions">
               {this.state.suggestions.map(location => {
                 return (
                   <p
                     style={{
                       borderTop: "1px solid var(--light-grey)",
                       padding: "2rem",
-                      margin: 0
+                      margin: 0,
+                      cursor: "pointer"
+                    }}
+                    onClick={() => {
+                      this.setValue(
+                        location.title,
+                        location.highlightedVicinity,
+                        1
+                      );
                     }}
                   >
                     {location.title}, {location.highlightedVicinity}
