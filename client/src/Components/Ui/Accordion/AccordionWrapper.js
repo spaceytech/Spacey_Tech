@@ -17,7 +17,6 @@ const convertString = string => {
     let newString2 = newString1.replace(/(<|&lt;)br\s*\/*(>|&gt;)/gm, " ");
     let newString3 = newString2.replace(/(<|&lt;)*\/*b\s*(>|&gt;)/gm, " ");
 
-    console.log(newString3);
     return newString2;
   } else if (string.includes("<b>") && string.includes("</b>")) {
     let newString1 = string.replace(/(<|&lt;)b\s*(>|&gt;)/gm, " ");
@@ -25,13 +24,10 @@ const convertString = string => {
     return newString2;
   } else if (string.includes("</b>")) {
     newString = string.replace(/(<|&lt;)*\/b\s*(>|&gt;)/gm, " ");
-    console.log(newString);
   } else if (string.includes("<b>")) {
     newString = string.replace(/(<|&lt;)b\s*(>|&gt;)/gm, " ");
-    console.log(newString);
   } else if (string.includes("<br/>")) {
     newString = string.replace(/(<|&lt;)br\s*\/*(>|&gt;)/gm, " ");
-    console.log(newString);
   } else {
     return string;
   }
@@ -116,7 +112,7 @@ class AccordionWrapper extends Component {
         .get(
           `https://places.cit.api.here.com/places/v1/autosuggest?app_id=qjsTChoHGZNFiedwp3lm&app_code=jX3eFSncs4SepI3N-fSvQA&at=55.3781,3.4360&q=${
             e.target.value
-          }&result_types=address&pretty
+          }&result_types=address&&addressFilter=countryCode=GBR&tf=plain&pretty
         `
         )
         .then(response => {
@@ -208,9 +204,14 @@ class AccordionWrapper extends Component {
             <div id="dropdown">
               {this.state.suggestions.map(location => {
                 return (
-                  <p>
-                    {convertString(location.highlightedTitle)},{" "}
-                    {convertString(location.highlightedVicinity)}
+                  <p
+                    style={{
+                      borderTop: "1px solid var(--light-grey)",
+                      padding: "2rem",
+                      margin: 0
+                    }}
+                  >
+                    {location.title}, {location.highlightedVicinity}
                   </p>
                 );
               })}
