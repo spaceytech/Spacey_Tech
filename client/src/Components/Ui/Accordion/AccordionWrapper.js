@@ -7,7 +7,36 @@ import { connect } from "react-redux";
 import { sendTask } from "../../../actions/taskActions";
 
 const convertString = string => {
-  console.log(string.includes("&lt;br&gt;"));
+  let newString = "";
+  if (
+    string.includes("<b>") &&
+    string.includes("<br/>") &&
+    string.includes("</b>")
+  ) {
+    let newString1 = string.replace(/(<|&lt;)b\s*(>|&gt;)/gm, " ");
+    let newString2 = newString1.replace(/(<|&lt;)br\s*\/*(>|&gt;)/gm, " ");
+    let newString3 = newString2.replace(/(<|&lt;)*\/*b\s*(>|&gt;)/gm, " ");
+
+    console.log(newString3);
+    return newString2;
+  } else if (string.includes("<b>") && string.includes("</b>")) {
+    let newString1 = string.replace(/(<|&lt;)b\s*(>|&gt;)/gm, " ");
+    let newString2 = newString1.replace(/(<|&lt;)*\/*b\s*(>|&gt;)/gm, " ");
+    return newString2;
+  } else if (string.includes("</b>")) {
+    newString = string.replace(/(<|&lt;)*\/b\s*(>|&gt;)/gm, " ");
+    console.log(newString);
+  } else if (string.includes("<b>")) {
+    newString = string.replace(/(<|&lt;)b\s*(>|&gt;)/gm, " ");
+    console.log(newString);
+  } else if (string.includes("<br/>")) {
+    newString = string.replace(/(<|&lt;)br\s*\/*(>|&gt;)/gm, " ");
+    console.log(newString);
+  } else {
+    return string;
+  }
+
+  return newString;
 };
 
 class AccordionWrapper extends Component {
@@ -180,7 +209,7 @@ class AccordionWrapper extends Component {
               {this.state.suggestions.map(location => {
                 return (
                   <p>
-                    {location.highlightedTitle},{" "}
+                    {convertString(location.highlightedTitle)},{" "}
                     {convertString(location.highlightedVicinity)}
                   </p>
                 );
