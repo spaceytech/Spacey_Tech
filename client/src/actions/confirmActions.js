@@ -12,6 +12,10 @@ export const confirmTasks = async data => {
   };
 };
 
+export const changeDescription = async desc => {
+  return { type: "CHANGEDESC", payload: desc };
+};
+
 export const clearConfirmTasks = () => {
   return {
     type: CLEARCONFIRMTASKS,

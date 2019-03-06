@@ -5,6 +5,11 @@ export default function(state = [], action) {
     case CONFIRMTASKS:
       return action.payload;
       break;
+    case "CHANGEDESC":
+      return {
+        ...state,
+        description: action.payload
+      };
     case CLEARCONFIRMTASKS:
       return action.payload;
     default:

@@ -1,15 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import moment from "moment";
+import { changeDescription } from "../../actions/confirmActions";
 
 class Confirm extends Component {
+  onChange = e => {
+    this.props.dispatch(changeDescription(e.target.value));
+  };
   render() {
     console.log(this.props);
     return (
       <div className="book__wrapper--confirm">
         <div className="book__wrapper--headline">
           <h1>{this.props.confirmTask.name}</h1>
-          <h2>£72.20/hr</h2>
+
+          {this.props.confirmTask.tasker ? (
+            <h2>£{this.props.confirmTask.tasker.perHour}/hr</h2>
+          ) : null}
         </div>
         <div className="book__wrapper--payments">
           <p>You are charged only after your task is completed.</p>
@@ -74,34 +81,42 @@ class Confirm extends Component {
             <p>Task options</p>
             <h2>{this.props.confirmTask.size}</h2>
           </div>
-          <div className="book__wrapper--profile">
-            <p>Tasker</p>
-            <div
-              style={{
-                display: "flex",
-                marginTop: "2.5rem",
-                alignItems: "center"
-              }}
-            >
-              <img
+          {this.props.confirmTask.tasker ? (
+            <div className="book__wrapper--profile">
+              <p>Tasker</p>
+              <div
                 style={{
-                  width: "4.5rem",
-                  height: "4.5rem",
-                  borderRadius: "100%",
-                  marginRight: "2.5rem"
+                  display: "flex",
+                  marginTop: "2.5rem",
+                  alignItems: "center"
                 }}
-                src={this.props.confirmTask.tasker.image}
-              />
-              <h2>
-                {this.props.confirmTask.tasker.first_name}{" "}
-                {this.props.confirmTask.tasker.last_name}
-              </h2>
+              >
+                <img
+                  style={{
+                    width: "4.5rem",
+                    height: "4.5rem",
+                    borderRadius: "100%",
+                    marginRight: "2.5rem"
+                  }}
+                  src={this.props.confirmTask.tasker.image}
+                />
+                <h2>
+                  {this.props.confirmTask.tasker.first_name}{" "}
+                  {this.props.confirmTask.tasker.last_name}
+                </h2>
+              </div>
             </div>
-          </div>
+          ) : null}
         </div>
         <label>
           <p>Task description</p>
-          <textarea cols="10" rows="5" charswidth="23" />
+          <textarea
+            value={this.props.confirmTask.description}
+            cols="10"
+            rows="5"
+            charswidth="23"
+            onChange={e => this.onChange(e)}
+          />
         </label>
         <div className="book__wrapper--next">
           <a href="#" className="button">

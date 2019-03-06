@@ -33,6 +33,7 @@ class Taskers extends Component {
       address: this.props.tasksDetail.address,
       size: this.props.tasksDetail.size,
       time: this.state.date,
+      description: this.props.tasksDetail.description,
       tasker: taskerId
     };
 
