@@ -76,7 +76,27 @@ class Confirm extends Component {
           </div>
           <div className="book__wrapper--profile">
             <p>Tasker</p>
-            <h2>sam A.</h2>
+            <div
+              style={{
+                display: "flex",
+                marginTop: "2.5rem",
+                alignItems: "center"
+              }}
+            >
+              <img
+                style={{
+                  width: "4.5rem",
+                  height: "4.5rem",
+                  borderRadius: "100%",
+                  marginRight: "2.5rem"
+                }}
+                src={this.props.confirmTask.tasker.image}
+              />
+              <h2>
+                {this.props.confirmTask.tasker.first_name}{" "}
+                {this.props.confirmTask.tasker.last_name}
+              </h2>
+            </div>
           </div>
         </div>
         <label>

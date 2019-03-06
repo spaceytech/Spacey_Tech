@@ -3,14 +3,26 @@ const { Tasker } = require("../models/Taskers");
 
 module.exports = app => {
   // Get tasker information by id
-  app.get("/api/get_tasker_by_id", (req, res) => {
-    res.send(req.params);
+  app.get("/api/get_tasker_by_id/:id", (req, res) => {
+    Tasker.findById({ _id: req.params.id }, (err, tasker) => {
+      if (err) {
+        res.json({
+          success: false,
+          err
+        });
+      }
+      res.status(200).json({
+        success: true,
+        tasker
+      });
+    });
   });
 
   // Search taskers that match task
   app.get("/api/search_tasker", (req, res) => {
     console.log(req.query.task);
     Tasker.find({ skills: { $in: [req.query.task] } }, (err, taskers) => {
+      console.log(taskers);
       if (err) {
         res.json({ success: false, err });
       }

@@ -12,7 +12,7 @@ export const searchTaskers = async data => {
   console.log(res.data);
   return {
     type: SEARCHTASKERS,
-    payload: res.data
+    payload: res.data.taskers
   };
 };
 

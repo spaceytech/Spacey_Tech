@@ -16,7 +16,8 @@ const taskerSchema = mongoose.Schema(
     completedTasks: { type: Number, default: 0 },
     reviews: { type: Number, default: 0 },
     reliable: { type: Number, default: 0 },
-    reviews: [
+    image: { type: String, default: "../images/user.png" },
+    comments: [
       {
         body: String,
         author: String,

@@ -51,7 +51,7 @@ class Taskers extends Component {
             className="calendar"
           />
         </div>
-        {this.props.taskers
+        {this.props.taskers.length > 0
           ? this.props.taskers.map(tasker => {
               return (
                 <div className="book__wrapper--taskoptions__tasker">
@@ -66,7 +66,7 @@ class Taskers extends Component {
                       <p>View profile & reviews</p>
                     </Link>
                     <div className="button">
-                      <button onClick={e => this.nextSection(e, tasker.id)}>
+                      <button onClick={e => this.nextSection(e, tasker._id)}>
                         Select & continue
                       </button>
                     </div>
@@ -77,7 +77,9 @@ class Taskers extends Component {
                   </div>
                   <div className="left">
                     <div className="left__name">
-                      <h1>{tasker.name}</h1>
+                      <h1>
+                        {tasker.first_name} {tasker.last_name}
+                      </h1>
                       <p>£{tasker.perHour}/hr</p>
                     </div>
                     <div className="left__quicky">
@@ -92,13 +94,15 @@ class Taskers extends Component {
                     <div className="left__help">
                       <p>{tasker.description}</p>
                     </div>
-                    <div className="left__review">
-                      <img src="/images/user.png" alt="User image" />
-                      <p>{tasker.review.text}</p>
-                      <p>
-                        {tasker.review.user} - {tasker.review.time}
-                      </p>
-                    </div>
+                    {tasker.reviews.length > 0 ? (
+                      <div className="left__review">
+                        <img src="/images/user.png" alt="User image" />
+                        <p>{tasker.review.text}</p>
+                        <p>
+                          {tasker.review.user} - {tasker.review.time}
+                        </p>
+                      </div>
+                    ) : null}
                   </div>
                 </div>
               );
