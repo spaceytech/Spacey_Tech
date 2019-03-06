@@ -74,9 +74,12 @@ class Navigation extends Component {
           <Link to="/signin" className="navigation__items navigation__login">
             <div>Login</div>
           </Link>
-          <a href="#" className="navigation__items navigation__button">
+          <Link
+            to="/become_tasker"
+            className="navigation__items navigation__button"
+          >
             <div>Become a tasker</div>
-          </a>
+          </Link>
         </div>
         {/* Default Navigation layout */}
         <div
@@ -111,9 +114,9 @@ class Navigation extends Component {
         >
           <div>Login</div>
         </Link>
-        <a href="#" className="navigation__button button default">
+        <Link to="/become_tasker" className="navigation__button button default">
           <button>Become a tasker</button>
-        </a>
+        </Link>
         {/* Mobile button icon */}
         <div className="navigation__mobileicon" onClick={this.openMobileNav}>
           <i class="fa fa-bars" />

@@ -8,11 +8,13 @@ import Booking from "./Components/Pages/Booking";
 import BookingForm from "./Components/Ui/Accordion/BookingForm";
 import Confirm from "./Components/Ui/Confirm";
 import Taskers from "./Components/Ui/Taskers";
+import BecomeTasker from "./Components/Pages/Career/BecomeTasker";
 
 class Routes extends React.Component {
   render() {
     return (
       <Switch>
+        <Route exact path="/become_tasker" component={BecomeTasker} />
         <Route
           exact
           path="/dashboard/form"
