@@ -1,18 +1,62 @@
 const taskers = require("../taskersList");
+const { Tasker } = require("../models/Taskers");
 
 module.exports = app => {
-  app.get("/api/tasker", (req, res) => {
+  // Get tasker information by id
+  app.get("/api/get_tasker_by_id", (req, res) => {
     res.send(req.params);
   });
-  app.get("/api/searchTasker", (req, res) => {
-    // console.log(req.query.task);
-    // console.log(taskers[0].task);
-    // console.log(taskers[0].task.indexOf(req.query.task));
 
-    const match = taskers.filter(tasker => {
-      return tasker.task.indexOf(req.query.task) !== -1;
+  // Search taskers that match task
+  app.get("/api/search_tasker", (req, res) => {
+    console.log(req.query.task);
+    Tasker.find({ skills: { $in: [req.query.task] } }, (err, taskers) => {
+      if (err) {
+        res.json({ success: false, err });
+      }
+      res.json({
+        success: true,
+        taskers
+      });
     });
+  });
 
-    res.send(match);
+  // Register as a tasker
+  app.post("/api/register_as_tasker", (req, res) => {
+    const details = {
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      address: req.body.address,
+      email: req.body.email,
+      phone: req.body.phone,
+      description: req.body.description,
+      perHour: req.body.perHour,
+      skills: req.body.skills
+    };
+
+    Tasker.findOne({ email: req.body.email }, (err, user) => {
+      if (err) {
+        return res.json({ success: false, err });
+      }
+      if (user) {
+        return res.json({
+          success: false,
+          err: "User already exists"
+        });
+      }
+      const tasker = new Tasker(details);
+      tasker.save((err, data) => {
+        if (err) {
+          return res.json({
+            success: false,
+            err
+          });
+        }
+
+        res.status(200).json({
+          success: true
+        });
+      });
+    });
   });
 };

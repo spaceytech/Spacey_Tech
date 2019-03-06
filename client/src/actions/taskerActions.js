@@ -4,7 +4,7 @@ import axios from "axios";
 export const searchTaskers = async data => {
   console.log(data);
   const res = await axios.get(
-    `/api/searchTasker?task=${data.name}&size=${data.size}&address=${
+    `/api/search_tasker?task=${data.name}&size=${data.size}&address=${
       data.address
     }`
   );
