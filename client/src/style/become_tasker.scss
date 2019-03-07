@@ -1,3 +1,96 @@
 .work {
   height: 100%;
+  display: grid;
+  grid-template-rows: 98vh repeat(2, max-content);
+  grid-template-columns:
+    [full-start] minmax(2rem, 1fr) [center-start] repeat(
+      8,
+      [col-start] minmax(min-content, 15rem) [col-end]
+    )
+    [center-end] minmax(2rem, 1fr) [full-end];
+  &__header {
+    grid-column: full-start / full-end;
+    font-family: "Ubuntu", sans-serif;
+
+    display: grid;
+    grid-template-rows: minmax(4rem, 7rem) 1fr minmax(4rem, 9rem);
+    grid-template-columns:
+      minmax(1rem, 1fr) repeat(8, minmax(min-content, 20rem))
+      minmax(1rem, 1fr);
+    align-items: center;
+    background-image: linear-gradient(
+        rgba(255, 80, 80, 0.3),
+        rgba(255, 80, 80, 0.3)
+      ),
+      url(/images/laundry.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    &--navigation {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+      align-self: center;
+      &__logo {
+        font-size: 3rem;
+        color: white;
+      }
+    }
+    &--promotion {
+      grid-column: 3 / 6;
+      grid-row: 2 / 3;
+      display: flex;
+      flex-direction: column;
+      & > *:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+      h1 {
+        font-size: 6rem;
+        color: white;
+      }
+      p {
+        font-size: 2.5rem;
+        font-family: "Oxygen", sans-serif;
+      }
+    }
+    .register__wrapper {
+      grid-column: 7 / 10;
+    }
+  }
+  &__start {
+    grid-column: center-start / center-end;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(14rem, 1fr));
+    align-items: center;
+    justify-items: center;
+    grid-row-gap: 4rem;
+    padding: 5rem 0;
+    font-family: "Oxygen", sans-serif;
+    h1 {
+      grid-row: 1 / 2;
+      grid-column: 1 / -1;
+      font-size: 3rem;
+      font-family: "Lato", sans-serif;
+      font-weight: 700;
+    }
+    &--card {
+      display: flex;
+      flex-direction: column;
+      justify-items: center;
+      align-items: center;
+      & > *:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+      h2 {
+        font-size: 2.5rem;
+        font-family: "Lato", sans-serif;
+        font-weight: 700;
+      }
+      p {
+        width: 90%;
+        font-family: "Lato", sans-serif;
+        font-size: 1.9rem;
+        text-align: center;
+      }
+    }
+  }
 }

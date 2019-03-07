@@ -5,8 +5,8 @@ import TaskerForm from "./TaskerForm";
 const Header = props => {
   return (
     <div className="work__header">
-      <Link to="/">
-        <h2 className="navigation__logo">
+      <Link to="/" className="work__header--navigation">
+        <h2 className="work__header--navigation__logo">
           spacey<span style={{ color: "rgb(0, 188, 135)" }}>.</span>
         </h2>
       </Link>
