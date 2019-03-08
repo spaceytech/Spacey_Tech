@@ -19,6 +19,8 @@
   --dark-grey: rgb(88, 88, 88);
   --facebook-color: #3b5998;
   --google-color: #d73d32;
+  --alert-background-color: #f8d7da;
+  --alert-color: #721c24;
 }
 
 html {
@@ -67,6 +69,12 @@ a:active {
 
 .disabled-link {
   pointer-events: none;
+}
+
+#passwordError {
+  & > * {
+    display: block;
+  }
 }
 
 .dropdown {

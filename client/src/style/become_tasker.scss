@@ -53,6 +53,22 @@
     }
     .register__wrapper {
       grid-column: 7 / 10;
+      form {
+        & > * {
+          margin-bottom: 1rem;
+        }
+        input {
+          &:last-of-type {
+            margin-bottom: 1rem;
+          }
+        }
+      }
+      .errorSpan {
+        background: var(--alert-background-color);
+        color: var(--alert-color);
+        padding: 1rem;
+        border-radius: 10px;
+      }
     }
   }
   &__start {
