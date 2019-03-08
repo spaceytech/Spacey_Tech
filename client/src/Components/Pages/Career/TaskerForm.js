@@ -14,6 +14,18 @@ class TaskerForm extends Component {
     error: {}
   };
 
+  removeError = (e, errorName) => {
+    const error = this.state.error;
+    let err = { ...error };
+    delete err[errorName];
+
+    this.setState({
+      error: err
+    });
+
+    console.log(err);
+  };
+
   onChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -75,10 +87,16 @@ class TaskerForm extends Component {
           <span
             className="errorSpan"
             style={{
-              display: !this.state.error.first_name ? "none" : "block"
+              display: !this.state.error.first_name ? "none" : "flex"
             }}
           >
             {this.state.error.first_name}
+            <span
+              className="close"
+              onClick={e => this.removeError(e, "first_name")}
+            >
+              &#11199;
+            </span>
           </span>
           <input
             type="text"
@@ -89,10 +107,16 @@ class TaskerForm extends Component {
           <span
             className="errorSpan"
             style={{
-              display: !this.state.error.last_name ? "none" : "block"
+              display: !this.state.error.last_name ? "none" : "flex"
             }}
           >
             {this.state.error.last_name}
+            <span
+              className="close"
+              onClick={e => this.removeError(e, "last_name")}
+            >
+              &#11199;
+            </span>
           </span>
           <input
             type="text"
@@ -102,9 +126,12 @@ class TaskerForm extends Component {
           />
           <span
             className="errorSpan"
-            style={{ display: !this.state.error.email ? "none" : "block" }}
+            style={{ display: !this.state.error.email ? "none" : "flex" }}
           >
             {this.state.error.email}
+            <span className="close" onClick={e => this.removeError(e, "email")}>
+              &#11199;
+            </span>
           </span>
           <input
             type="password"
@@ -118,10 +145,16 @@ class TaskerForm extends Component {
                   <span
                     className="errorSpan"
                     style={{
-                      display: !this.state.error.password ? "none" : "block"
+                      display: !this.state.error.password ? "none" : "flex"
                     }}
                   >
                     {err}
+                    <span
+                      className="close"
+                      onClick={e => this.removeError(e, "password")}
+                    >
+                      &#11199;
+                    </span>
                   </span>
                 );
               })
@@ -138,10 +171,16 @@ class TaskerForm extends Component {
                   <span
                     className="errorSpan"
                     style={{
-                      display: !this.state.error.postcode ? "none" : "block"
+                      display: !this.state.error.postcode ? "none" : "flex"
                     }}
                   >
                     {err}
+                    <span
+                      className="close"
+                      onClick={e => this.removeError(e, "postcode")}
+                    >
+                      &#11199;
+                    </span>
                   </span>
                 );
               })
