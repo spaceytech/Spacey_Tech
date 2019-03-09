@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { userRegister } from "../../../actions/userActions";
@@ -14,16 +14,19 @@ class TaskerForm extends Component {
     error: {}
   };
 
-  removeError = (e, errorName) => {
+  removeError = (e, errorName, index) => {
     const error = this.state.error;
     let err = { ...error };
-    delete err[errorName];
+    if (errorName === "password" || errorName === "postcode") {
+      console.log(err[errorName][index]);
+      delete err[errorName][index];
+    } else {
+      delete err[errorName];
+    }
 
     this.setState({
       error: err
     });
-
-    console.log(err);
   };
 
   onChange = e => {
@@ -39,30 +42,35 @@ class TaskerForm extends Component {
         let error = {};
         error.password = [];
         error.postcode = [];
-        response.payload.error.forEach((err, i) => {
-          console.log(response.payload.error[i]);
-          switch (response.payload.error[i].param) {
-            case "first_name":
-              error.first_name = response.payload.error[i].msg;
-              break;
-            case "last_name":
-              error.last_name = response.payload.error[i].msg;
-              break;
-            case "email":
-              error.email = response.payload.error[i].msg;
-              break;
-            case "password":
-              error.password.push(response.payload.error[i].msg);
-              break;
-            case "postcode":
-              error.postcode.push(response.payload.error[i].msg);
-              break;
-          }
-        });
-        console.log(error);
+        if (response.payload.error.length > 0) {
+          response.payload.error.forEach((err, i) => {
+            console.log(response.payload.error[i]);
+            switch (response.payload.error[i].param) {
+              case "first_name":
+                error.first_name = response.payload.error[i].msg;
+                break;
+              case "last_name":
+                error.last_name = response.payload.error[i].msg;
+                break;
+              case "email":
+                error.email = response.payload.error[i].msg;
+                break;
+              case "password":
+                error.password.push(response.payload.error[i].msg);
+                break;
+              case "postcode":
+                error.postcode.push(response.payload.error[i].msg);
+                break;
+            }
+          });
+        } else {
+          error.email = response.payload.error.email;
+        }
         this.setState({
           error
         });
+      } else if (response.payload.success) {
+        this.props.history.push("/become_tasker/eligibility");
       }
     });
   };
@@ -140,7 +148,7 @@ class TaskerForm extends Component {
             onChange={e => this.onChange(e)}
           />
           {this.state.error.password
-            ? this.state.error.password.map(err => {
+            ? this.state.error.password.map((err, i) => {
                 return (
                   <span
                     className="errorSpan"
@@ -151,7 +159,7 @@ class TaskerForm extends Component {
                     {err}
                     <span
                       className="close"
-                      onClick={e => this.removeError(e, "password")}
+                      onClick={e => this.removeError(e, "password", i)}
                     >
                       &#11199;
                     </span>
@@ -166,7 +174,7 @@ class TaskerForm extends Component {
             onChange={e => this.onChange(e)}
           />
           {this.state.error.postcode
-            ? this.state.error.postcode.map(err => {
+            ? this.state.error.postcode.map((err, i) => {
                 return (
                   <span
                     className="errorSpan"
@@ -177,7 +185,7 @@ class TaskerForm extends Component {
                     {err}
                     <span
                       className="close"
-                      onClick={e => this.removeError(e, "postcode")}
+                      onClick={e => this.removeError(e, "postcode", i)}
                     >
                       &#11199;
                     </span>
@@ -218,4 +226,4 @@ class TaskerForm extends Component {
   }
 }
 
-export default connect()(TaskerForm);
+export default connect()(withRouter(TaskerForm));

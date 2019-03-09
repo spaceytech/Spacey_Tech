@@ -20,14 +20,14 @@ class Dropdown extends Component {
         <ul className="dropdown__list">
           <Link to="/handyman">
             <li>
-              <img src="images/wrench.svg" alt="Wrench" />
+              <img src="/images/wrench.svg" alt="Wrench" />
               <p>General handyman</p>
             </li>
           </Link>
           <a href="#">
             <Link to="/laundry">
               <li>
-                <img src="images/washing-machine.svg" alt="Washing Machine" />
+                <img src="/images/washing-machine.svg" alt="Washing Machine" />
                 <p>Laundry</p>
               </li>
             </Link>
@@ -35,7 +35,7 @@ class Dropdown extends Component {
           <a href="#">
             <Link to="/delivery">
               <li>
-                <img src="images/trucking.svg" alt="Delivery van" />
+                <img src="/images/trucking.svg" alt="Delivery van" />
                 <p>Delivery</p>
               </li>
             </Link>
@@ -43,7 +43,7 @@ class Dropdown extends Component {
           <a href="#">
             <Link to="/cleaning">
               <li>
-                <img src="images/sweep.svg" alt="Sweep" />
+                <img src="/images/sweep.svg" alt="Sweep" />
                 <p>Cleaning</p>
               </li>
             </Link>
@@ -51,7 +51,7 @@ class Dropdown extends Component {
           <a href="#">
             <Link to="/assembly">
               <li>
-                <img src="images/armchair.svg" alt="Armchair" />
+                <img src="/images/armchair.svg" alt="Armchair" />
                 <p>Flat pack assembly</p>
               </li>
             </Link>
@@ -59,7 +59,7 @@ class Dropdown extends Component {
           <a href="#">
             <Link to="/installation">
               <li>
-                <img src="images/sketch.svg" alt="Installation" />
+                <img src="/images/sketch.svg" alt="Installation" />
                 <p>Installation</p>
               </li>
             </Link>

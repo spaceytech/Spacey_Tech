@@ -73,8 +73,8 @@ const Footer = props => {
         </ul>
       </div>
       <div className="footer__download">
-        <img src="images/google-play.svg" alt="Google play" />
-        <img src="images/apple-store.svg" alt="Apple store" />
+        <img src="/images/google-play.svg" alt="Google play" />
+        <img src="/images/apple-store.svg" alt="Apple store" />
         <svg width="26" height="26" class="facebook-circle" viewBox="0 0 25 24">
           <path
             d="M12.5 0C19.404 0 25 5.372 25 12c0 6.627-5.596 12-12.5 12C5.597 24 0 18.627 0 12 0 5.372 5.597 0 12.5 0zm5.338 6H7.162a.662.662 0 0 0-.662.662v10.676c0 .365.296.662.662.662h5.748v-4.647h-1.564v-1.811h1.564v-1.336c0-1.55.946-2.394 2.329-2.394.662 0 1.231.05 1.397.072v1.62h-.959c-.752 0-.897.357-.897.882v1.156h1.793l-.233 1.811h-1.56V18h3.058a.662.662 0 0 0 .662-.662V6.662A.662.662 0 0 0 17.838 6z"
