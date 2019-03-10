@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { userRegister } from "../../../actions/userActions";
+import { userRegister, become_tasker } from "../../../actions/userActions";
 
 class TaskerForm extends Component {
   state = {
@@ -70,6 +70,7 @@ class TaskerForm extends Component {
           error
         });
       } else if (response.payload.success) {
+        this.props.dispatch(become_tasker());
         this.props.history.push("/become_tasker/eligibility");
       }
     });

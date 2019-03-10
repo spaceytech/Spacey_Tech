@@ -1,4 +1,9 @@
-import { SENDTASK, TASKNAME, CLEARTASKDETAILS } from "../actions/types";
+import {
+  SENDTASK,
+  TASKNAME,
+  CLEARTASKDETAILS,
+  GETTASKS
+} from "../actions/types";
 
 export default function(state = [], action) {
   switch (action.type) {
@@ -11,6 +16,12 @@ export default function(state = [], action) {
       return {
         ...state,
         ...action.payload
+      };
+      break;
+    case GETTASKS:
+      return {
+        ...state,
+        availableTasks: action.payload
       };
       break;
     case CLEARTASKDETAILS:

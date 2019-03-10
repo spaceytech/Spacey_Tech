@@ -1,4 +1,4 @@
-import { USERREGISTER } from "./types";
+import { USERREGISTER, BECOME_TASKER, TASKER_DETAIL } from "./types";
 import axios from "axios";
 
 export const userRegister = async data => {
@@ -7,5 +7,20 @@ export const userRegister = async data => {
   return {
     type: USERREGISTER,
     payload: res.data
+  };
+};
+
+export const become_tasker = async () => {
+  return {
+    type: BECOME_TASKER,
+    payload: true
+  };
+};
+
+export const tasker_details = async data => {
+  console.log(data);
+  return {
+    type: TASKER_DETAIL,
+    payload: data
   };
 };

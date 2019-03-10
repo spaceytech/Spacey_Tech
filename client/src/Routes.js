@@ -10,13 +10,32 @@ import Confirm from "./Components/Ui/Confirm";
 import Taskers from "./Components/Ui/Taskers";
 import BecomeTasker from "./Components/Pages/Career/BecomeTasker";
 import Dashboard from "./Components/Pages/Dashboard";
+import Categories from "./Components/Pages/Categories";
+import TaskerDetail from "./Components/Pages/TaskerDetail";
 
 class Routes extends React.Component {
   render() {
     return (
       <Switch>
         <Route exact path="/become_tasker" component={BecomeTasker} />
-        <Route exact path="/become_tasker/eligibility" component={Dashboard} />
+        <Route
+          exact
+          path="/become_tasker/eligibility"
+          render={renderProps => (
+            <Dashboard>
+              <TaskerDetail />
+            </Dashboard>
+          )}
+        />
+        <Route
+          exact
+          path="/become_tasker/categories"
+          render={renderProps => (
+            <Dashboard>
+              <Categories />
+            </Dashboard>
+          )}
+        />
         <Route
           exact
           path="/dashboard/form"
