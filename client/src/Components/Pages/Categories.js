@@ -37,7 +37,52 @@ class Categories extends Component {
     });
   }
 
-  toggleQualified = (e, index) => {
+  saveTask = (e, accordion, property) => {
+    console.log("Save task");
+    if (this.state[accordion.toLowerCase()]["description"].length > 0) {
+      this.setState({
+        [accordion.toLowerCase()]: {
+          ...this.state[accordion.toLowerCase()],
+          save: true
+        }
+      });
+    } else {
+      this.setState({
+        [accordion.toLowerCase()]: {
+          ...this.state[accordion.toLowerCase()],
+          error: {
+            description: "This cannot be blank"
+          }
+        }
+      });
+    }
+  };
+
+  handleChange = (e, accordion) => {
+    this.setState({
+      [accordion.toLowerCase()]: {
+        ...this.state[accordion.toLowerCase()],
+        [e.target.name]: e.target.value,
+        error: {}
+      }
+    });
+  };
+
+  addTaskCategory = (e, accordion) => {
+    if (e.target.checked) {
+      let newAccordion = {
+        ...[this.state.accordion],
+        save: false,
+        description: "",
+        perHour: ""
+      };
+      this.setState({
+        [accordion.toLowerCase()]: newAccordion
+      });
+    }
+  };
+
+  toggleQualified = (e, index, accordion) => {
     console.log();
     const qualifiedTask = {
       ...this.state.tasks[index],
@@ -49,6 +94,8 @@ class Categories extends Component {
       qualifiedTask,
       ...this.state.tasks.slice(index + 1, this.state.tasks.length)
     ];
+
+    this.addTaskCategory(e, accordion);
 
     this.setState({
       tasks: newTasks
@@ -119,7 +166,9 @@ class Categories extends Component {
                           <input
                             type="checkbox"
                             name="qualified"
-                            onChange={e => this.toggleQualified(e, i)}
+                            onChange={e =>
+                              this.toggleQualified(e, i, task.name)
+                            }
                           />{" "}
                           I have the skills and qualifications to task in this
                           category.
@@ -131,7 +180,13 @@ class Categories extends Component {
                       >
                         <h2>Your Task Rate</h2>
                         <label>
-                          £ <input type="text" name="rate" maxlength="3" />
+                          £{" "}
+                          <input
+                            type="text"
+                            name="perHour"
+                            maxlength="3"
+                            onChange={e => this.handleChange(e, task.name)}
+                          />
                         </label>
                       </div>
                       <div
@@ -140,7 +195,31 @@ class Categories extends Component {
                       >
                         <h2>Your Quick Description</h2>
                         <hr />
-                        <textarea rows="7" />
+                        <textarea
+                          rows="7"
+                          name="description"
+                          onChange={e => this.handleChange(e, task.name)}
+                        />
+                        {this.state[task.name.toLowerCase()] ? (
+                          this.state[task.name.toLowerCase()]["error"] ? (
+                            this.state[task.name.toLowerCase()]["error"][
+                              "description"
+                            ] ? (
+                              <span
+                                style={{ color: "red", fontSize: "1.5rem" }}
+                              >
+                                {
+                                  this.state[task.name.toLowerCase()]["error"]
+                                    .description
+                                }
+                              </span>
+                            ) : (
+                              ""
+                            )
+                          ) : (
+                            ""
+                          )
+                        ) : null}
                       </div>
                       <div
                         className="tasks__accordion--progression"
@@ -148,7 +227,8 @@ class Categories extends Component {
                       >
                         <div className="button">
                           <button
-                            disabled={task.qualified ? true : false}
+                            onClick={e => this.saveTask(e, task.name, "save")}
+                            disabled={task.qualified ? false : true}
                             style={{
                               cursor: task.qualified ? "pointer" : "not-allowed"
                             }}
