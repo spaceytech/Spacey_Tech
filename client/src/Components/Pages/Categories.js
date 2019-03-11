@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getTasks } from "../../actions/taskActions";
+import { edit_tasker_details } from "../../actions/userActions";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -37,21 +38,64 @@ class Categories extends Component {
     });
   }
 
+  handleContinue = e => {
+    this.props.dispatch(edit_tasker_details(this.state.savedTasks));
+  };
+
   saveTask = (e, accordion, property) => {
-    console.log("Save task");
-    if (this.state[accordion.toLowerCase()]["description"].length > 0) {
+    if (
+      this.state.savedTasks[accordion.toLowerCase()]["description"].length > 0
+    ) {
       this.setState({
-        [accordion.toLowerCase()]: {
-          ...this.state[accordion.toLowerCase()],
-          save: true
+        tasks: this.state.tasks.map(task => {
+          if (task.name === accordion) {
+            return {
+              ...task,
+              open: !task.open
+            };
+          } else {
+            return { ...task };
+          }
+        }),
+        savedTasks: {
+          ...this.state.savedTasks,
+          [accordion.toLowerCase()]: {
+            ...this.state.savedTasks[accordion.toLowerCase()],
+            save: true,
+            perHour:
+              this.state.savedTasks[accordion.toLowerCase()]["perHour"]
+                .length === 0
+                ? 10
+                : 0
+          }
         }
       });
     } else {
       this.setState({
-        [accordion.toLowerCase()]: {
-          ...this.state[accordion.toLowerCase()],
-          error: {
-            description: "This cannot be blank"
+        tasks: this.state.tasks.map(task => {
+          if (task.name === accordion) {
+            return {
+              ...task,
+              open: this.state.savedTasks[accordion.toLowerCase()]["save"]
+                ? false
+                : true
+            };
+          } else {
+            return { ...task };
+          }
+        }),
+        savedTasks: {
+          ...this.state.savedTasks,
+          [accordion.toLowerCase()]: {
+            ...this.state.savedTasks[accordion.toLowerCase()],
+            perHour:
+              this.state.savedTasks[accordion.toLowerCase()]["perHour"]
+                .length === 0
+                ? 10
+                : 0,
+            error: {
+              description: "This cannot be blank"
+            }
           }
         }
       });
@@ -60,10 +104,13 @@ class Categories extends Component {
 
   handleChange = (e, accordion) => {
     this.setState({
-      [accordion.toLowerCase()]: {
-        ...this.state[accordion.toLowerCase()],
-        [e.target.name]: e.target.value,
-        error: {}
+      savedTasks: {
+        ...this.state.savedTasks,
+        [accordion.toLowerCase()]: {
+          ...this.state.savedTasks[accordion.toLowerCase()],
+          [e.target.name]: e.target.value,
+          error: {}
+        }
       }
     });
   };
@@ -71,13 +118,15 @@ class Categories extends Component {
   addTaskCategory = (e, accordion) => {
     if (e.target.checked) {
       let newAccordion = {
-        ...[this.state.accordion],
         save: false,
         description: "",
         perHour: ""
       };
       this.setState({
-        [accordion.toLowerCase()]: newAccordion
+        savedTasks: {
+          ...this.state.savedTasks,
+          [accordion.toLowerCase()]: newAccordion
+        }
       });
     }
   };
@@ -129,7 +178,7 @@ class Categories extends Component {
           time.
         </p>
         <div className="button">
-          <button>Continue</button>
+          <button onClick={e => this.handleContinue(e)}>Continue</button>
         </div>
         {this.state.tasks
           ? this.state.tasks.map((task, i) => {
@@ -145,6 +194,14 @@ class Categories extends Component {
                         <FontAwesomeIcon icon={faStar} className="starIcon" />{" "}
                         Popular Tasks
                       </span>
+                      {this.state.savedTasks ? (
+                        this.state.savedTasks[task.name.toLowerCase()] ? (
+                          this.state.savedTasks[task.name.toLowerCase()]
+                            .save ? (
+                            <p className="saveSpan">Saved</p>
+                          ) : null
+                        ) : null
+                      ) : null}
                       <FontAwesomeIcon
                         className="icon"
                         icon={task.open ? faAngleUp : faAngleDown}
@@ -185,6 +242,15 @@ class Categories extends Component {
                             type="text"
                             name="perHour"
                             maxlength="3"
+                            value={
+                              this.state.savedTasks
+                                ? this.state.savedTasks[task.name.toLowerCase()]
+                                  ? this.state.savedTasks[
+                                      task.name.toLowerCase()
+                                    ].perHour
+                                  : 0
+                                : null
+                            }
                             onChange={e => this.handleChange(e, task.name)}
                           />
                         </label>
@@ -199,26 +265,46 @@ class Categories extends Component {
                           rows="7"
                           name="description"
                           onChange={e => this.handleChange(e, task.name)}
+                          style={{
+                            border: this.state.savedTasks
+                              ? this.state.savedTasks[task.name.toLowerCase()]
+                                ? this.state.savedTasks[
+                                    task.name.toLowerCase()
+                                  ]["error"]
+                                  ? this.state.savedTasks[
+                                      task.name.toLowerCase()
+                                    ]["error"]["description"]
+                                    ? "1px solid red"
+                                    : "none"
+                                  : ""
+                                : null
+                              : null
+                          }}
                         />
-                        {this.state[task.name.toLowerCase()] ? (
-                          this.state[task.name.toLowerCase()]["error"] ? (
-                            this.state[task.name.toLowerCase()]["error"][
-                              "description"
+                        {this.state.savedTasks ? (
+                          this.state.savedTasks[task.name.toLowerCase()] ? (
+                            this.state.savedTasks[task.name.toLowerCase()][
+                              "error"
                             ] ? (
-                              <span
-                                style={{ color: "red", fontSize: "1.5rem" }}
-                              >
-                                {
-                                  this.state[task.name.toLowerCase()]["error"]
-                                    .description
-                                }
-                              </span>
+                              this.state.savedTasks[task.name.toLowerCase()][
+                                "error"
+                              ]["description"] ? (
+                                <span
+                                  style={{ color: "red", fontSize: "1.5rem" }}
+                                >
+                                  {
+                                    this.state.savedTasks[
+                                      task.name.toLowerCase()
+                                    ]["error"].description
+                                  }
+                                </span>
+                              ) : (
+                                ""
+                              )
                             ) : (
                               ""
                             )
-                          ) : (
-                            ""
-                          )
+                          ) : null
                         ) : null}
                       </div>
                       <div

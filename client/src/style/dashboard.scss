@@ -221,7 +221,6 @@
         &__trigger {
           display: flex;
           align-items: center;
-          justify-content: space-between;
           cursor: pointer;
           padding: 1.5rem 0;
           h1 {
@@ -232,6 +231,15 @@
             font-size: 1.5rem;
             color: var(--light-green);
             margin-right: auto;
+          }
+          .saveSpan {
+            align-self: flex-end;
+            margin-right: 1.5rem;
+            color: white;
+            background: var(--light-green);
+            padding: 0.7rem;
+            border-radius: 5px;
+            font-size: 1.5rem;
           }
           .starIcon {
             font-size: 1.2rem;

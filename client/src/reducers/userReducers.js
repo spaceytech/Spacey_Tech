@@ -1,4 +1,9 @@
-import { USERREGISTER, BECOME_TASKER, TASKER_DETAIL } from "../actions/types";
+import {
+  USERREGISTER,
+  BECOME_TASKER,
+  TASKER_DETAIL,
+  EDITTASKERDETAILS
+} from "../actions/types";
 
 export default function(state = {}, action) {
   switch (action.type) {
@@ -15,6 +20,15 @@ export default function(state = {}, action) {
       return {
         ...state,
         tasker_detail: action.payload
+      };
+      break;
+    case EDITTASKERDETAILS:
+      return {
+        ...state,
+        tasker_detail: {
+          ...state.tasker_detail,
+          skills: action.payload
+        }
       };
     default:
       return state;
