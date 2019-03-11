@@ -6,7 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleUp,
   faAngleDown,
-  faTrash
+  faTrash,
+  faStar
 } from "@fortawesome/free-solid-svg-icons";
 
 class Categories extends Component {
@@ -15,8 +16,16 @@ class Categories extends Component {
   componentDidMount() {
     this.props.dispatch(getTasks()).then(response => {
       let newState = response.payload.map(obj => {
+        let description = obj.description.split(".").map(desc => {
+          if (desc.charAt(0) === ",") {
+            return desc.substr(0, 0) + "" + desc.substr(1);
+          } else {
+            return desc;
+          }
+        });
         return {
           ...obj,
+          description,
           open: false,
           qualified: false
         };
@@ -85,7 +94,10 @@ class Categories extends Component {
                       onClick={e => this.toggleAccordion(e, task.name)}
                     >
                       <h1>{task.name}</h1>
-
+                      <span>
+                        <FontAwesomeIcon icon={faStar} className="starIcon" />{" "}
+                        Popular Tasks
+                      </span>
                       <FontAwesomeIcon
                         className="icon"
                         icon={task.open ? faAngleUp : faAngleDown}
@@ -99,25 +111,9 @@ class Categories extends Component {
                         <h2>Scope of Task</h2>
                         <hr />
                         <ul>
-                          <li>
-                            Bathrooms: Scrubbing sink, toilet, and
-                            shower/bathtub; wiping mirrors.
-                          </li>
-                          <li>
-                            Kitchen: Washing dishes; cleaning/wiping backsplash,
-                            stove, counters, and appliances.
-                          </li>
-                          <li>
-                            Floors: Hoovering, sweeping and/or mopping floors.
-                          </li>
-                          <li>
-                            Dusting: Furniture, hard surfaces, and window sills.
-                          </li>
-                          <li>Tidying: Straighten and organise.</li>
-                          <li>
-                            Taking out garbage/recycling and replacing trash
-                            bags.
-                          </li>
+                          {task.description.map(t => {
+                            return <li>{t}</li>;
+                          })}
                         </ul>
                         <label>
                           <input
@@ -129,26 +125,54 @@ class Categories extends Component {
                           category.
                         </label>
                       </div>
-                      <div className="tasks__accordion--rate">
+                      <div
+                        className="tasks__accordion--rate"
+                        style={{ opacity: task.qualified ? "1" : ".5" }}
+                      >
                         <h2>Your Task Rate</h2>
                         <label>
                           £ <input type="text" name="rate" maxlength="3" />
                         </label>
                       </div>
-                      <div className="tasks__accordion--pitch">
+                      <div
+                        className="tasks__accordion--pitch"
+                        style={{ opacity: task.qualified ? "1" : ".5" }}
+                      >
                         <h2>Your Quick Description</h2>
                         <hr />
                         <textarea rows="7" />
                       </div>
-                      <div className="tasks__accordion--progression">
+                      <div
+                        className="tasks__accordion--progression"
+                        style={{ opacity: task.qualified ? "1" : ".5" }}
+                      >
                         <div className="button">
-                          <button>Save</button>
+                          <button
+                            disabled={task.qualified ? true : false}
+                            style={{
+                              cursor: task.qualified ? "pointer" : "not-allowed"
+                            }}
+                          >
+                            Save
+                          </button>
                         </div>
                         <div className="cancel">
-                          <button>Cancel</button>
+                          <button
+                            disabled={task.qualified ? true : false}
+                            style={{
+                              cursor: task.qualified ? "pointer" : "not-allowed"
+                            }}
+                          >
+                            Cancel
+                          </button>
                         </div>
                         <div className="remove">
-                          <button>
+                          <button
+                            disabled={task.qualified ? true : false}
+                            style={{
+                              cursor: task.qualified ? "pointer" : "not-allowed"
+                            }}
+                          >
                             <FontAwesomeIcon icon={faTrash} className="icon" />Remove
                             skill
                           </button>

@@ -221,18 +221,20 @@
         &__trigger {
           display: flex;
           align-items: center;
+          justify-content: space-between;
           cursor: pointer;
           padding: 1.5rem 0;
-          & > *:not(:first-child) {
-            margin-right: 2rem;
-          }
           h1 {
             font-size: 2rem;
-            margin-right: auto;
+            margin-right: 1.4rem;
           }
           span {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--light-green);
+            margin-right: auto;
+          }
+          .starIcon {
+            font-size: 1.2rem;
           }
           .icon {
             font-size: 2.5rem;
