@@ -42,16 +42,32 @@ class Categories extends Component {
   }
 
   handleContinue = e => {
-    this.props
-      .dispatch(edit_tasker_details(this.state.savedTasks))
-      .then(response => {
-        this.props.dispatch(
-          send_tasker_details(
-            this.props.user.tasker_detail,
-            this.props.user.basic_info._id
-          )
-        );
+    if (this.state.savedTasks) {
+      let proceed;
+      for (let task in this.state.savedTasks) {
+        proceed = this.state.savedTasks[task].save;
+      }
+      if (proceed) {
+        this.props
+          .dispatch(edit_tasker_details(this.state.savedTasks))
+          .then(response => {
+            this.props.dispatch(
+              send_tasker_details(
+                this.props.user.tasker_detail,
+                this.props.user.basic_info._id
+              )
+            );
+          });
+      } else {
+        this.setState({
+          error: "Please select a task category"
+        });
+      }
+    } else {
+      this.setState({
+        error: "Please select a task category"
       });
+    }
   };
 
   saveTask = (e, accordion, property) => {
@@ -189,6 +205,19 @@ class Categories extends Component {
           or remove categories from your profile, or revise your rates, at any
           time.
         </p>
+        <div>
+          {this.state.error ? (
+            <p
+              style={{
+                background: "var(--alert-background-color)",
+                color: "var(--alert-color)",
+                padding: "1.5rem"
+              }}
+            >
+              {this.state.error}
+            </p>
+          ) : null}
+        </div>
         <div className="button">
           <button onClick={e => this.handleContinue(e)}>Continue</button>
         </div>
