@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getTasks } from "../../actions/taskActions";
-import { edit_tasker_details } from "../../actions/userActions";
+import {
+  edit_tasker_details,
+  send_tasker_details
+} from "../../actions/userActions";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -39,7 +42,16 @@ class Categories extends Component {
   }
 
   handleContinue = e => {
-    this.props.dispatch(edit_tasker_details(this.state.savedTasks));
+    this.props
+      .dispatch(edit_tasker_details(this.state.savedTasks))
+      .then(response => {
+        this.props.dispatch(
+          send_tasker_details(
+            this.props.user.tasker_detail,
+            this.props.user.basic_info._id
+          )
+        );
+      });
   };
 
   saveTask = (e, accordion, property) => {
@@ -355,4 +367,10 @@ class Categories extends Component {
   }
 }
 
-export default connect()(Categories);
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps)(Categories);

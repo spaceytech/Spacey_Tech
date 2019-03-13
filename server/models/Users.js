@@ -17,13 +17,14 @@ const userSchema = mongoose.Schema(
       minlength: 5
     },
     phone: { type: Number },
-    address: { type: String },
+    address: mongoose.Schema.Types.Mixed,
+    birthdate: mongoose.Schema.Types.Mixed,
+    vehicle_type: { type: Array },
+    promotion: { type: String },
     duration: {
       type: Array,
       default: []
     },
-    description: { type: String },
-    perHour: { type: Number },
     completedTasks: { type: Number, default: 0 },
     reviews: { type: Number, default: 0 },
     reliable: { type: Number, default: 0 },
@@ -39,6 +40,7 @@ const userSchema = mongoose.Schema(
         }
       }
     ],
+
     skills: { type: Array }
   },
   { timestamps: true }

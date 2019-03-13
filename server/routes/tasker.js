@@ -34,41 +34,26 @@ module.exports = app => {
   });
 
   // Register as a tasker
-  app.post("/api/register_as_tasker", (req, res) => {
-    // const details = {
-    //   first_name: req.body.first_name,
-    //   last_name: req.body.last_name,
-    //   address: req.body.address,
-    //   email: req.body.email,
-    //   phone: req.body.phone,
-    //   description: req.body.description,
-    //   perHour: req.body.perHour,
-    //   skills: req.body.skills
-    // };
-    //
-    // User.findOne({ email: req.body.email }, (err, user) => {
-    //   if (err) {
-    //     return res.json({ success: false, err });
-    //   }
-    //   if (user) {
-    //     return res.json({
-    //       success: false,
-    //       err: "User already exists"
-    //     });
-    //   }
-    //   const tasker = new Tasker(details);
-    //   tasker.save((err, data) => {
-    //     if (err) {
-    //       return res.json({
-    //         success: false,
-    //         err
-    //       });
-    //     }
-    //
-    //     res.status(200).json({
-    //       success: true
-    //     });
-    //   });
-    // });
+  app.post("/api/save_tasker_details", (req, res) => {
+    const skills = req.body.skills;
+    let newSkills = [];
+    for (let skill in skills) {
+      newSkills.push({ [skill]: skills[skill] });
+    }
+    User.update(
+      { _id: req.body.id },
+      {
+        $set: {
+          address: req.body.address,
+          skills: newSkills,
+          vehicle_type: req.body.vehicle_type,
+          promotion: req.body.promotion,
+          birthdate: req.body.birthdate
+        }
+      },
+      (err, user) => {
+        console.log(user);
+      }
+    );
   });
 };

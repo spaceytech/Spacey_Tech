@@ -57,12 +57,11 @@ module.exports = app => {
       });
       registerUser(user, (err, user) => {
         console.log(user);
+        res.send({ success: "Successfully registered", basic_info: user });
         if (err) {
           console.log(err);
         }
       });
-
-      res.send({ success: "Successfully registered" });
     });
   });
 };

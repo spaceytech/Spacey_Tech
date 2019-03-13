@@ -21,9 +21,37 @@ class TaskerDetail extends Component {
   };
 
   saveDetails = e => {
-    this.props.dispatch(tasker_details(this.state)).then(response => {
-      this.props.history.push("/become_tasker/categories");
-    });
+    let state = { ...this.state };
+    let proceed;
+    for (let prop in state) {
+      if (prop === "address") {
+        for (let el in state[prop]) {
+          if (state[prop][el].length > 0) {
+            proceed = true;
+          } else {
+            proceed = false;
+          }
+        }
+      } else if (prop === "birthdate") {
+        for (let el in state[prop]) {
+          if (state[prop][el].length > 0) {
+            proceed = true;
+          } else {
+            proceed = false;
+          }
+        }
+      }
+      if (state[prop].length > 0) {
+        proceed = true;
+      } else {
+        proceed = false;
+      }
+    }
+    if (proceed) {
+      this.props.dispatch(tasker_details(this.state)).then(response => {
+        this.props.history.push("/become_tasker/categories");
+      });
+    }
   };
 
   renderOptions = type => {

@@ -15,7 +15,7 @@ export const userRegister = async data => {
   };
 };
 
-export const become_tasker = async () => {
+export const become_tasker = () => {
   return {
     type: BECOME_TASKER,
     payload: true
@@ -38,4 +38,14 @@ export const edit_tasker_details = async data => {
     type: EDITTASKERDETAILS,
     payload: skills
   };
+};
+
+export const send_tasker_details = async (details, id) => {
+  const data = {
+    ...details,
+    id
+  };
+
+  const res = await axios.post("/api/save_tasker_details", data);
+  console.log(res.data);
 };
