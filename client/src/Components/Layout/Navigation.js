@@ -85,7 +85,7 @@ class Navigation extends Component {
                 <div>My Tasks</div>
               </Link>
               <Link
-                to={`/account/${this.props.user.basic_info._id}`}
+                to={`/account/${this.props.user.basic_info._id}/profile`}
                 className="navigation__button button "
               >
                 <button>Account</button>
@@ -148,7 +148,7 @@ class Navigation extends Component {
               <div>My Tasks</div>
             </Link>
             <Link
-              to={`/account/${this.props.user.basic_info._id}`}
+              to={`/account/${this.props.user.basic_info._id}/profile`}
               className="navigation__button button default"
             >
               <button>Account</button>

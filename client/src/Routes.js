@@ -12,11 +12,43 @@ import BecomeTasker from "./Components/Pages/Career/BecomeTasker";
 import Dashboard from "./Components/Pages/Dashboard";
 import Categories from "./Components/Pages/Categories";
 import TaskerDetail from "./Components/Pages/TaskerDetail";
+import Profile from "./Components/Pages/Profile/Profile";
+import Account from "./Components/Pages/Profile/Account";
+import Billing from "./Components/Pages/Profile/Billing";
+import Password from "./Components/Pages/Profile/Password";
 
 class Routes extends React.Component {
   render() {
     return (
       <Switch>
+        <Route
+          exact
+          path="/account/:id/profile"
+          render={renderProps => (
+            <Profile>
+              <Account />
+            </Profile>
+          )}
+        />
+        <Route
+          exact
+          path="/account/:id/billing_info"
+          render={renderProps => (
+            <Profile>
+              <Billing />
+            </Profile>
+          )}
+        />
+        <Route
+          exact
+          path="/account/:id/password"
+          render={renderProps => (
+            <Profile>
+              <Password />
+            </Profile>
+          )}
+        />
+
         <Route exact path="/become_tasker" component={BecomeTasker} />
         <Route
           exact
