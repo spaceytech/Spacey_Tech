@@ -6,6 +6,8 @@ import {
   send_tasker_details
 } from "../../actions/userActions";
 
+import { withRouter } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleUp,
@@ -57,6 +59,9 @@ class Categories extends Component {
                 this.props.user.basic_info._id
               )
             );
+          })
+          .then(response => {
+            this.props.history.push("/signin");
           });
       } else {
         this.setState({
@@ -402,4 +407,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Categories);
+export default connect(mapStateToProps)(withRouter(Categories));
