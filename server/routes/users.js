@@ -18,6 +18,8 @@ module.exports = app => {
     });
   };
 
+  // Register User
+
   app.post("/auth/register", (req, res) => {
     console.log(req.body);
     req.checkBody("first_name", "First name is required").notEmpty();
@@ -57,11 +59,29 @@ module.exports = app => {
       });
       registerUser(user, (err, user) => {
         console.log(user);
-        res.send({ success: "Successfully registered", basic_info: user });
+        res.send({ success: "Successfully registered" });
         if (err) {
           console.log(err);
         }
       });
     });
+  });
+
+  // Login User
+  app.post("/auth/signin", (req, res, next) => {
+    passport.authenticate("local", (err, user, info) => {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        return res.send(info);
+      }
+      req.login(user, function(err) {
+        if (err) {
+          return next(err);
+        }
+        return res.send({ success: "Successfully loggedin", basic_info: user });
+      });
+    })(req, res, next);
   });
 };

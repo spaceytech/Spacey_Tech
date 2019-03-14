@@ -2,7 +2,9 @@ import {
   USERREGISTER,
   BECOME_TASKER,
   TASKER_DETAIL,
-  EDITTASKERDETAILS
+  EDITTASKERDETAILS,
+  USERLOGIN,
+  LOGINSTATUS
 } from "./types";
 import axios from "axios";
 
@@ -12,6 +14,22 @@ export const userRegister = async data => {
   return {
     type: USERREGISTER,
     payload: res.data
+  };
+};
+
+export const userLogin = async data => {
+  const res = await axios.post("/auth/signin", data);
+  console.log(res.data);
+  return {
+    type: USERLOGIN,
+    payload: res.data
+  };
+};
+
+export const login_status = async () => {
+  return {
+    type: LOGINSTATUS,
+    payload: true
   };
 };
 

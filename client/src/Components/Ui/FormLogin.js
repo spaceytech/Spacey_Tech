@@ -1,8 +1,46 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import { Link, withRouter } from "react-router-dom";
+
+import { connect } from "react-redux";
+import { userLogin, login_status } from "../../actions/userActions";
 
 class FormLogin extends Component {
+  state = {
+    email: "",
+    password: "",
+    error: {}
+  };
+
+  removeError = (e, errorName) => {
+    const error = this.state.error;
+    let err = { ...error };
+    delete err[errorName];
+    this.setState({
+      error: err
+    });
+  };
+
+  onChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  onLogin = e => {
+    e.preventDefault();
+    const userData = { ...this.state };
+    this.props.dispatch(userLogin(userData)).then(response => {
+      if (response.payload.message) {
+        this.setState({
+          error: response.payload
+        });
+      } else if (response.payload.success) {
+        this.props.dispatch(login_status());
+        this.props.history.push(`/account/${this.props.user.basic_info._id}`);
+      }
+    });
+  };
+
   render() {
     return (
       <div className="signin__wrapper">
@@ -15,11 +53,35 @@ class FormLogin extends Component {
           instead.
         </p>
         <form>
-          <input type="text" name="email" placeholder="E-mail" />
-          <input type="password" name="password" placeholder="Password" />
-          <a href="#" className="button">
-            <button>Sign in</button>
-          </a>
+          <span
+            className="errorSpan"
+            style={{ display: !this.state.error.message ? "none" : "flex" }}
+          >
+            {this.state.error.message}
+            <span
+              className="close"
+              onClick={e => this.removeError(e, "message")}
+            >
+              &#11199;
+            </span>
+          </span>
+          <input
+            type="text"
+            name="email"
+            placeholder="E-mail"
+            onChange={e => this.onChange(e)}
+          />
+
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={e => this.onChange(e)}
+          />
+
+          <div className="button">
+            <button onClick={e => this.onLogin(e)}>Sign in</button>
+          </div>
         </form>
         <Link to="/">
           <p>Forgot your password? </p>
@@ -41,4 +103,10 @@ class FormLogin extends Component {
   }
 }
 
-export default FormLogin;
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps)(withRouter(FormLogin));

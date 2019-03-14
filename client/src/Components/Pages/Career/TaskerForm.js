@@ -71,7 +71,7 @@ class TaskerForm extends Component {
         });
       } else if (response.payload.success) {
         this.props.dispatch(become_tasker());
-        this.props.history.push("/become_tasker/eligibility");
+        this.props.history.push("/signin");
       }
     });
   };

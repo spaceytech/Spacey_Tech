@@ -77,6 +77,21 @@ a:active {
   }
 }
 
+.errorSpan {
+  background: var(--alert-background-color);
+  color: var(--alert-color);
+  padding: 1rem;
+  border-radius: 10px;
+
+  justify-content: space-between;
+
+  .close {
+    font-weight: 700;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+}
+
 .dropdown {
   position: absolute;
   top: 5.9rem;

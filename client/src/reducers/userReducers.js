@@ -2,7 +2,9 @@ import {
   USERREGISTER,
   BECOME_TASKER,
   TASKER_DETAIL,
-  EDITTASKERDETAILS
+  EDITTASKERDETAILS,
+  USERLOGIN,
+  LOGINSTATUS
 } from "../actions/types";
 
 export default function(state = {}, action) {
@@ -10,6 +12,14 @@ export default function(state = {}, action) {
     case USERREGISTER:
       return action.payload;
       break;
+    case USERLOGIN:
+      return action.payload;
+      break;
+    case LOGINSTATUS:
+      return {
+        ...state,
+        login_status: true
+      };
     case BECOME_TASKER:
       return {
         ...state,

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Dropdown from "../Ui/Dropdown";
 
+import { connect } from "react-redux";
+
 class Navigation extends Component {
   state = {
     showDropdown: false,
@@ -68,18 +70,47 @@ class Navigation extends Component {
               />
             ) : null}
           </div>
-          <Link to="/signup" className="navigation__items navigation__sign-up">
-            <div>Sign up</div>
-          </Link>
-          <Link to="/signin" className="navigation__items navigation__login">
-            <div>Login</div>
-          </Link>
-          <Link
-            to="/become_tasker"
-            className="navigation__items navigation__button"
-          >
-            <div>Become a tasker</div>
-          </Link>
+          {this.props.user.login_status ? (
+            <>
+              <Link
+                to="/book_task"
+                className="navigation__items navigation__sign-up "
+              >
+                <div>Book a Task</div>
+              </Link>
+              <Link
+                to="/my_tasks"
+                className="navigation__items navigation__login "
+              >
+                <div>My Tasks</div>
+              </Link>
+              <Link
+                to={`/account/${this.props.user.basic_info._id}`}
+                className="navigation__button button "
+              >
+                <button>Account</button>
+              </Link>
+            </>
+          ) : (
+            <>
+              {" "}
+              <Link
+                to="/signup"
+                className="navigation__items navigation__sign-up "
+              >
+                <div>Sign up</div>
+              </Link>
+              <Link
+                to="/signin"
+                className="navigation__items navigation__login "
+              >
+                <div>Login</div>
+              </Link>
+              <Link to="/become_tasker" className="navigation__button button ">
+                <button>Become a tasker</button>
+              </Link>{" "}
+            </>
+          )}
         </div>
         {/* Default Navigation layout */}
         <div
@@ -102,21 +133,51 @@ class Navigation extends Component {
             />
           ) : null}
         </div>
-        <Link
-          to="/signup"
-          className="navigation__items navigation__sign-up default"
-        >
-          <div>Sign up</div>
-        </Link>
-        <Link
-          to="/signin"
-          className="navigation__items navigation__login default"
-        >
-          <div>Login</div>
-        </Link>
-        <Link to="/become_tasker" className="navigation__button button default">
-          <button>Become a tasker</button>
-        </Link>
+        {this.props.user.login_status ? (
+          <>
+            <Link
+              to="/book_task"
+              className="navigation__items navigation__sign-up default"
+            >
+              <div>Book a Task</div>
+            </Link>
+            <Link
+              to="/my_tasks"
+              className="navigation__items navigation__login default"
+            >
+              <div>My Tasks</div>
+            </Link>
+            <Link
+              to={`/account/${this.props.user.basic_info._id}`}
+              className="navigation__button button default"
+            >
+              <button>Account</button>
+            </Link>
+          </>
+        ) : (
+          <>
+            {" "}
+            <Link
+              to="/signup"
+              className="navigation__items navigation__sign-up default"
+            >
+              <div>Sign up</div>
+            </Link>
+            <Link
+              to="/signin"
+              className="navigation__items navigation__login default"
+            >
+              <div>Login</div>
+            </Link>
+            <Link
+              to="/become_tasker"
+              className="navigation__button button default"
+            >
+              <button>Become a tasker</button>
+            </Link>{" "}
+          </>
+        )}
+
         {/* Mobile button icon */}
         <div className="navigation__mobileicon" onClick={this.openMobileNav}>
           <i class="fa fa-bars" />
@@ -126,4 +187,10 @@ class Navigation extends Component {
   }
 }
 
-export default Navigation;
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps)(Navigation);
