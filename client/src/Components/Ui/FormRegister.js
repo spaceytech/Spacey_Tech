@@ -219,7 +219,7 @@ class FormRegister extends Component {
           </label>
 
           <div className="button">
-            <button onClick={e => this.onRegister(e)}>Become a tasker</button>
+            <button onClick={e => this.onRegister(e)}>Sign up</button>
           </div>
         </form>
         <button id="facebook">Facebook</button>

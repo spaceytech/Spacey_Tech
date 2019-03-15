@@ -36,7 +36,9 @@ class FormLogin extends Component {
         });
       } else if (response.payload.success) {
         this.props.dispatch(login_status());
-        this.props.history.push(`/account/${this.props.user.basic_info._id}`);
+        this.props.history.push(
+          `/account/${this.props.user.basic_info._id}/profile`
+        );
       }
     });
   };

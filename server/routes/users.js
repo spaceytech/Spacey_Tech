@@ -55,7 +55,8 @@ module.exports = app => {
         last_name: req.body.last_name,
         email: req.body.email,
         password: req.body.password,
-        name: `${req.body.first_name} ${req.body.last_name}`
+        name: `${req.body.first_name} ${req.body.last_name}`,
+        postcode: req.body.postcode
       });
       registerUser(user, (err, user) => {
         console.log(user);

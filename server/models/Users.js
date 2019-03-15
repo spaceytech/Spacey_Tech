@@ -17,6 +17,7 @@ const userSchema = mongoose.Schema(
       minlength: 5
     },
     phone: { type: Number },
+    postcode: { type: String },
     address: mongoose.Schema.Types.Mixed,
     birthdate: mongoose.Schema.Types.Mixed,
     vehicle_type: { type: Array },

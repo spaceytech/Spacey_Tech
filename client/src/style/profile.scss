@@ -59,5 +59,175 @@
         }
       }
     }
+
+    &--component {
+      padding: 2rem 1.5rem;
+      &__profile {
+        display: flex;
+        flex-direction: column;
+        & > *:not(:last-child) {
+          margin-bottom: 1.5rem;
+        }
+        &--headline {
+          display: flex;
+          justify-content: space-between;
+          border-bottom: 1px solid #545e69;
+          align-items: center;
+          padding-bottom: 1.5rem;
+          font-family: "Oxygen", sans-serif;
+          font-size: 2rem;
+          font-weight: 100;
+          .button {
+            button {
+              padding-left: 2rem;
+              padding-right: 2rem;
+              border-radius: 5px;
+              background: transparent;
+              color: var(--light-green);
+              border: 2px solid var(--light-green);
+              &:hover {
+                background: var(--light-green);
+                color: white;
+              }
+            }
+          }
+        }
+        &--details {
+          display: grid;
+          grid-template-columns: max-content 1fr;
+          align-items: start;
+          grid-column-gap: 4rem;
+          padding: 2rem 3rem;
+
+          img {
+            height: 12.5rem;
+            width: 12.5rem;
+            background: var(--light-grey-2);
+            border-radius: 100%;
+          }
+          ul {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            padding: 0;
+            & > * {
+              margin-bottom: 1.5rem;
+            }
+            li {
+              display: grid;
+              grid-template-columns: repeat(2, minmax(max-content, 2rem));
+              align-items: center;
+              grid-column-gap: 1rem;
+              i {
+                font-size: 1.5rem;
+                color: var(--light-green);
+              }
+              h2 {
+                font-size: 2rem;
+                color: #545e69;
+                font-family: "Lato", sans-serif;
+              }
+              .button {
+                button {
+                  padding-left: 2rem;
+                  padding-right: 2rem;
+                  border-radius: 5px;
+                  background: transparent;
+                  color: var(--light-green);
+                  border: 2px solid var(--light-green);
+                  &:hover {
+                    background: var(--light-green);
+                    color: white;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      &__password {
+        display: flex;
+        flex-direction: column;
+        & > *:not(:last-child) {
+          margin-bottom: 1.5rem;
+        }
+        &--headline {
+          display: flex;
+          justify-content: space-between;
+          border-bottom: 1px solid #545e69;
+          align-items: center;
+          padding-bottom: 1.5rem;
+          font-family: "Oxygen", sans-serif;
+          font-size: 2rem;
+          font-weight: 100;
+          .button {
+            button {
+              padding-left: 2rem;
+              padding-right: 2rem;
+              border-radius: 5px;
+              background: transparent;
+              color: var(--light-green);
+              border: 2px solid var(--light-green);
+              &:hover {
+                background: var(--light-green);
+                color: white;
+              }
+            }
+          }
+        }
+        &--form {
+          display: flex;
+          flex-direction: column;
+          & > * {
+            margin-bottom: 2rem;
+          }
+          label {
+            display: flex;
+            flex-direction: column;
+            & > *:not(:last-child) {
+              margin-bottom: 0.5rem;
+            }
+            p {
+              font-size: 1.5rem;
+              font-family: "Ubuntu", sans-serif;
+            }
+            input {
+              width: 50%;
+              padding: 0.9rem 0.5rem;
+              border-radius: 5px;
+              border: 1px solid var(--light-grey);
+              &:focus {
+                outline: none;
+                border: 1px solid var(--light-green);
+              }
+            }
+          }
+          .buttons {
+            display: flex;
+            .button {
+              button {
+                padding-left: 2rem;
+                padding-right: 2rem;
+                border-radius: 5px;
+                background: transparent;
+                color: var(--light-green);
+                border: 2px solid var(--light-green);
+                &:hover {
+                  background: var(--light-green);
+                  color: white;
+                }
+              }
+            }
+            .save {
+              margin-left: 2.5rem;
+              button {
+                background: var(--light-green);
+                color: white;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
