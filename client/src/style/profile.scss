@@ -145,7 +145,8 @@
           }
         }
       }
-      &__password {
+      &__password,
+      &__billing {
         display: flex;
         flex-direction: column;
         & > *:not(:last-child) {

@@ -32,14 +32,14 @@ class WrapperNav extends Component {
             </li>
             <li>
               <NavLink
-                to={`/account/${this.props.user.basic_info._id}/profile`}
+                to={`/account/${this.props.user.basic_info._id}/transactions`}
               >
                 Transactions
               </NavLink>
             </li>
             <li>
               <NavLink
-                to={`/account/${this.props.user.basic_info._id}/profile`}
+                to={`/account/${this.props.user.basic_info._id}/deactivate`}
               >
                 Deactivate
               </NavLink>

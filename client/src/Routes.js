@@ -16,11 +16,31 @@ import Profile from "./Components/Pages/Profile/Profile";
 import Account from "./Components/Pages/Profile/Account";
 import Billing from "./Components/Pages/Profile/Billing";
 import Password from "./Components/Pages/Profile/Password";
+import Transactions from "./Components/Pages/Profile/Transactions";
+import Deactivate from "./Components/Pages/Profile/Deactivate";
 
 class Routes extends React.Component {
   render() {
     return (
       <Switch>
+        <Route
+          exact
+          path="/account/:id/deactivate"
+          render={renderProps => (
+            <Profile>
+              <Deactivate />
+            </Profile>
+          )}
+        />
+        <Route
+          exact
+          path="/account/:id/transactions"
+          render={renderProps => (
+            <Profile>
+              <Transactions />
+            </Profile>
+          )}
+        />
         <Route
           exact
           path="/account/:id/profile"
