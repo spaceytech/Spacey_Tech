@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 class Account extends Component {
   render() {
@@ -7,9 +8,12 @@ class Account extends Component {
       <div className="profile__wrapper--component__profile">
         <div className="profile__wrapper--component__profile--headline">
           <h1>Account</h1>
-          <div className="button">
+          <Link
+            to={`/account/${this.props.user.basic_info._id}/profile/edit`}
+            className="button"
+          >
             <button>Edit</button>
-          </div>
+          </Link>
         </div>
         <div className="profile__wrapper--component__profile--details">
           <img src="/images/user.png" />

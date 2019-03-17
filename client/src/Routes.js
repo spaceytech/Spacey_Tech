@@ -18,11 +18,21 @@ import Billing from "./Components/Pages/Profile/Billing";
 import Password from "./Components/Pages/Profile/Password";
 import Transactions from "./Components/Pages/Profile/Transactions";
 import Deactivate from "./Components/Pages/Profile/Deactivate";
+import EditProfile from "./Components/Pages/Profile/EditProfile";
 
 class Routes extends React.Component {
   render() {
     return (
       <Switch>
+        <Route
+          exact
+          path="/account/:id/profile/edit"
+          render={renderProps => (
+            <Profile>
+              <EditProfile />
+            </Profile>
+          )}
+        />
         <Route
           exact
           path="/account/:id/deactivate"
