@@ -4,7 +4,8 @@ import {
   TASKER_DETAIL,
   EDITTASKERDETAILS,
   USERLOGIN,
-  LOGINSTATUS
+  LOGINSTATUS,
+  SAVEEDIT
 } from "../actions/types";
 
 export default function(state = {}, action) {
@@ -39,6 +40,12 @@ export default function(state = {}, action) {
           ...state.tasker_detail,
           skills: action.payload
         }
+      };
+      break;
+    case SAVEEDIT:
+      return {
+        ...state,
+        ...action.payload
       };
     default:
       return state;

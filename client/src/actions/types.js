@@ -13,3 +13,4 @@ export const GETTASKS = "GETTASKS";
 export const EDITTASKERDETAILS = "EDITTASKERDETAILS";
 export const USERLOGIN = "USERLOGIN";
 export const LOGINSTATUS = "LOGINSTATUS";
+export const SAVEEDIT = "SAVEEDIT";

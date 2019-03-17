@@ -68,6 +68,23 @@ module.exports = app => {
     });
   });
 
+  // Edit user
+  app.post("/auth/edit/:id", (req, res) => {
+    User.update({ _id: req.params.id }, { $set: req.body }, (err, user) => {
+      if (err) {
+        return res.json({ success: false, err });
+      }
+      User.find({ email: req.body.email }, (err, user) => {
+        if (err) return res.json({ success: false, err });
+        return res.json({
+          success: true,
+          basic_info: user[0]._doc,
+          edit: true
+        });
+      });
+    });
+  });
+
   // Login User
   app.post("/auth/signin", (req, res, next) => {
     passport.authenticate("local", (err, user, info) => {
@@ -84,5 +101,10 @@ module.exports = app => {
         return res.send({ success: "Successfully loggedin", basic_info: user });
       });
     })(req, res, next);
+  });
+
+  // Logout User
+  app.post("/auth/logout", (req, res) => {
+    req.logout();
   });
 };

@@ -4,9 +4,20 @@ import {
   TASKER_DETAIL,
   EDITTASKERDETAILS,
   USERLOGIN,
-  LOGINSTATUS
+  LOGINSTATUS,
+  SAVEEDIT
 } from "./types";
 import axios from "axios";
+
+export const save_edit = async (data, id) => {
+  console.log(id);
+  const res = await axios.post(`/auth/edit/${id}`, data);
+
+  return {
+    type: SAVEEDIT,
+    payload: res.data
+  };
+};
 
 export const userRegister = async data => {
   const res = await axios.post("/auth/register", data);
