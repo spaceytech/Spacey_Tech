@@ -14,9 +14,14 @@ class Confirm extends Component {
         <div className="book__wrapper--headline">
           <h1>{this.props.confirmTask.name}</h1>
 
-          {this.props.confirmTask.tasker ? (
-            <h2>£{this.props.confirmTask.tasker.perHour}/hr</h2>
-          ) : null}
+          {this.props.confirmTask.tasker
+            ? this.props.confirmTask.tasker.skills.map((skill, i) => {
+                return skill.task ===
+                  this.props.confirmTask.name.toLowerCase() ? (
+                  <h2>£{skill.perHour}/hr</h2>
+                ) : null;
+              })
+            : null}
         </div>
         <div className="book__wrapper--payments">
           <p>You are charged only after your task is completed.</p>

@@ -81,7 +81,12 @@ class Taskers extends Component {
                       <h1>
                         {tasker.first_name} {tasker.last_name}
                       </h1>
-                      <p>£{tasker.perHour}/hr</p>
+                      {tasker.skills.map((skill, i) => {
+                        return skill.task ===
+                          this.props.tasksDetail.name.toLowerCase() ? (
+                          <p>£{skill.perHour}/hr</p>
+                        ) : null;
+                      })}
                     </div>
                     <div className="left__quicky">
                       <i class="far fa-check-circle" />{" "}
@@ -95,7 +100,7 @@ class Taskers extends Component {
                     <div className="left__help">
                       <p>{tasker.description}</p>
                     </div>
-                    {tasker.reviews.length > 0 ? (
+                    {tasker.comments.length > 0 ? (
                       <div className="left__review">
                         <img src="/images/user.png" alt="User image" />
                         <p>{tasker.review.text}</p>
@@ -103,7 +108,16 @@ class Taskers extends Component {
                           {tasker.review.user} - {tasker.review.time}
                         </p>
                       </div>
-                    ) : null}
+                    ) : (
+                      <p
+                        style={{
+                          fontSize: "1.6rem",
+                          fontFamily: "Ubuntu, sans-serif"
+                        }}
+                      >
+                        There are no reviews for {tasker.first_name}
+                      </p>
+                    )}
                   </div>
                 </div>
               );

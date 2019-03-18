@@ -4,7 +4,7 @@ const User = mongoose.model("Users");
 module.exports = app => {
   // Get tasker information by id
   app.get("/api/get_tasker_by_id/:id", (req, res) => {
-    Tasker.findById({ _id: req.params.id }, (err, tasker) => {
+    User.findById({ _id: req.params.id }, (err, tasker) => {
       if (err) {
         res.json({
           success: false,
