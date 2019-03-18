@@ -1,8 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { logout_user } from "../../../actions/userActions";
 
 class Account extends Component {
+  logoutUser = e => {
+    this.props.dispatch(logout_user()).then(response => {
+      this.props.history.push("/");
+    });
+  };
+
   render() {
     return (
       <div className="profile__wrapper--component__profile">
@@ -34,7 +41,7 @@ class Account extends Component {
               <h2>{this.props.user.basic_info.postcode}</h2>
             </li>
             <li>
-              <div className="button">
+              <div className="button" onClick={e => this.logoutUser(e)}>
                 <button>Log out</button>
               </div>
             </li>
@@ -51,4 +58,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Account);
+export default connect(mapStateToProps)(withRouter(Account));

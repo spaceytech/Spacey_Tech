@@ -104,7 +104,8 @@ module.exports = app => {
   });
 
   // Logout User
-  app.post("/auth/logout", (req, res) => {
+  app.get("/auth/logout", (req, res) => {
     req.logout();
+    res.json({ logout: true });
   });
 };

@@ -5,7 +5,8 @@ import {
   EDITTASKERDETAILS,
   USERLOGIN,
   LOGINSTATUS,
-  SAVEEDIT
+  SAVEEDIT,
+  LOGOUT
 } from "../actions/types";
 
 export default function(state = {}, action) {
@@ -21,6 +22,16 @@ export default function(state = {}, action) {
         ...state,
         login_status: true
       };
+      break;
+    case LOGOUT:
+      return {
+        ...state,
+        success: "",
+        basic_info: "",
+        edit: "",
+        login_status: false
+      };
+      break;
     case BECOME_TASKER:
       return {
         ...state,

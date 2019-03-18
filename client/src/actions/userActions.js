@@ -5,9 +5,19 @@ import {
   EDITTASKERDETAILS,
   USERLOGIN,
   LOGINSTATUS,
-  SAVEEDIT
+  SAVEEDIT,
+  LOGOUT
 } from "./types";
 import axios from "axios";
+
+export const logout_user = async () => {
+  const res = await axios.get("/auth/logout");
+
+  return {
+    type: LOGOUT,
+    payload: ""
+  };
+};
 
 export const save_edit = async (data, id) => {
   console.log(id);
