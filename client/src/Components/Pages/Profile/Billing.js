@@ -62,10 +62,10 @@ class Billing extends Component {
             <input type="text" name="postcode" />
           </label>
           <div className="buttons">
-            <div className="button cancel">
+            <div className="button cancel" onClick={e => e.preventDefault()}>
               <button>Cancel</button>
             </div>
-            <div className="button save">
+            <div className="button save" onClick={e => e.preventDefault()}>
               <button>Save</button>
             </div>
           </div>

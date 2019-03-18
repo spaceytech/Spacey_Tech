@@ -21,10 +21,10 @@ class Password extends Component {
             <input type="password" name="password" />
           </label>
           <div className="buttons">
-            <div className="button cancel">
+            <div className="button cancel" onClick={e => e.preventDefault()}>
               <button>Cancel</button>
             </div>
-            <div className="button save">
+            <div className="button save" onClick={e => e.preventDefault()}>
               <button>Save</button>
             </div>
           </div>
