@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { tasker_details } from "../../actions/userActions";
+import TaskerVerify from "../../TaskerVerification";
 
 class TaskerDetail extends Component {
   state = {
@@ -332,4 +333,4 @@ class TaskerDetail extends Component {
   }
 }
 
-export default connect()(withRouter(TaskerDetail));
+export default connect()(withRouter(TaskerVerify(TaskerDetail)));

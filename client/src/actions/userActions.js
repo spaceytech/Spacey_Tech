@@ -7,9 +7,17 @@ import {
   LOGINSTATUS,
   SAVEEDIT,
   LOGOUT,
-  AUTHUSER
+  AUTHUSER,
+  TASKER_REGISTER_SUCCESS
 } from "./types";
 import axios from "axios";
+
+export const success_tasker_register = async () => {
+  return {
+    type: TASKER_REGISTER_SUCCESS,
+    payload: true
+  };
+};
 
 export const auth_user = async () => {
   const res = await axios.get("/auth/users");

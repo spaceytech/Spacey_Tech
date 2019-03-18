@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import { getTasks } from "../../actions/taskActions";
 import {
   edit_tasker_details,
-  send_tasker_details
+  send_tasker_details,
+  success_tasker_register
 } from "../../actions/userActions";
 
 import { withRouter } from "react-router-dom";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleUp,
@@ -15,6 +15,7 @@ import {
   faTrash,
   faStar
 } from "@fortawesome/free-solid-svg-icons";
+import TaskerVerify from "../../TaskerVerification";
 
 class Categories extends Component {
   state = {};
@@ -61,7 +62,9 @@ class Categories extends Component {
             );
           })
           .then(response => {
-            this.props.history.push("/signin");
+            this.props.dispatch(success_tasker_register()).then(response => {
+              this.props.history.push("/become_tasker/success");
+            });
           });
       } else {
         this.setState({
@@ -407,4 +410,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(withRouter(Categories));
+export default connect(mapStateToProps)(withRouter(TaskerVerify(Categories)));

@@ -20,6 +20,7 @@ import Transactions from "./Components/Pages/Profile/Transactions";
 import Deactivate from "./Components/Pages/Profile/Deactivate";
 import EditProfile from "./Components/Pages/Profile/EditProfile";
 import NotFound from "./Components/Pages/NotFound";
+import RegisteredSuccess from "./Components/Pages/RegisteredSuccess";
 
 class Routes extends React.Component {
   render() {
@@ -96,6 +97,15 @@ class Routes extends React.Component {
           render={renderProps => (
             <Dashboard>
               <Categories />
+            </Dashboard>
+          )}
+        />
+        <Route
+          exact
+          path="/become_tasker/success"
+          render={renderProps => (
+            <Dashboard>
+              <RegisteredSuccess />
             </Dashboard>
           )}
         />

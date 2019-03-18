@@ -7,7 +7,8 @@ import {
   LOGINSTATUS,
   SAVEEDIT,
   LOGOUT,
-  AUTHUSER
+  AUTHUSER,
+  TASKER_REGISTER_SUCCESS
 } from "../actions/types";
 
 export default function(state = {}, action) {
@@ -43,6 +44,12 @@ export default function(state = {}, action) {
       return {
         ...state,
         become_tasker: action.payload
+      };
+      break;
+    case TASKER_REGISTER_SUCCESS:
+      return {
+        ...state,
+        tasker_registered: action.payload
       };
       break;
     case TASKER_DETAIL:
