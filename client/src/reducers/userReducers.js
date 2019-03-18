@@ -8,7 +8,8 @@ import {
   SAVEEDIT,
   LOGOUT,
   AUTHUSER,
-  TASKER_REGISTER_SUCCESS
+  TASKER_REGISTER_SUCCESS,
+  DELETEUSER
 } from "../actions/types";
 
 export default function(state = {}, action) {
@@ -33,6 +34,9 @@ export default function(state = {}, action) {
         edit: "",
         login_status: false
       };
+      break;
+    case DELETEUSER:
+      return action.payload;
       break;
     case AUTHUSER:
       return {

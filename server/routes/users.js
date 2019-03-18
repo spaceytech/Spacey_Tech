@@ -112,6 +112,12 @@ module.exports = app => {
     });
   });
 
+  app.get("/auth/deactivate", (req, res) => {
+    User.remove({ _id: req.user._id }, (err, user) => {
+      res.status(200).json({ success: true });
+    });
+  });
+
   // Login User
   app.post("/auth/signin", (req, res, next) => {
     passport.authenticate("local", (err, user, info) => {

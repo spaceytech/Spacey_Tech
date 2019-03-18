@@ -11,7 +11,9 @@ export default function(ComposedComponent, privateStatus, adminRoute = null) {
 
     componentDidMount() {
       this.props.dispatch(auth_user()).then(res => {
-        let user = this.props.user.basic_info;
+        let user = this.props.user.basic_info
+          ? this.props.user.basic_info
+          : this.props.user;
         if (!user.isAuth) {
           if (privateStatus) {
             this.props.history.push("/signin");

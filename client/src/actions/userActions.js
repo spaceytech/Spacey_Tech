@@ -8,9 +8,19 @@ import {
   SAVEEDIT,
   LOGOUT,
   AUTHUSER,
-  TASKER_REGISTER_SUCCESS
+  TASKER_REGISTER_SUCCESS,
+  DELETEUSER
 } from "./types";
 import axios from "axios";
+
+export const delete_user = async () => {
+  const res = await axios.get("/auth/deactivate");
+
+  return {
+    type: DELETEUSER,
+    payload: ""
+  };
+};
 
 export const success_tasker_register = async () => {
   return {

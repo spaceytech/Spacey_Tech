@@ -17,3 +17,4 @@ export const SAVEEDIT = "SAVEEDIT";
 export const LOGOUT = "LOGOUT";
 export const AUTHUSER = "AUTHUSER";
 export const TASKER_REGISTER_SUCCESS = "TASKER_REGISTER_SUCCESS";
+export const DELETEUSER = "DELETEUSER";
