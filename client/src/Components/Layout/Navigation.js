@@ -72,6 +72,12 @@ class Navigation extends Component {
           </div>
           {this.props.user.login_status ? (
             <>
+              <Link
+                to="/become_tasker/eligibility"
+                className="navigation__items navigation__sign-up "
+              >
+                <div>Become a tasker</div>
+              </Link>
               <Link to="#" className="navigation__items navigation__login ">
                 <div>My Tasks</div>
               </Link>
@@ -126,6 +132,12 @@ class Navigation extends Component {
         </div>
         {this.props.user.login_status ? (
           <>
+            <Link
+              to="/become_tasker/eligibility"
+              className="navigation__items navigation__sign-up "
+            >
+              <div>Become a tasker</div>
+            </Link>
             <Link
               to="#"
               className="navigation__items navigation__login default"

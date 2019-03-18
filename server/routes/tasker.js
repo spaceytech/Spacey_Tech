@@ -20,17 +20,24 @@ module.exports = app => {
 
   // Search taskers that match task
   app.get("/api/search_tasker", (req, res) => {
-    console.log(req.query.task);
-    User.find({ skills: { $in: [req.query.task] } }, (err, taskers) => {
-      console.log(taskers);
-      if (err) {
-        res.json({ success: false, err });
+    console.log(req.query.task.toLowerCase());
+    User.find(
+      {
+        skills: {
+          $elemMatch: { [req.query.task.toLowerCase()]: { save: true } }
+        }
+      },
+      (err, taskers) => {
+        console.log(taskers);
+        if (err) {
+          res.json({ success: false, err });
+        }
+        res.json({
+          success: true,
+          taskers
+        });
       }
-      res.json({
-        success: true,
-        taskers
-      });
-    });
+    );
   });
 
   // Register as a tasker
