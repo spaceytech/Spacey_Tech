@@ -24,7 +24,7 @@ module.exports = app => {
     User.find(
       {
         skills: {
-          $elemMatch: { [req.query.task.toLowerCase()]: { save: true } }
+          $elemMatch: { task: req.query.task.toLowerCase() }
         }
       },
       (err, taskers) => {
@@ -45,7 +45,13 @@ module.exports = app => {
     const skills = req.body.skills;
     let newSkills = [];
     for (let skill in skills) {
-      newSkills.push({ [skill]: skills[skill] });
+      const task = {
+        task: skill
+      };
+      for (let prop in skills[skill]) {
+        task[prop] = skills[skill][prop];
+      }
+      newSkills.push(task);
     }
     User.update(
       { _id: req.body.id },
