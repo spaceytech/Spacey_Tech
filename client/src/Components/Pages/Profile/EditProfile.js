@@ -12,6 +12,15 @@ class EditProfile extends Component {
     error: {}
   };
 
+  componentDidMount() {
+    this.setState({
+      first_name: this.props.user.basic_info.first_name,
+      last_name: this.props.user.basic_info.last_name,
+      email: this.props.user.basic_info.email,
+      postcode: this.props.user.basic_info.postcode
+    });
+  }
+
   onChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -49,30 +58,27 @@ class EditProfile extends Component {
       }
     }
 
-    this.setState(
-      {
+    if (Object.keys(errList).length > 0) {
+      this.setState({
         error: errList
-      },
-      () => {
-        if (Object.keys(this.state.error).length === 0) {
-          const newData = {
-            first_name: this.state.first_name,
-            last_name: this.state.last_name,
-            email: this.state.email,
-            postcode: this.state.postcode
-          };
-          this.props
-            .dispatch(save_edit(newData, this.props.user.basic_info._id))
-            .then(response => {
-              if (response.payload.edit) {
-                this.props.history.push(
-                  `/account/${this.props.user.basic_info._id}/profile`
-                );
-              }
-            });
-        }
-      }
-    );
+      });
+    } else {
+      const newData = {
+        first_name: this.state.first_name,
+        last_name: this.state.last_name,
+        email: this.state.email,
+        postcode: this.state.postcode
+      };
+      this.props
+        .dispatch(save_edit(newData, this.props.user.basic_info._id))
+        .then(response => {
+          if (response.payload.edit) {
+            this.props.history.push(
+              `/account/${this.props.user.basic_info._id}/profile`
+            );
+          }
+        });
+    }
   };
 
   render() {
@@ -90,6 +96,7 @@ class EditProfile extends Component {
                 type="text"
                 name="first_name"
                 onChange={e => this.onChange(e)}
+                value={this.state.first_name}
               />
               <span
                 className="errorSpan"
@@ -112,6 +119,7 @@ class EditProfile extends Component {
                 type="text"
                 name="last_name"
                 onChange={e => this.onChange(e)}
+                value={this.state.last_name}
               />
               <span
                 className="errorSpan"
@@ -134,6 +142,7 @@ class EditProfile extends Component {
                 type="text"
                 name="email"
                 onChange={e => this.onChange(e)}
+                value={this.state.email}
               />
               <span
                 className="errorSpan"
@@ -157,6 +166,7 @@ class EditProfile extends Component {
                 type="text"
                 name="postcode"
                 onChange={e => this.onChange(e)}
+                value={this.state.postcode}
               />
               <span
                 className="errorSpan"
