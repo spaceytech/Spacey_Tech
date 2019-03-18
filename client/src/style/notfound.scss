@@ -1,0 +1,17 @@
+.notfound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ffb6c1;
+  color: white;
+  height: 100vh;
+  h1 {
+    font-size: 7rem;
+    font-family: "Ubuntu", sans-serif;
+  }
+  p {
+    font-size: 3rem;
+    font-family: "Oxygen", sans-serif;
+  }
+}
