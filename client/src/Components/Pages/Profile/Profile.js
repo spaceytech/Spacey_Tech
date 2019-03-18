@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../../Layout/Layout";
 import WrapperNav from "./WrapperNav";
 import { Route, withRouter } from "react-router-dom";
+import Auth from "../../../AuthenticateUser";
 
 const Profile = props => {
   return (
@@ -16,4 +17,4 @@ const Profile = props => {
   );
 };
 
-export default withRouter(Profile);
+export default withRouter(Auth(Profile, true));

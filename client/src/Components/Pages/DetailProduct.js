@@ -3,6 +3,7 @@ import Layout from "../Layout/Layout";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { taskName } from "../../actions/taskActions";
+import Auth from "../../AuthenticateUser";
 
 class DetailProduct extends Component {
   componentDidMount() {
@@ -39,4 +40,4 @@ class DetailProduct extends Component {
   }
 }
 
-export default connect()(DetailProduct);
+export default connect()(Auth(DetailProduct, null));

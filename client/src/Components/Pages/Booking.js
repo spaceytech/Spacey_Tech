@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { Link, NavLink, withRouter } from "react-router-dom";
+import Auth from "../../AuthenticateUser";
 
 class Booking extends Component {
   state = {
@@ -59,4 +60,4 @@ class Booking extends Component {
   }
 }
 
-export default withRouter(Booking);
+export default withRouter(Auth(Booking, true));

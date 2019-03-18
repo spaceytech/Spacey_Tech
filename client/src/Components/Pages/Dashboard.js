@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Layout from "../Layout/Layout";
+import Auth from "../../AuthenticateUser";
 
 class Dashboard extends Component {
   render() {
@@ -16,4 +17,4 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default Auth(Dashboard, true);

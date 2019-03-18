@@ -9,6 +9,7 @@ import Services from "./Services";
 
 import { connect } from "react-redux";
 import { clearTaskDetails } from "../../../actions/taskActions";
+import Auth from "../../../AuthenticateUser";
 
 class Home extends Component {
   state = {
@@ -39,4 +40,4 @@ class Home extends Component {
   }
 }
 
-export default connect()(Home);
+export default connect()(Auth(Home, null));

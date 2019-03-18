@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FormLogin from "../Ui/FormRegister";
 import { Link } from "react-router-dom";
+import Auth from "../../AuthenticateUser";
 
 const Register = () => {
   return (
@@ -15,4 +16,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Auth(Register, false);

@@ -3,6 +3,7 @@ const passport = require("passport");
 const SALT_INT = 10;
 const mongoose = require("mongoose");
 const User = mongoose.model("Users");
+const { auth } = require("../middlewares/auth");
 
 module.exports = app => {
   // Register users
@@ -69,7 +70,7 @@ module.exports = app => {
   });
 
   // Edit user
-  app.post("/auth/edit/:id", (req, res) => {
+  app.post("/auth/edit/:id", auth, (req, res) => {
     User.update({ _id: req.params.id }, { $set: req.body }, (err, user) => {
       if (err) {
         return res.json({ success: false, err });
@@ -81,6 +82,32 @@ module.exports = app => {
           basic_info: user[0]._doc,
           edit: true
         });
+      });
+    });
+  });
+
+  // Protecting Routes
+  app.get("/auth/users", auth, (req, res) => {
+    console.log(req.user);
+    User.find({ _id: req.user._id }, (err, user) => {
+      return res.json({
+        basic_info: {
+          vehicle_type: user[0]._doc.vehicle_type,
+          duration: user[0]._doc.duration,
+          completedTasks: user[0]._doc.completedTasks,
+          reviews: user[0]._doc.reviews,
+          reliable: user[0]._doc.reliable,
+          image: user[0]._doc.image,
+          skills: user[0]._doc.skills,
+          _id: user[0]._doc._id,
+          first_name: user[0]._doc.first_name,
+          last_name: user[0]._doc.last_name,
+          email: user[0]._doc.email,
+          name: user[0]._doc.name,
+          postcode: user[0]._doc.postcode,
+          comments: user[0]._doc.comments,
+          isAuth: true
+        }
       });
     });
   });
@@ -98,7 +125,7 @@ module.exports = app => {
         if (err) {
           return next(err);
         }
-        return res.send({ success: "Successfully loggedin", basic_info: user });
+        return res.send({ success: "Successfully loggedin" });
       });
     })(req, res, next);
   });

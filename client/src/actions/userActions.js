@@ -6,13 +6,22 @@ import {
   USERLOGIN,
   LOGINSTATUS,
   SAVEEDIT,
-  LOGOUT
+  LOGOUT,
+  AUTHUSER
 } from "./types";
 import axios from "axios";
 
+export const auth_user = async () => {
+  const res = await axios.get("/auth/users");
+  console.log(res.data);
+  return {
+    type: AUTHUSER,
+    payload: res.data
+  };
+};
+
 export const logout_user = async () => {
   const res = await axios.get("/auth/logout");
-
   return {
     type: LOGOUT,
     payload: ""

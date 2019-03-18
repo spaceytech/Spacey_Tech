@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FormLogin from "../Ui/FormLogin";
 import { Link } from "react-router-dom";
+import Auth from "../../AuthenticateUser";
 
 const Login = () => {
   return (
@@ -15,4 +16,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Auth(Login, false);

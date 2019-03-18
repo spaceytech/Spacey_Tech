@@ -15,3 +15,4 @@ export const USERLOGIN = "USERLOGIN";
 export const LOGINSTATUS = "LOGINSTATUS";
 export const SAVEEDIT = "SAVEEDIT";
 export const LOGOUT = "LOGOUT";
+export const AUTHUSER = "AUTHUSER";

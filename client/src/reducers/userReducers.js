@@ -6,7 +6,8 @@ import {
   USERLOGIN,
   LOGINSTATUS,
   SAVEEDIT,
-  LOGOUT
+  LOGOUT,
+  AUTHUSER
 } from "../actions/types";
 
 export default function(state = {}, action) {
@@ -30,6 +31,12 @@ export default function(state = {}, action) {
         basic_info: "",
         edit: "",
         login_status: false
+      };
+      break;
+    case AUTHUSER:
+      return {
+        ...state,
+        ...action.payload
       };
       break;
     case BECOME_TASKER:
