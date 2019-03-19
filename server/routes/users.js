@@ -154,4 +154,16 @@ module.exports = app => {
     req.logout();
     res.json({ logout: true });
   });
+
+  // Upload photo
+  app.post("/auth/upload_photo", (req, res) => {
+    console.log(req.body.image);
+    User.update(
+      { _id: req.body.id },
+      { $set: { image: req.body.image } },
+      (err, user) => {
+        return res.sendStatus(200);
+      }
+    );
+  });
 };

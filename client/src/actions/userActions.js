@@ -9,7 +9,8 @@ import {
   LOGOUT,
   AUTHUSER,
   TASKER_REGISTER_SUCCESS,
-  DELETEUSER
+  DELETEUSER,
+  UPLOADPHOTO
 } from "./types";
 import axios from "axios";
 
@@ -114,5 +115,20 @@ export const send_tasker_details = async (details, id) => {
   };
 
   const res = await axios.post("/api/save_tasker_details", data);
+  console.log(res.data);
+};
+
+export const upload_photo = async (image, id) => {
+  const data = {
+    image,
+    id
+  };
+  const res = await axios.post("/auth/upload_photo", data);
+
+  return {
+    type: UPLOADPHOTO,
+    payload: image
+  };
+
   console.log(res.data);
 };

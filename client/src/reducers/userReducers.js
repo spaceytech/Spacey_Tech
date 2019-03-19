@@ -9,7 +9,8 @@ import {
   LOGOUT,
   AUTHUSER,
   TASKER_REGISTER_SUCCESS,
-  DELETEUSER
+  DELETEUSER,
+  UPLOADPHOTO
 } from "../actions/types";
 
 export default function(state = {}, action) {
@@ -78,6 +79,15 @@ export default function(state = {}, action) {
       return {
         ...state,
         ...action.payload
+      };
+      break;
+    case UPLOADPHOTO:
+      return {
+        ...state,
+        basic_info: {
+          ...state.basic_info,
+          image: action.payload
+        }
       };
     default:
       return state;

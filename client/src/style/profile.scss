@@ -99,13 +99,32 @@
           grid-column-gap: 4rem;
           padding: 2rem 3rem;
 
-          img {
-            height: 12.5rem;
-            width: 12.5rem;
-            background: var(--light-grey-2);
-            border-radius: 100%;
+          .upload {
+            grid-column: 1 / 2;
+            grid-row: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            & > * {
+              margin-bottom: 1.5rem;
+            }
+            img {
+              height: 12.5rem;
+              width: 12.5rem;
+              background: var(--light-grey-2);
+              border-radius: 100%;
+            }
+            p {
+              color: var(--light-green);
+              font-size: 1.5rem;
+              font-family: "Ubuntu", sans-serif;
+              cursor: pointer;
+            }
           }
+
           ul {
+            grid-column: 2 / 3;
+            grid-row: 1 / -1;
             display: flex;
             flex-direction: column;
             list-style: none;

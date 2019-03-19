@@ -1,13 +1,36 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
-import { logout_user } from "../../../actions/userActions";
+import { logout_user, upload_photo } from "../../../actions/userActions";
 
 class Account extends Component {
+  state = {
+    imageURL: ""
+  };
   logoutUser = e => {
     this.props.dispatch(logout_user()).then(response => {
       this.props.history.push("/");
     });
+  };
+
+  fileInput = e => {
+    const image = e.target.files[0];
+    const reader = new FileReader();
+    let imageURL = "";
+    reader.onload = event => {
+      this.setState(
+        {
+          imageURL: event.target.result
+        },
+        () => {
+          console.log(this.state.imageURL);
+          this.props.dispatch(
+            upload_photo(event.target.result, this.props.user.basic_info._id)
+          );
+        }
+      );
+    };
+    reader.readAsDataURL(image);
   };
 
   render() {
@@ -23,7 +46,16 @@ class Account extends Component {
           </Link>
         </div>
         <div className="profile__wrapper--component__profile--details">
-          <img src="/images/user.png" />
+          <div className="upload">
+            <img src={this.props.user.basic_info.image} />
+            <input
+              type="file"
+              style={{ display: "none" }}
+              onChange={e => this.fileInput(e)}
+              ref={file => (this.fileRef = file)}
+            />
+            <p onClick={e => this.fileRef.click()}>Add profile image</p>
+          </div>
           <ul>
             <li>
               <i class="fas fa-user-alt" />
