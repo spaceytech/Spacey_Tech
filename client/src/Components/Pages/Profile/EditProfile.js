@@ -9,6 +9,7 @@ class EditProfile extends Component {
     last_name: "",
     email: "",
     postcode: "",
+    imageURL: "",
     error: {}
   };
 
@@ -34,6 +35,18 @@ class EditProfile extends Component {
     this.setState({
       error: errors
     });
+  };
+
+  fileInput = e => {
+    const image = e.target.files[0];
+    const reader = new FileReader();
+    let imageURL = "";
+    reader.onload = event => {
+      this.setState({
+        imageURL: event.target.result
+      });
+    };
+    reader.readAsDataURL(image);
   };
 
   saveEdit = e => {
@@ -67,7 +80,11 @@ class EditProfile extends Component {
         first_name: this.state.first_name,
         last_name: this.state.last_name,
         email: this.state.email,
-        postcode: this.state.postcode
+        postcode: this.state.postcode,
+        image:
+          this.state.imageURL.length > 0
+            ? this.state.imageURL
+            : this.props.user.basic_info.image
       };
       this.props
         .dispatch(save_edit(newData, this.props.user.basic_info._id))
@@ -88,7 +105,22 @@ class EditProfile extends Component {
           <h1>Edit Account</h1>
         </div>
         <div className="profile__wrapper--component__profile--details">
-          <img src="/images/user.png" />
+          <div className="upload">
+            <img
+              src={
+                this.state.imageURL.length > 0
+                  ? this.state.imageURL
+                  : this.props.user.basic_info.image
+              }
+            />
+            <input
+              type="file"
+              style={{ display: "none" }}
+              onChange={e => this.fileInput(e)}
+              ref={file => (this.fileRef = file)}
+            />
+            <p onClick={e => this.fileRef.click()}>Add profile image</p>
+          </div>
           <form className="profile__wrapper--component__profile--form">
             <label>
               <p>First Name</p>

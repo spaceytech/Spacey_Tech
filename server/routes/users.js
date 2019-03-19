@@ -82,7 +82,7 @@ module.exports = app => {
   });
 
   // Edit user
-  app.post("/auth/edit/:id", auth, (req, res) => {
+  app.post("/auth/edit/:id", (req, res) => {
     User.update({ _id: req.params.id }, { $set: req.body }, (err, user) => {
       if (err) {
         return res.json({ success: false, err });
