@@ -90,8 +90,7 @@ class FormLogin extends Component {
         <Link to="/">
           <p>Forgot your password? </p>
         </Link>
-        <button id="facebook">Facebook</button>
-        <button id="google">Google</button>
+
         <p>
           By signing up you agree to our{" "}
           <span style={{ color: "var(--light-green)", cursor: "pointer" }}>

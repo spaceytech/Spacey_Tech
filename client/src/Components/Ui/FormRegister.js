@@ -222,8 +222,6 @@ class FormRegister extends Component {
             <button onClick={e => this.onRegister(e)}>Sign up</button>
           </div>
         </form>
-        <button id="facebook">Facebook</button>
-        <button id="google">Google</button>
       </div>
     );
   }
