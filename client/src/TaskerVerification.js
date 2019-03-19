@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 export default function(ComposedComponent) {
   class TaskerVerification extends Component {
     componentDidMount() {
-      if (this.props.user.tasker_registered) {
+      if (this.props.user.basic_info.tasker_registered) {
         this.props.history.push("/become_tasker/success");
       }
     }

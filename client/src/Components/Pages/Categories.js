@@ -62,9 +62,11 @@ class Categories extends Component {
             );
           })
           .then(response => {
-            this.props.dispatch(success_tasker_register()).then(response => {
-              this.props.history.push("/become_tasker/success");
-            });
+            this.props
+              .dispatch(success_tasker_register(this.props.user.basic_info._id))
+              .then(response => {
+                this.props.history.push("/become_tasker/success");
+              });
           });
       } else {
         this.setState({

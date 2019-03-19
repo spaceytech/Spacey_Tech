@@ -26,6 +26,7 @@ const userSchema = mongoose.Schema(
       type: Array,
       default: []
     },
+    tasker_registered: { type: Boolean },
     completedTasks: { type: Number, default: 0 },
     reviews: { type: Number, default: 0 },
     reliable: { type: Number, default: 0 },

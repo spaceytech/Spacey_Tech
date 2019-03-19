@@ -53,7 +53,10 @@ export default function(state = {}, action) {
     case TASKER_REGISTER_SUCCESS:
       return {
         ...state,
-        tasker_registered: action.payload
+        basic_info: {
+          ...state.basic_info,
+          tasker_registered: action.payload
+        }
       };
       break;
     case TASKER_DETAIL:

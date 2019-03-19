@@ -69,6 +69,18 @@ module.exports = app => {
     });
   });
 
+  app.post("/auth/tasker_success", (req, res) => {
+    console.log(req.body);
+    User.update(
+      { _id: req.body.id },
+      { $set: { tasker_registered: true } },
+      (err, user) => {
+        console.log(user);
+        res.sendStatus(200);
+      }
+    );
+  });
+
   // Edit user
   app.post("/auth/edit/:id", auth, (req, res) => {
     User.update({ _id: req.params.id }, { $set: req.body }, (err, user) => {
@@ -106,6 +118,7 @@ module.exports = app => {
           name: user[0]._doc.name,
           postcode: user[0]._doc.postcode,
           comments: user[0]._doc.comments,
+          tasker_registered: user[0]._doc.tasker_registered,
           isAuth: true
         }
       });

@@ -22,7 +22,8 @@ export const delete_user = async () => {
   };
 };
 
-export const success_tasker_register = async () => {
+export const success_tasker_register = async id => {
+  const res = await axios.post("/auth/tasker_success", { id });
   return {
     type: TASKER_REGISTER_SUCCESS,
     payload: true
