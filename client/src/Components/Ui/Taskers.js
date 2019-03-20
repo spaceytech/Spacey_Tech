@@ -58,14 +58,11 @@ class Taskers extends Component {
                 <div className="book__wrapper--taskoptions__tasker">
                   <div className="right">
                     <img
-                      src="/images/user.png"
+                      src={tasker.image}
                       alt="User image"
                       className="right__photo"
                     />
 
-                    <Link to={`/tasker/${tasker.id}`}>
-                      <p>View profile & reviews</p>
-                    </Link>
                     <div className="button">
                       <button onClick={e => this.nextSection(e, tasker._id)}>
                         Select & continue
@@ -98,7 +95,12 @@ class Taskers extends Component {
                     </div>
                     <hr />
                     <div className="left__help">
-                      <p>{tasker.description}</p>
+                      {tasker.skills.map((skill, i) => {
+                        return skill.task ===
+                          this.props.tasksDetail.name.toLowerCase() ? (
+                          <p>{skill.description}</p>
+                        ) : null;
+                      })}
                     </div>
                     {tasker.comments.length > 0 ? (
                       <div className="left__review">
