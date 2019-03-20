@@ -21,6 +21,7 @@ import Deactivate from "./Components/Pages/Profile/Deactivate";
 import EditProfile from "./Components/Pages/Profile/EditProfile";
 import NotFound from "./Components/Pages/NotFound";
 import RegisteredSuccess from "./Components/Pages/RegisteredSuccess";
+import About from "./Components/Pages/About";
 
 class Routes extends React.Component {
   render() {
@@ -211,6 +212,7 @@ class Routes extends React.Component {
 
         <Route exact path="/signin" component={Login} />
         <Route exact path="/signup" component={Register} />
+        <Route exact path="/about" component={About} />
         <Route exact path="/" component={Home} />
         <Route component={NotFound} />
       </Switch>

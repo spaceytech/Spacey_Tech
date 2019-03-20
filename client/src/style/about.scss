@@ -1,0 +1,74 @@
+.about {
+  display: grid;
+  grid-template-rows: 6rem 40vh repeat(2, max-content);
+  grid-template-columns:
+    [full-start] minmax(2rem, 1fr) [center-start] repeat(
+      8,
+      [col-start] minmax(min-content, 14rem) [col-end]
+    )
+    [center-end] minmax(2rem, 1fr) [full-end];
+
+  &__header {
+    grid-column: full-start / full-end;
+    background-color: #7aaab6;
+    display: grid;
+    grid-template-columns:
+      minmax(2rem, 1fr) [center-start] repeat(6, minmax(min-content, 20rem)) [center-end]
+      minmax(2rem, 1fr);
+    grid-row-gap: 1.5rem;
+    h1,
+    p {
+      grid-column: center-start / center-end;
+      color: white;
+      font-family: "Ubuntu", sans-serif;
+    }
+
+    h1 {
+      align-self: end;
+      justify-self: start;
+      font-size: 5rem;
+    }
+    p {
+      font-size: 2.5rem;
+    }
+  }
+  &__details {
+    grid-column: center-start / center-end;
+    padding: 8rem 0;
+    display: grid;
+    grid-template-columns:
+      minmax(2rem, 1fr) repeat(6, minmax(min-content, 20rem))
+      minmax(2rem, 1fr);
+    grid-column-gap: 3rem;
+
+    &--left {
+      grid-column: 2 / 4;
+      align-self: start;
+      border-top: 1px solid var(--light-grey);
+      border-bottom: 1px solid var(--light-grey);
+      padding: 5rem 0;
+      p {
+        font-size: 2.5rem;
+        font-family: "Oxygen", sans-serif;
+        text-align: right;
+      }
+    }
+    &--right {
+      grid-column: 4 / 7;
+      display: flex;
+      flex-direction: column;
+      font-family: "Oxygen", sans-serif;
+      & > *:not(:last-child) {
+        margin-bottom: 1.5rem;
+      }
+      h2 {
+        align-self: center;
+        font-size: 2.5rem;
+        color: #7aaab6;
+      }
+      p {
+        font-size: 2rem;
+      }
+    }
+  }
+}

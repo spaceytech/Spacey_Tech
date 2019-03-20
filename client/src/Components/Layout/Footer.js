@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const Footer = props => {
   return (
@@ -22,7 +22,7 @@ const Footer = props => {
         <h2>Company</h2>
         <ul>
           <li>
-            <a href="#"> About us</a>
+            <Link to={"/about"}> About us</Link>
           </li>
           <li>
             <a href="#"> Careers</a>
