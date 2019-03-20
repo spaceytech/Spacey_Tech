@@ -5,7 +5,9 @@ import { connect } from "react-redux";
 
 class Deactivate extends Component {
   deleteUser = e => {
-    this.props.dispatch(delete_user()).then(this.props.history.push("/"));
+    this.props
+      .dispatch(delete_user(this.props.user.basic_info._id))
+      .then(this.props.history.push("/"));
   };
 
   render() {
@@ -42,4 +44,10 @@ class Deactivate extends Component {
   }
 }
 
-export default connect()(withRouter(Deactivate));
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps)(withRouter(Deactivate));

@@ -14,8 +14,8 @@ import {
 } from "./types";
 import axios from "axios";
 
-export const delete_user = async () => {
-  const res = await axios.get("/auth/deactivate");
+export const delete_user = async id => {
+  const res = await axios.get(`/auth/deactivate/${id}`);
 
   return {
     type: DELETEUSER,

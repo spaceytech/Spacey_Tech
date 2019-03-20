@@ -82,7 +82,7 @@ module.exports = app => {
   });
 
   // Edit user
-  app.post("/auth/edit/:id", (req, res) => {
+  app.post("/auth/edit/:id", auth, (req, res) => {
     User.update({ _id: req.params.id }, { $set: req.body }, (err, user) => {
       if (err) {
         return res.json({ success: false, err });
@@ -91,7 +91,24 @@ module.exports = app => {
         if (err) return res.json({ success: false, err });
         return res.json({
           success: true,
-          basic_info: user[0]._doc,
+          basic_info: {
+            vehicle_type: user[0]._doc.vehicle_type,
+            duration: user[0]._doc.duration,
+            completedTasks: user[0]._doc.completedTasks,
+            reviews: user[0]._doc.reviews,
+            reliable: user[0]._doc.reliable,
+            image: user[0]._doc.image,
+            skills: user[0]._doc.skills,
+            _id: user[0]._doc._id,
+            first_name: user[0]._doc.first_name,
+            last_name: user[0]._doc.last_name,
+            email: user[0]._doc.email,
+            name: user[0]._doc.name,
+            postcode: user[0]._doc.postcode,
+            comments: user[0]._doc.comments,
+            tasker_registered: user[0]._doc.tasker_registered,
+            isAuth: true
+          },
           edit: true
         });
       });
@@ -125,8 +142,8 @@ module.exports = app => {
     });
   });
 
-  app.get("/auth/deactivate", (req, res) => {
-    User.remove({ _id: req.user._id }, (err, user) => {
+  app.get("/auth/deactivate/:id", (req, res) => {
+    User.remove({ _id: req.params.id }, (err, user) => {
       res.status(200).json({ success: true });
     });
   });
