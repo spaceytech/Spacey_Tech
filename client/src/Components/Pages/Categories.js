@@ -44,6 +44,32 @@ class Categories extends Component {
     });
   }
 
+  removeTask = (e, accordion) => {
+    e.preventDefault();
+
+    const newState = { ...this.state };
+    const savedTasks = newState.savedTasks;
+    delete savedTasks[accordion.toLowerCase()];
+
+    const tasks = this.state.tasks
+      ? this.state.tasks.map(task => {
+          if (task.name === accordion) {
+            return {
+              ...task,
+              open: !task.open,
+              qualified: false
+            };
+          } else {
+            return { ...task };
+          }
+        })
+      : null;
+    this.setState({
+      tasks,
+      savedTasks
+    });
+  };
+
   handleContinue = e => {
     if (this.state.savedTasks) {
       let proceed;
@@ -277,6 +303,7 @@ class Categories extends Component {
                             onChange={e =>
                               this.toggleQualified(e, i, task.name)
                             }
+                            checked={task.qualified}
                           />{" "}
                           I have the skills and qualifications to task in this
                           category.
@@ -316,6 +343,15 @@ class Categories extends Component {
                           rows="7"
                           name="description"
                           onChange={e => this.handleChange(e, task.name)}
+                          value={
+                            this.state.savedTasks
+                              ? this.state.savedTasks[task.name.toLowerCase()]
+                                ? this.state.savedTasks[
+                                    task.name.toLowerCase()
+                                  ]["description"]
+                                : null
+                              : null
+                          }
                           style={{
                             border: this.state.savedTasks
                               ? this.state.savedTasks[task.name.toLowerCase()]
@@ -375,7 +411,8 @@ class Categories extends Component {
                         </div>
                         <div className="cancel">
                           <button
-                            disabled={task.qualified ? true : false}
+                            onClick={e => this.toggleAccordion(e, task.name)}
+                            disabled={task.qualified ? false : true}
                             style={{
                               cursor: task.qualified ? "pointer" : "not-allowed"
                             }}
@@ -385,7 +422,8 @@ class Categories extends Component {
                         </div>
                         <div className="remove">
                           <button
-                            disabled={task.qualified ? true : false}
+                            onClick={e => this.removeTask(e, task.name)}
+                            disabled={task.qualified ? false : true}
                             style={{
                               cursor: task.qualified ? "pointer" : "not-allowed"
                             }}
