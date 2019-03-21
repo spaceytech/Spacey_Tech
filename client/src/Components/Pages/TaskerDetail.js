@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { tasker_details } from "../../actions/userActions";
+import { tasker_details, upload_photo } from "../../actions/userActions";
 import TaskerVerify from "../../TaskerVerification";
 
 class TaskerDetail extends Component {
@@ -53,6 +53,26 @@ class TaskerDetail extends Component {
         this.props.history.push("/become_tasker/categories");
       });
     }
+  };
+
+  fileInput = e => {
+    const image = e.target.files[0];
+    const reader = new FileReader();
+    let imageURL = "";
+    reader.onload = event => {
+      this.setState(
+        {
+          imageURL: event.target.result
+        },
+        () => {
+          console.log(this.state.imageURL);
+          this.props.dispatch(
+            upload_photo(event.target.result, this.props.user.basic_info._id)
+          );
+        }
+      );
+    };
+    reader.readAsDataURL(image);
   };
 
   renderOptions = type => {
@@ -139,8 +159,14 @@ class TaskerDetail extends Component {
     return (
       <div className="dashboard__container--details">
         <div className="dashboard__container--details__upload">
-          <img src="/images/user.png" alt="Profile Image" />
-          <p>Add photo</p>
+          <img src={this.props.user.basic_info.image} />
+          <input
+            type="file"
+            style={{ display: "none" }}
+            onChange={e => this.fileInput(e)}
+            ref={file => (this.fileRef = file)}
+          />
+          <p onClick={e => this.fileRef.click()}>Add profile image</p>
           <p>
             Please upload a photo of yourself that clearly conveys who you are.
             Having a friendly, professional photo inspires confidence and will
