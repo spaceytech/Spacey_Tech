@@ -41,16 +41,33 @@
       minmax(2rem, 1fr);
     grid-column-gap: 3rem;
 
+    @media only screen and (max-width: 66.88em) {
+      grid-column: full-start / full-end;
+    }
+
+    @media only screen and (max-width: 37.5em) {
+      padding: 5rem 3rem;
+      grid-template-columns: minmax(2rem, 1fr) 1fr minamx(2rem, 1fr);
+      grid-row-gap: 2.5rem;
+    }
+
     &--left {
       grid-column: 2 / 4;
       align-self: start;
       border-top: 1px solid var(--light-grey);
       border-bottom: 1px solid var(--light-grey);
       padding: 5rem 0;
+      @media only screen and (max-width: 37.5em) {
+        grid-column: 1 / -1;
+      }
+
       p {
         font-size: 2.5rem;
         font-family: "Oxygen", sans-serif;
         text-align: right;
+        @media only screen and (max-width: 37.5em) {
+          text-align: center;
+        }
       }
     }
     &--right {
@@ -58,6 +75,10 @@
       display: flex;
       flex-direction: column;
       font-family: "Oxygen", sans-serif;
+      @media only screen and (max-width: 37.5em) {
+        grid-column: 1 / -1;
+      }
+
       & > *:not(:last-child) {
         margin-bottom: 1.5rem;
       }
@@ -68,6 +89,9 @@
       }
       p {
         font-size: 2rem;
+        @media only screen and (max-width: 75em) {
+          font-size: 2.5rem;
+        }
       }
     }
   }

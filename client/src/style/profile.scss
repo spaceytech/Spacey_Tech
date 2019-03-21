@@ -32,6 +32,10 @@
     border: 1px solid var(--light-grey-2);
     grid-row-gap: 2rem;
 
+    @media only screen and (max-width: 31.25em) {
+      grid-template-columns: 1fr;
+    }
+
     &--nav {
       ul {
         list-style: none;
@@ -43,6 +47,9 @@
           font-size: 1.5rem;
           position: relative;
           border-left: 3px solid transparent;
+          @media only screen and (max-width: 66.88em) {
+            font-size: 2rem;
+          }
           a,
           a:link,
           a:visited,
@@ -111,7 +118,7 @@
             img {
               height: 12.5rem;
               width: 12.5rem;
-              background: var(--light-grey-2);
+
               border-radius: 100%;
             }
             p {
@@ -172,6 +179,9 @@
           }
           #second_column {
             grid-column: 2 / 3;
+            @media only screen and (max-width: 50em) {
+              grid-column: 1 / 2;
+            }
           }
           label {
             grid-column: 1 / 2;
@@ -184,6 +194,9 @@
             p {
               font-size: 1.5rem;
               font-family: "Ubuntu", sans-serif;
+              @media only screen and (max-width: 66.88em) {
+                font-size: 2rem;
+              }
             }
             input {
               width: 100%;
@@ -270,6 +283,9 @@
             p {
               font-size: 1.5rem;
               font-family: "Ubuntu", sans-serif;
+              @media only screen and (max-width: 66.88em) {
+                font-size: 2rem;
+              }
             }
             input {
               width: 50%;
@@ -305,6 +321,15 @@
                 color: white;
               }
             }
+          }
+        }
+      }
+      &__password {
+        p {
+          font-size: 2rem;
+          font-family: "Lato, sans-serif";
+          @media only screen and (max-width: 66.88em) {
+            font-size: 2.3rem;
           }
         }
       }

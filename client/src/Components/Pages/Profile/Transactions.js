@@ -8,8 +8,6 @@ const Transactions = props => {
       </div>
       <p
         style={{
-          fontSize: "1.7rem",
-          fontFamily: "Lato, sans-serif",
           textAlign: "center"
         }}
       >

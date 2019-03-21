@@ -16,12 +16,7 @@ class Deactivate extends Component {
         <div className="profile__wrapper--component__password--headline">
           <h1>Deactivate</h1>
         </div>
-        <p
-          style={{
-            fontSize: "2rem",
-            fontFamily: "Lato, sans-serif"
-          }}
-        >
+        <p>
           Once you've deactivated your account, you will no longer be able to
           log in to the Spacey. This action cannot be undone.
         </p>
