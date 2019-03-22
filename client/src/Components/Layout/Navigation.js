@@ -70,7 +70,7 @@ class Navigation extends Component {
               />
             ) : null}
           </div>
-          {this.props.user.login_status ? (
+          {this.props.user.basic_info ? (
             <>
               <Link
                 to="/become_tasker/eligibility"
@@ -130,7 +130,7 @@ class Navigation extends Component {
             />
           ) : null}
         </div>
-        {this.props.user.login_status ? (
+        {this.props.user.basic_info ? (
           <>
             <Link
               to="/become_tasker/eligibility"
