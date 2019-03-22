@@ -23,7 +23,6 @@ module.exports = app => {
   // Register User
 
   app.post("/auth/register", (req, res) => {
-    console.log(req.body);
     req.checkBody("first_name", "First name is required").notEmpty();
     req.checkBody("last_name", "Last name is required").notEmpty();
     req.checkBody("email", "Email is required").notEmpty();
@@ -44,11 +43,9 @@ module.exports = app => {
 
     let errors = req.validationErrors();
     if (errors) {
-      console.log(errors);
       return res.send({ error: errors });
     }
     User.find({ email: req.body.email }, (err, email) => {
-      console.log(email);
       if (email.length > 0) {
         return res.send({ error: { email: "Email already exists" } });
       }
@@ -61,11 +58,9 @@ module.exports = app => {
         postcode: req.body.postcode
       });
       registerUser(user, (err, user) => {
-        console.log(user);
         res.send({ success: "Successfully registered" });
         sendEmail(user.email, user.first_name, null, "welcome");
         if (err) {
-          console.log(err);
         }
       });
     });
@@ -119,30 +114,22 @@ module.exports = app => {
 
   // Protecting Routes
   app.get("/auth/users", auth, (req, res) => {
-    console.log(req.user);
+    console.log(req.user._id);
     User.find({ _id: req.user._id }, (err, user) => {
       if (user) {
-        console.log("User " + user);
-        return res.json({
-          basic_info: {
-            vehicle_type: user.vehicle_type,
-            duration: user.duration,
-            completedTasks: user.completedTasks,
-            reviews: user.reviews,
-            reliable: user.reliable,
-            image: user.image,
-            skills: user.skills,
-            _id: user._id,
-            first_name: user.first_name,
-            last_name: user.last_name,
-            email: user.email,
-            name: user.name,
-            postcode: user.postcode,
-            comments: user.comments,
-            tasker_registered: user.tasker_registered,
-            isAuth: true
-          }
-        });
+        if (user.length > 0) {
+          return res.json({
+            basic_info: {
+              ...user[0]._doc,
+              isAuth: true
+            }
+          });
+        } else {
+          console.log(user.length);
+          return res.json({
+            isAuth: false
+          });
+        }
       }
     });
   });
