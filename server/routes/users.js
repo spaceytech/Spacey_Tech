@@ -4,6 +4,7 @@ const SALT_INT = 10;
 const mongoose = require("mongoose");
 const User = mongoose.model("Users");
 const { auth } = require("../middlewares/auth");
+const { sendEmail } = require("../mail");
 
 module.exports = app => {
   // Register users
@@ -62,6 +63,7 @@ module.exports = app => {
       registerUser(user, (err, user) => {
         console.log(user);
         res.send({ success: "Successfully registered" });
+        sendEmail(user.email, user.first_name, null, "welcome");
         if (err) {
           console.log(err);
         }
@@ -119,26 +121,29 @@ module.exports = app => {
   app.get("/auth/users", auth, (req, res) => {
     console.log(req.user);
     User.find({ _id: req.user._id }, (err, user) => {
-      return res.json({
-        basic_info: {
-          vehicle_type: user[0]._doc.vehicle_type,
-          duration: user[0]._doc.duration,
-          completedTasks: user[0]._doc.completedTasks,
-          reviews: user[0]._doc.reviews,
-          reliable: user[0]._doc.reliable,
-          image: user[0]._doc.image,
-          skills: user[0]._doc.skills,
-          _id: user[0]._doc._id,
-          first_name: user[0]._doc.first_name,
-          last_name: user[0]._doc.last_name,
-          email: user[0]._doc.email,
-          name: user[0]._doc.name,
-          postcode: user[0]._doc.postcode,
-          comments: user[0]._doc.comments,
-          tasker_registered: user[0]._doc.tasker_registered,
-          isAuth: true
-        }
-      });
+      if (user) {
+        console.log("User " + user);
+        return res.json({
+          basic_info: {
+            vehicle_type: user.vehicle_type,
+            duration: user.duration,
+            completedTasks: user.completedTasks,
+            reviews: user.reviews,
+            reliable: user.reliable,
+            image: user.image,
+            skills: user.skills,
+            _id: user._id,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            email: user.email,
+            name: user.name,
+            postcode: user.postcode,
+            comments: user.comments,
+            tasker_registered: user.tasker_registered,
+            isAuth: true
+          }
+        });
+      }
     });
   });
 
