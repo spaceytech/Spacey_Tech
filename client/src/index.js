@@ -24,7 +24,7 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = compose;
 const store = createStore(
   persistedReducer,
   {},
