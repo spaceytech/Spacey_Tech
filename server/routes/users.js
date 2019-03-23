@@ -1,4 +1,4 @@
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 const passport = require("passport");
 const SALT_INT = 10;
 const mongoose = require("mongoose");
