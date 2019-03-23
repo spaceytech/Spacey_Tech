@@ -81,67 +81,67 @@ if (process.env.NODE_ENV === "production") {
   const path = require("path");
   app.get("/", (req, res) => {
     res.sendFile(
-      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+      path.resolve(process.env.PWD, "client", "build", "index.html")
     );
   });
   app.get("/account/*", (req, res) => {
     res.sendFile(
-      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+      path.resolve(process.env.PWD, "client", "build", "index.html")
     );
   });
   app.get("/become_tasker/*", (req, res) => {
     res.sendFile(
-      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+      path.resolve(process.env.PWD, "client", "build", "index.html")
     );
   });
   app.get("/dashboard/*", (req, res) => {
     res.sendFile(
-      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+      path.resolve(process.env.PWD, "client", "build", "index.html")
     );
   });
   app.get("/handyman", (req, res) => {
     res.sendFile(
-      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+      path.resolve(process.env.PWD, "client", "build", "index.html")
     );
   });
   app.get("/laundry", (req, res) => {
     res.sendFile(
-      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+      path.resolve(process.env.PWD, "client", "build", "index.html")
     );
   });
   app.get("/delivery", (req, res) => {
     res.sendFile(
-      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+      path.resolve(process.env.PWD, "client", "build", "index.html")
     );
   });
   app.get("/cleaning", (req, res) => {
     res.sendFile(
-      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+      path.resolve(process.env.PWD, "client", "build", "index.html")
     );
   });
   app.get("/installation", (req, res) => {
     res.sendFile(
-      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+      path.resolve(process.env.PWD, "client", "build", "index.html")
     );
   });
   app.get("/cleaning", (req, res) => {
     res.sendFile(
-      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+      path.resolve(process.env.PWD, "client", "build", "index.html")
     );
   });
   app.get("/signin", (req, res) => {
     res.sendFile(
-      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+      path.resolve(process.env.PWD, "client", "build", "index.html")
     );
   });
   app.get("/signup", (req, res) => {
     res.sendFile(
-      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+      path.resolve(process.env.PWD, "client", "build", "index.html")
     );
   });
   app.get("/about", (req, res) => {
     res.sendFile(
-      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+      path.resolve(process.env.PWD, "client", "build", "index.html")
     );
   });
 }
