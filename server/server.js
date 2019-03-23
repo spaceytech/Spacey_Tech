@@ -77,7 +77,7 @@ process.env.PWD = process.cwd();
 
 // Conditional Production environment
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("clientside/build"));
+  app.use(express.static("client/build"));
   const path = require("path");
   app.get("/", (req, res) => {
     res.sendFile(
