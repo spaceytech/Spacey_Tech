@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
 const expressValidator = require("express-validator");
+const MongoStore = require("connect-mongo")(session);
 
 require("dotenv").config();
 
@@ -24,7 +25,8 @@ app.use(
   session({
     secret: "abcdefg",
     resave: true,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
   })
 );
 
