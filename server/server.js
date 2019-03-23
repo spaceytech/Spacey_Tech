@@ -10,7 +10,7 @@ const expressValidator = require("express-validator");
 require("dotenv").config();
 
 // MongoDB
-mongoose.connect(process.env.DATABASE).then(connection => {
+mongoose.connect(process.env.MONGO_URI).then(connection => {
   console.log("Successfully connected to database");
 });
 
@@ -71,7 +71,79 @@ require("./routes/tasks")(app);
 require("./routes/users")(app);
 require("./routes/tasker")(app);
 
-// Server run
+process.env.PWD = process.cwd();
+
+// Conditional Production environment
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("clientside/build"));
+  const path = require("path");
+  app.get("/", (req, res) => {
+    res.sendFile(
+      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+    );
+  });
+  app.get("/account/*", (req, res) => {
+    res.sendFile(
+      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+    );
+  });
+  app.get("/become_tasker/*", (req, res) => {
+    res.sendFile(
+      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+    );
+  });
+  app.get("/dashboard/*", (req, res) => {
+    res.sendFile(
+      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+    );
+  });
+  app.get("/handyman", (req, res) => {
+    res.sendFile(
+      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+    );
+  });
+  app.get("/laundry", (req, res) => {
+    res.sendFile(
+      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+    );
+  });
+  app.get("/delivery", (req, res) => {
+    res.sendFile(
+      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+    );
+  });
+  app.get("/cleaning", (req, res) => {
+    res.sendFile(
+      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+    );
+  });
+  app.get("/installation", (req, res) => {
+    res.sendFile(
+      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+    );
+  });
+  app.get("/cleaning", (req, res) => {
+    res.sendFile(
+      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+    );
+  });
+  app.get("/signin", (req, res) => {
+    res.sendFile(
+      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+    );
+  });
+  app.get("/signup", (req, res) => {
+    res.sendFile(
+      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+    );
+  });
+  app.get("/about", (req, res) => {
+    res.sendFile(
+      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+    );
+  });
+}
+
 const PORT = 3003;
 app.listen(PORT, () => {
   console.log(`Server is running from ${PORT}`);
