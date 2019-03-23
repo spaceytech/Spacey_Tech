@@ -9,6 +9,9 @@
     "server": "nodemon server/server.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
+  "engines": {
+    "node": "10.10.0"
+  },
   "author": "Zakeria Ali",
   "license": "ISC",
   "dependencies": {
