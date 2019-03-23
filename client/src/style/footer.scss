@@ -40,6 +40,9 @@
     &:nth-of-type(4) {
       @media only screen and (max-width: 25em) {
         grid-column: 1 / 4;
+        width: 100%;
+        justify-items: center;
+        text-align: center;
       }
     }
     h2 {
